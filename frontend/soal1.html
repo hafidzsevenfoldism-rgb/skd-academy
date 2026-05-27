@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Try Out SKD — SKD Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="soal1.css"/>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-logo">SKD</div>
+      <div class="topbar-divider"></div>
+      <div class="topbar-paket">Sedang mengerjakan: <span id="namaParket">Try Out SKD Paket 1</span></div>
+    </div>
+    <div class="timer-wrap" id="timerWrap">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+      </svg>
+      <div>
+        <div class="timer-lbl">Sisa Waktu</div>
+        <div class="timer-text" id="timerText">100:00</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="progress-topbar">
+    <div class="progress-topbar-fill" id="progressFill" style="width:3.33%"></div>
+  </div>
+
+  <!-- EXAM LAYOUT -->
+  <div class="exam-layout">
+
+    <!-- SOAL CARD -->
+    <div class="soal-card" id="soalCard">
+      <div class="soal-header">
+        <div class="soal-nomor">
+          <div class="nomor-badge" id="nomorBadge">1</div>
+          <div class="soal-of">Soal <span id="soalCurrent">1</span> dari <span id="soalTotal">30</span></div>
+        </div>
+        <div class="soal-kategori" id="soalKategori">TWK</div>
+      </div>
+      <div class="soal-body">
+        <div class="soal-teks" id="soalTeks"></div>
+        <div class="pilihan-list" id="pilihanList"></div>
+      </div>
+      <div class="soal-nav">
+        <button class="btn-nav btn-prev" id="btnPrev" disabled>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Sebelumnya
+        </button>
+        <button class="btn-nav btn-next" id="btnNext">
+          Selanjutnya
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+      <div class="sidebar-card">
+        <div class="sidebar-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+          </svg>
+          Navigasi Soal
+        </div>
+        <div class="nomor-grid" id="nomorGrid"></div>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot dot-current"></div> Soal saat ini</div>
+          <div class="legend-item"><div class="legend-dot dot-answered"></div> Sudah dijawab</div>
+          <div class="legend-item"><div class="legend-dot dot-empty"></div> Belum dijawab</div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+          Statistik
+        </div>
+        <div class="stat-row">
+          <div class="stat-line">
+            <div class="stat-line-lbl">Total Soal</div>
+            <div class="stat-line-val" id="statTotal">30</div>
+          </div>
+          <div class="stat-line">
+            <div class="stat-line-lbl">Sudah Dijawab</div>
+            <div class="stat-line-val green" id="statAnswered">0</div>
+          </div>
+          <div class="stat-line">
+            <div class="stat-line-lbl">Belum Dijawab</div>
+            <div class="stat-line-val red" id="statUnanswered">30</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-nav btn-selesai" id="btnSelesai">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        Selesai &amp; Kumpulkan
+      </button>
+
+    </div>
+  </div>
+
+  <!-- MODAL KONFIRMASI -->
+  <div class="modal-overlay" id="konfirmasiModal">
+    <div class="modal-box">
+      <div class="modal-icon warning-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+      </div>
+      <div class="modal-title">Kumpulkan Jawaban?</div>
+      <div class="modal-sub" id="konfirmasiSub">Yakin ingin mengumpulkan jawaban sekarang?</div>
+      <div class="modal-btns">
+        <button class="btn-cancel" id="btnBatalSelesai">Kembali</button>
+        <button class="btn-konfirmasi" id="btnKonfirmasiSelesai">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Ya, Kumpulkan
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL HASIL -->
+  <div class="modal-overlay" id="hasilModal">
+    <div class="modal-box hasil-modal-box">
+      <div class="hasil-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <div class="modal-title">Try Out Selesai!</div>
+      <div class="modal-sub" id="hasilSub">Berikut hasil try out kamu</div>
+      <div class="skor-box">
+        <div class="skor-lbl">Total Nilai</div>
+        <div class="skor-num" id="hasilSkor">0</div>
+        <div class="skor-detail">
+          <div class="skor-detail-item">
+            <div class="skor-detail-lbl">Benar</div>
+            <div class="skor-detail-val green" id="hasilBenar">0</div>
+          </div>
+          <div class="skor-detail-item">
+            <div class="skor-detail-lbl">Salah</div>
+            <div class="skor-detail-val red" id="hasilSalah">0</div>
+          </div>
+          <div class="skor-detail-item">
+            <div class="skor-detail-lbl">Kosong</div>
+            <div class="skor-detail-val" id="hasilKosong">0</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-btns">
+        <button class="btn-cancel" id="btnReview">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+          </svg>
+          Lihat Pembahasan
+        </button>
+        <button class="btn-konfirmasi" id="btnKembaliHome">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          Kembali ke Beranda
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <script src="soal1.js"></script>
+  <script src="api.js"></script>
+</body>
+</html>
