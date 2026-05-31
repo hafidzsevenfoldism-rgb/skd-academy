@@ -5,8 +5,7 @@
    <script src="api.js"></script>
 ══════════════════════════════════════════════ */
 
-// Backend berjalan di localhost saat simulasi lokal
-const API_URL = 'http://localhost:3000';
+const API_URL = window.API_URL || 'http://localhost:3000';
 
 
 /* ══════════════════════════════
@@ -143,4 +142,36 @@ async function apiGetRiwayat() {
 async function apiGetHasil(tryout_id) {
   const data = await apiRequest('/api/tryout/hasil/' + tryout_id);
   return data.hasil;
+}
+/* ══════════════════════════════
+   TRYOUT — RESET JAWABAN (mulai dari 0)
+   Dipanggil saat user klik "Mulai Ujian"
+══════════════════════════════ */
+async function apiResetJawaban(tryout_id) {
+  try {
+    await apiRequest('/api/tryout/reset-jawaban/' + tryout_id, 'DELETE');
+    console.log('Jawaban tryout ' + tryout_id + ' berhasil direset');
+  } catch (err) {
+    // Gagal reset tidak perlu stop user
+    console.warn('Gagal reset jawaban:', err.message);
+  }
+}
+/* ══════════════════════════════
+   TIMER — SIMPAN SISA WAKTU
+══════════════════════════════ */
+async function apiSimpanWaktu(tryout_id, sisa_waktu) {
+  try {
+    const result = await apiRequest('/api/tryout/simpan-waktu', 'POST', {
+      tryout_id, sisa_waktu
+    });
+    console.log('Waktu tersimpan:', sisa_waktu, 'detik');
+  } catch (err) {
+    console.warn('Gagal simpan waktu:', err.message);
+  }
+}
+
+async function apiGetWaktu(tryout_id) {
+  const data = await apiRequest('/api/tryout/get-waktu/' + tryout_id);
+  console.log('Response get-waktu dari server:', data);
+  return data.sisa_waktu;
 }

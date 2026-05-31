@@ -1,291 +1,317 @@
-  /* ══════════════════════════════
-    DATA AKUN PENGGUNA
-    Dibaca dari sessionStorage yang disimpan oleh login.js
-  ══════════════════════════════ */
-  const akun = {
-    nama:    sessionStorage.getItem('skd_nama')    || 'Pengguna',
-    email:   sessionStorage.getItem('skd_email')   || 'pengguna@email.com',
-    inisial: sessionStorage.getItem('skd_inisial') || 'P'
-  };
+/* ══════════════════════════════
+   DATA AKUN PENGGUNA
+   Dibaca dari sessionStorage yang disimpan oleh login.js
+══════════════════════════════ */
+const akun = {
+  nama:    sessionStorage.getItem('skd_nama')    || 'Pengguna',
+  email:   sessionStorage.getItem('skd_email')   || 'pengguna@email.com',
+  inisial: sessionStorage.getItem('skd_inisial') || 'P'
+};
 
 
-  /* ══════════════════════════════
-    DATA TRYOUT
-  ══════════════════════════════ */
-  const tryouts = [
-    {
-      id: 1, title: "Try Out SKD Paket 1",
-      desc: "Simulasi SKD lengkap: TWK + TIU + TKP sesuai standar BKN terbaru.",
-      soal: 110, waktu: 100, harga: 15000, hargaAsli: 30000, baru: true, stripe: "#4FC3E0"
-    },
-    {
-      id: 2, title: "Try Out SKD Paket 2",
-      desc: "Simulasi SKD sesi 2 dengan bank soal berbeda dari Paket 1.",
-      soal: 110, waktu: 100, harga: 15000, hargaAsli: 30000, baru: false, stripe: "#2A9DBF"
-    },
-    {
-      id: 3, title: "Try Out SKD Paket 3",
-      desc: "Simulasi SKD sesi 3 dengan variasi soal yang lebih menantang.",
-      soal: 110, waktu: 100, harga: 15000, hargaAsli: 30000, baru: false, stripe: "#C8903A"
-    },
-    {
-      id: 4, title: "Try Out SKD Paket 4",
-      desc: "Simulasi SKD sesi 4 fokus pada peningkatan skor TWK dan TKP.",
-      soal: 110, waktu: 100, harga: 15000, hargaAsli: 30000, baru: true, stripe: "#E8B45A"
-    },
-    {
-      id: 5, title: "Try Out SKD Paket 5",
-      desc: "Simulasi SKD sesi 5 dengan soal-soal yang diperbarui tahun 2025.",
-      soal: 110, waktu: 100, harga: 15000, hargaAsli: 30000, baru: false, stripe: "#2ECC9A"
-    },
-    {
-      id: 6, title: "Try Out SKD Paket 6",
-      desc: "Simulasi SKD sesi 6 dengan tingkat kesulitan lebih tinggi.",
-      soal: 110, waktu: 100, harga: 15000, hargaAsli: 30000, baru: false, stripe: "#1fa87c"
-    },
-    {
-      id: 7, title: "Try Out SKD Paket 7",
-      desc: "Simulasi SKD sesi 7 mencakup seluruh materi SKD secara komprehensif.",
-      soal: 110, waktu: 100, harga: 15000, hargaAsli: 30000, baru: true, stripe: "#7b5ac8"
-    },
-    {
-      id: 8, title: "Try Out SKD Paket 8",
-      desc: "Simulasi SKD sesi 8 dengan soal prediksi CPNS terbaru.",
-      soal: 110, waktu: 100, harga: 15000, hargaAsli: 30000, baru: false, stripe: "#a880f0"
-    },
-  ];
+/* ══════════════════════════════
+   DATA TRYOUT — dimuat dari database
+══════════════════════════════ */
+let tryouts = [];
 
-  /* ── Try out yang sudah dibeli (kosong — belum ada yang dimiliki) ── */
-  const myTryouts = [];
+const tryoutFallback = [
+  { id: 1, title: "Try Out SKD Paket 1", desc: "Simulasi SKD lengkap: TWK + TIU + TKP sesuai standar BKN terbaru.", soal: 110, waktu: 100, harga: 0, hargaAsli: 30000, baru: true, stripe: "#4FC3E0" }
+];
 
-  /* ── Set ID yang sudah dimiliki (kosong) ── */
-  const purchased = new Set();
+async function muatPaketTryout() {
+  try {
+    const token = localStorage.getItem('skd_token');
+    if (!token) { pakaiCachePaket(); return; }
 
-
-  /* ══════════════════════════════
-    INISIALISASI INFO AKUN
-  ══════════════════════════════ */
-  function initAkun() {
-    document.getElementById('accountName').textContent  = akun.nama;
-    document.getElementById('accountEmail').textContent = akun.email;
-    document.getElementById('accountAvatar').textContent = akun.inisial;
-    document.getElementById('heroName').textContent     = akun.nama;
-  }
-
-
-  /* ══════════════════════════════
-    RENDER KARTU BERANDA
-  ══════════════════════════════ */
-  function renderCards(list) {
-    const grid = document.getElementById('cardsGrid');
-    grid.innerHTML = '';
-
-    if (!list.length) {
-      grid.innerHTML = `
-        <p style="color:var(--muted);font-weight:700;font-size:14px;
-                  grid-column:1/-1;padding:20px 0;">
-          Tidak ada try out ditemukan.
-        </p>`;
-      return;
+    const data = await apiRequest('/api/tryout/paket');
+    if (data && data.paket && data.paket.length > 0) {
+      tryouts = data.paket.map(function (p) {
+        return {
+          id:         p.tryout_id,
+          title:      p.nama_paket,
+          desc:       p.deskripsi,
+          soal:       p.jumlah_soal,
+          waktu:      p.waktu_menit,
+          harga:      p.harga,
+          hargaAsli:  p.harga_asli,
+          baru:       p.is_baru,
+          stripe:     p.stripe_color,
+          comingSoon: !p.is_aktif
+        };
+      });
+      localStorage.setItem('skd_paket_cache', JSON.stringify(tryouts));
+    } else {
+      pakaiCachePaket();
     }
+  } catch (err) {
+    console.warn('Gagal muat paket dari server, pakai cache:', err.message);
+    pakaiCachePaket();
+  }
+  filterCards();
+}
 
-    list.forEach(function (t, i) {
-      const owned = purchased.has(t.id);
+function pakaiCachePaket() {
+  const cached = localStorage.getItem('skd_paket_cache');
+  if (cached) {
+    tryouts = JSON.parse(cached);
+  } else {
+    tryouts = tryoutFallback.slice();
+  }
+}
 
-      const card = document.createElement('div');
-      card.className = 'to-card';
-      card.style.animationDelay = (i * 0.07) + 's';
+/* Diisi dari database saat halaman dimuat */
+const myTryouts = [];
+const purchased = new Set();
 
-      card.innerHTML = `
-        <div class="card-stripe" style="background:${t.stripe}"></div>
 
-        <div class="card-head">
-          <span class="card-category cat-skd">SKD</span>
-          ${t.baru ? '<span class="card-badge-new">Baru</span>' : ''}
-        </div>
+/* ══════════════════════════════
+   INISIALISASI INFO AKUN
+══════════════════════════════ */
+function initAkun() {
+  document.getElementById('accountName').textContent   = akun.nama;
+  document.getElementById('accountEmail').textContent  = akun.email;
+  document.getElementById('accountAvatar').textContent = akun.inisial;
+  document.getElementById('heroName').textContent      = akun.nama;
+}
 
-        <div class="card-body">
-          <div class="card-title">${t.title}</div>
-          <div class="card-desc">${t.desc}</div>
-          <div class="card-meta">
-            <div class="meta-item">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12
-                        a2 2 0 0 0 2-2V8z"/>
-                <polyline points="14 2 14 8 20 8"/>
-              </svg>
-              ${t.soal} Soal
-            </div>
-            <div class="meta-item">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="12 6 12 12 16 14"/>
-              </svg>
-              ${t.waktu} Menit
-            </div>
-          </div>
-        </div>
 
-        <div class="card-footer">
-          <div class="price-wrap">
-            <div class="price-old">Rp ${t.hargaAsli.toLocaleString('id-ID')}</div>
-            <div class="price-row">
-              <span class="diskon-badge">50% OFF</span>
-              <div class="price-now">Rp ${t.harga.toLocaleString('id-ID')}</div>
-            </div>
-          </div>
-          ${owned
-            ? `<button class="btn-beli btn-owned" disabled>✓ Dimiliki</button>`
-            : `<button class="btn-beli" onclick="beliTryout(${t.id})">
-               <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2.5"
-                    stroke-linecap="round" stroke-linejoin="round">
-                 <circle cx="9" cy="21" r="1"/>
-                 <circle cx="20" cy="21" r="1"/>
-                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72
-                          a2 2 0 0 0 2-1.61L23 6H6"/>
-               </svg>
-               ${t.id === 1 ? 'Gratis' : 'Beli Sekarang'}
-             </button>`
-          }
-        </div>`;
+/* ══════════════════════════════
+   RENDER KARTU BERANDA
+══════════════════════════════ */
+function renderCards(list) {
+  const grid = document.getElementById('cardsGrid');
+  grid.innerHTML = '';
 
-      grid.appendChild(card);
-    });
+  if (!list.length) {
+    grid.innerHTML = `
+      <p style="color:var(--muted);font-weight:700;font-size:14px;
+                grid-column:1/-1;padding:20px 0;">
+        Tidak ada try out ditemukan.
+      </p>`;
+    return;
   }
 
+  list.forEach(function (t, i) {
+    const owned = purchased.has(t.id);
 
-  /* ══════════════════════════════
-    RENDER MY TRYOUT
-  ══════════════════════════════ */
-  function renderMyTo() {
-    const list = document.getElementById('myToList');
-    list.innerHTML = '';
+    const card = document.createElement('div');
+    card.className = 'to-card';
+    card.style.animationDelay = (i * 0.07) + 's';
 
-    if (!myTryouts.length) {
-      list.innerHTML = `
-        <div class="empty-state">
-          <div class="empty-icon">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.8"
+    card.innerHTML = `
+      <div class="card-stripe" style="background:${t.stripe}"></div>
+
+      <div class="card-head">
+        <span class="card-category cat-skd">SKD</span>
+        ${t.baru ? '<span class="card-badge-new">Baru</span>' : ''}
+      </div>
+
+      <div class="card-body">
+        <div class="card-title">${t.title}</div>
+        <div class="card-desc">${t.desc}</div>
+        <div class="card-meta">
+          <div class="meta-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5"
                 stroke-linecap="round" stroke-linejoin="round">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12
                       a2 2 0 0 0 2-2V8z"/>
               <polyline points="14 2 14 8 20 8"/>
-              <line x1="16" y1="13" x2="8" y2="13"/>
-              <line x1="16" y1="17" x2="8" y2="17"/>
-              <polyline points="10 9 9 9 8 9"/>
             </svg>
+            ${t.soal} Soal
           </div>
-          <div class="empty-title">Belum ada try out</div>
-          <div class="empty-sub">
-            Kamu belum membeli try out apapun.<br>Yuk mulai berlatih sekarang!
-          </div>
-          <button class="btn-shop"
-            onclick="switchTab('beranda', document.getElementById('menuBeranda'))">
-            Lihat Try Out
-          </button>
-        </div>`;
-      return;
-    }
-
-    myTryouts.forEach(function (t, i) {
-      const selesai    = t.progress === 100;
-      const statusText = selesai ? 'Selesai' : t.progress > 0 ? 'Dilanjutkan' : 'Belum dimulai';
-
-      const card = document.createElement('div');
-      card.className = 'my-to-card';
-      card.style.animationDelay = (i * 0.08) + 's';
-
-      card.innerHTML = `
-        <div class="my-icon ic-skd">${i + 1}</div>
-
-        <div class="my-info">
-          <div class="my-title">${t.title}</div>
-          <div class="my-meta">
-            <div class="my-meta-item">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="12 6 12 12 16 14"/>
-              </svg>
-              ${t.waktu} menit
-            </div>
-            <div class="my-meta-item">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-              </svg>
-              Progress ${t.progress}%
-            </div>
-          </div>
-          <div class="progress-wrap">
-            <div class="progress-label">
-              <span>${statusText}</span>
-              <span>${t.progress}%</span>
-            </div>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width:${t.progress}%"></div>
-            </div>
+          <div class="meta-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            ${t.waktu} Menit
           </div>
         </div>
+      </div>
 
-        <div class="my-actions">
-          ${t.skor ? `<div class="score-badge">Skor: ${t.skor}</div>` : ''}
-          <button class="btn-mulai ${selesai ? 'done' : ''}"
-            onclick="${selesai
-              ? `showToast('Membuka hasil try out...')`
-              : `showReminder(${t.id}, '${t.title}')`
-            }">
-            ${selesai
-              ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+      <div class="card-footer">
+        <div class="price-wrap">
+          <div class="price-old">Rp ${t.hargaAsli.toLocaleString('id-ID')}</div>
+          <div class="price-row">
+            <span class="diskon-badge">50% OFF</span>
+            <div class="price-now">${t.harga === 0 ? 'Gratis' : 'Rp ' + t.harga.toLocaleString('id-ID')}</div>
+          </div>
+        </div>
+        ${t.comingSoon
+          ? `<button class="btn-beli btn-coming-soon" disabled>
+               <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                 <circle cx="12" cy="12" r="10"/>
+                 <polyline points="12 6 12 12 16 14"/>
+               </svg>
+               Coming Soon...
+             </button>`
+          : owned
+            ? `<button class="btn-beli btn-owned" disabled>✓ Dimiliki</button>`
+            : `<button class="btn-beli" onclick="beliTryout(${t.id})">
+                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2.5"
                       stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-                </svg> Lihat Hasil`
-              : `<svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2.5"
-                      stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="5 3 19 12 5 21 5 3"/>
-                </svg> ${t.progress > 0 ? 'Lanjutkan' : 'Mulai'}`
-            }
-          </button>
-        </div>`;
+                   <circle cx="9" cy="21" r="1"/>
+                   <circle cx="20" cy="21" r="1"/>
+                   <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72
+                            a2 2 0 0 0 2-1.61L23 6H6"/>
+                 </svg>
+                 ${t.harga === 0 ? 'Klaim Gratis' : 'Beli Sekarang'}
+               </button>`
+        }
+      </div>`;
 
-      list.appendChild(card);
-    });
+    grid.appendChild(card);
+  });
+}
+
+
+/* ══════════════════════════════
+   RENDER MY TRYOUT
+══════════════════════════════ */
+function renderMyTo() {
+  const list = document.getElementById('myToList');
+  list.innerHTML = '';
+
+  if (!myTryouts.length) {
+    list.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12
+                    a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <div class="empty-title">Belum ada try out</div>
+        <div class="empty-sub">
+          Kamu belum memiliki try out apapun.<br>Yuk mulai berlatih sekarang!
+        </div>
+        <button class="btn-shop"
+          onclick="switchTab('beranda', document.getElementById('menuBeranda'))">
+          Lihat Try Out
+        </button>
+      </div>`;
+    return;
   }
 
+  myTryouts.forEach(function (t, i) {
+    const selesai    = t.progress === 100;
+    const statusText = selesai ? 'Selesai' : t.progress > 0 ? 'Dilanjutkan' : 'Belum dimulai';
 
-  /* ══════════════════════════════
-    FILTER KARTU
-  ══════════════════════════════ */
-  function filterCards() {
-    const query = document.getElementById('searchInput').value.toLowerCase();
-    const cat   = document.getElementById('catFilter').value;
+    const card = document.createElement('div');
+    card.className = 'my-to-card';
+    card.style.animationDelay = (i * 0.08) + 's';
 
-    const filtered = tryouts.filter(function (t) {
-      const matchQuery = t.title.toLowerCase().includes(query);
-      const matchCat   = cat === '' || cat === 'SKD';
-      return matchQuery && matchCat;
-    });
+    card.innerHTML = `
+      <div class="my-icon ic-skd">${i + 1}</div>
 
-    renderCards(filtered);
+      <div class="my-info">
+        <div class="my-title">${t.title}</div>
+        <div class="my-meta">
+          <div class="my-meta-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            ${t.waktu} menit
+          </div>
+          <div class="my-meta-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+            Progress ${t.progress}%
+          </div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label">
+            <span>${statusText}</span>
+            <span>${t.progress}%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width:${t.progress}%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="my-actions">
+        ${t.skor ? `<div class="score-badge">Skor: ${t.skor}</div>` : ''}
+        <button class="btn-mulai ${selesai ? 'done' : ''}"
+          onclick="${selesai
+            ? `showToast('Membuka hasil try out...')`
+            : `showReminder(${t.id}, '${t.title}')`
+          }">
+          ${selesai
+            ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg> Lihat Hasil`
+            : `<svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg> ${t.progress > 0 ? 'Lanjutkan' : 'Mulai'}`
+          }
+        </button>
+      </div>`;
+
+    list.appendChild(card);
+  });
+}
+
+
+/* ══════════════════════════════
+   FILTER KARTU
+══════════════════════════════ */
+function filterCards() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  const cat   = document.getElementById('catFilter').value;
+
+  const filtered = tryouts.filter(function (t) {
+    const matchQuery = t.title.toLowerCase().includes(query);
+    const matchCat   = cat === '' || cat === 'SKD';
+    return matchQuery && matchCat;
+  });
+
+  renderCards(filtered);
+}
+
+
+/* ══════════════════════════════
+   BELI / KLAIM TRYOUT
+   Simpan ke database agar tidak hilang setelah logout
+══════════════════════════════ */
+async function beliTryout(id) {
+  const to = tryouts.find(function (t) { return t.id === id; });
+  if (!to) return;
+
+  if (to.comingSoon) {
+    showToast('Try out ini belum tersedia. Tunggu update selanjutnya!');
+    return;
   }
 
+  if (purchased.has(id)) {
+    showToast('Try out ini sudah kamu miliki!');
+    return;
+  }
 
-  /* ══════════════════════════════
-    BELI TRYOUT
-  ══════════════════════════════ */
-  function beliTryout(id) {
-    const to = tryouts.find(function (t) { return t.id === id; });
-    if (!to) return;
+  try {
+    await apiBeli(to.id, to.title, to.harga);
 
     purchased.add(id);
 
@@ -300,145 +326,252 @@
       });
     }
 
+    // Simpan ke localStorage sebagai cache
+    // Inilah yang akan dipakai saat refresh / login ulang
+    localStorage.setItem('skd_purchased', JSON.stringify([...purchased]));
+    localStorage.setItem('skd_myTryouts', JSON.stringify(myTryouts));
+
     filterCards();
-    showToast('✓ "' + to.title + '" berhasil dibeli!');
-  }
-
-
-  /* ══════════════════════════════
-    SWITCH TAB
-  ══════════════════════════════ */
-  function switchTab(tab, activeEl) {
-    document.querySelectorAll('.section-panel').forEach(function (p) {
-      p.classList.remove('active');
-    });
-    document.querySelectorAll('.nav-link').forEach(function (a) {
-      a.classList.remove('active');
-    });
-    document.getElementById('panel-' + tab).classList.add('active');
-    if (activeEl) activeEl.classList.add('active');
-    document.getElementById('navMenu').classList.remove('open');
-  }
-
-
-  /* ══════════════════════════════
-    TOAST NOTIFICATION
-  ══════════════════════════════ */
-  function showToast(msg) {
-    const toast = document.getElementById('toast');
-    document.getElementById('toastMsg').textContent = msg;
-    toast.classList.add('show');
-    setTimeout(function () {
-      toast.classList.remove('show');
-    }, 3000);
-  }
-
-
-  /* ══════════════════════════════
-    MODAL REMINDER TRY OUT
-  ══════════════════════════════ */
-  let activeTryoutId = null;
-
-  function showReminder(id, title) {
-    activeTryoutId = id;
-    document.getElementById('reminderSubtitle').textContent = title;
-    document.getElementById('reminderModal').classList.add('show');
-  }
-
-  function hideReminder() {
-    document.getElementById('reminderModal').classList.remove('show');
-    activeTryoutId = null;
-  }
-
-  function mulaiUjian() {
-    hideReminder();
-    // Simpan id try out yang sedang dikerjakan
-    sessionStorage.setItem('skd_tryout_id', activeTryoutId);
-    // Arahkan ke halaman soal
-    window.location.href = 'soal1.html';
-  }
-
-
-  /* ══════════════════════════════
-    MODAL LOGOUT
-  ══════════════════════════════ */
-  function showLogout() {
-    document.getElementById('logoutModal').classList.add('show');
-  }
-
-  function hideLogout() {
-    document.getElementById('logoutModal').classList.remove('show');
-  }
-
-  function confirmLogout() {
-    hideLogout();
-
-    // Hapus data sesi akun
-    sessionStorage.removeItem('skd_nama');
-    sessionStorage.removeItem('skd_email');
-    sessionStorage.removeItem('skd_inisial');
-
-    showToast('Berhasil keluar. Sampai jumpa!');
-    setTimeout(function () {
-      window.location.href = 'index.html';
-    }, 1800);
-  }
-
-
-  /* ══════════════════════════════
-    EVENT LISTENERS
-  ══════════════════════════════ */
-  document.getElementById('hamburger').addEventListener('click', function () {
-    document.getElementById('navMenu').classList.toggle('open');
-  });
-
-  document.getElementById('menuBeranda').addEventListener('click', function (e) {
-    e.preventDefault();
-    switchTab('beranda', this);
-  });
-
-  document.getElementById('menuMyTO').addEventListener('click', function (e) {
-    e.preventDefault();
-    switchTab('myto', this);
     renderMyTo();
+
+    const label = to.harga === 0 ? 'diklaim' : 'dibeli';
+    showToast('✓ "' + to.title + '" berhasil ' + label + '!');
+
+  } catch (err) {
+    console.error('Gagal simpan tryout:', err.message);
+    showToast('Gagal menyimpan. Pastikan kamu sudah login.');
+  }
+}
+
+
+/* ══════════════════════════════
+   MUAT TRYOUT DIMILIKI DARI DATABASE
+   Dipanggil saat halaman pertama kali dibuka
+══════════════════════════════ */
+async function muatTryoutDimiliki() {
+  purchased.clear();
+  myTryouts.length = 0;
+
+  // LANGKAH 1: Coba ambil dari database via API
+  try {
+    const token = localStorage.getItem('skd_token');
+
+    // Jika tidak ada token, skip API dan langsung pakai cache
+    if (!token) {
+      muatDariCache();
+      return;
+    }
+
+    const dariServer = await apiGetDimiliki();
+
+    if (dariServer && dariServer.length > 0) {
+      dariServer.forEach(function (item) {
+        purchased.add(item.tryout_id);
+
+        const detail = tryouts.find(function (t) { return t.id === item.tryout_id; });
+        myTryouts.push({
+          id:       item.tryout_id,
+          title:    item.nama_paket,
+          progress: 0,
+          skor:     null,
+          waktu:    detail ? detail.waktu : 100
+        });
+      });
+
+      // Simpan ke cache agar refresh tetap tampil
+      localStorage.setItem('skd_purchased', JSON.stringify([...purchased]));
+      localStorage.setItem('skd_myTryouts', JSON.stringify(myTryouts));
+
+    } else {
+      // Server berhasil diakses tapi data kosong —
+      // bisa jadi akun baru, bersihkan cache lama
+      localStorage.removeItem('skd_purchased');
+      localStorage.removeItem('skd_myTryouts');
+    }
+
+  } catch (err) {
+    // LANGKAH 2: API gagal → pakai cache localStorage
+    console.warn('API gagal, pakai cache lokal:', err.message);
+    muatDariCache();
+  }
+}
+
+// Fungsi bantu: muat dari cache localStorage
+function muatDariCache() {
+  const cachePurchased = localStorage.getItem('skd_purchased');
+  const cacheMyTryouts = localStorage.getItem('skd_myTryouts');
+
+  if (cachePurchased) {
+    JSON.parse(cachePurchased).forEach(function (id) {
+      purchased.add(id);
+    });
+  }
+
+  if (cacheMyTryouts) {
+    JSON.parse(cacheMyTryouts).forEach(function (t) {
+      const sudahAda = myTryouts.some(function (m) { return m.id === t.id; });
+      if (!sudahAda) myTryouts.push(t);
+    });
+  }
+}
+
+
+/* ══════════════════════════════
+   SWITCH TAB
+══════════════════════════════ */
+function switchTab(tab, activeEl) {
+  document.querySelectorAll('.section-panel').forEach(function (p) {
+    p.classList.remove('active');
   });
-
-  document.getElementById('btnLogout').addEventListener('click', function () {
-    showLogout();
+  document.querySelectorAll('.nav-link').forEach(function (a) {
+    a.classList.remove('active');
   });
-
-  document.getElementById('btnCancelLogout').addEventListener('click', function () {
-    hideLogout();
-  });
-
-  document.getElementById('btnConfirmLogout').addEventListener('click', function () {
-    confirmLogout();
-  });
-
-  /* Reminder modal */
-  document.getElementById('btnCancelReminder').addEventListener('click', function () {
-    hideReminder();
-  });
-
-  document.getElementById('btnMulaiUjian').addEventListener('click', function () {
-    mulaiUjian();
-  });
-
-  document.getElementById('reminderModal').addEventListener('click', function (e) {
-    if (e.target === this) hideReminder();
-  });
-
-  document.getElementById('searchInput').addEventListener('input', filterCards);
-  document.getElementById('catFilter').addEventListener('change', filterCards);
-
-  document.getElementById('logoutModal').addEventListener('click', function (e) {
-    if (e.target === this) hideLogout();
-  });
+  document.getElementById('panel-' + tab).classList.add('active');
+  if (activeEl) activeEl.classList.add('active');
+  document.getElementById('navMenu').classList.remove('open');
+}
 
 
-  /* ══════════════════════════════
-    INISIALISASI HALAMAN
-  ══════════════════════════════ */
-  initAkun();
+/* ══════════════════════════════
+   TOAST NOTIFICATION
+══════════════════════════════ */
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  toast.classList.add('show');
+  setTimeout(function () {
+    toast.classList.remove('show');
+  }, 3000);
+}
+
+
+/* ══════════════════════════════
+   MODAL REMINDER TRY OUT
+══════════════════════════════ */
+let activeTryoutId = null;
+
+function showReminder(id, title) {
+  activeTryoutId = id;
+  document.getElementById('reminderSubtitle').textContent = title;
+  document.getElementById('reminderModal').classList.add('show');
+}
+
+function hideReminder() {
+  document.getElementById('reminderModal').classList.remove('show');
+  activeTryoutId = null;
+}
+
+async function mulaiUjian() {
+  var tryoutId = activeTryoutId;
+
+  hideReminder();
+
+  sessionStorage.setItem('skd_tryout_id', tryoutId);
+
+  var to = tryouts.find(function (t) { return t.id === tryoutId; });
+  if (to) {
+    sessionStorage.setItem('skd_tryout_title', to.title);
+  }
+
+  await apiResetJawaban(tryoutId);
+  localStorage.removeItem('skd_jwb_' + tryoutId);
+
+  window.location.href = 'soal1.html';
+}
+
+
+/* ══════════════════════════════
+   MODAL LOGOUT
+══════════════════════════════ */
+function showLogout() {
+  document.getElementById('logoutModal').classList.add('show');
+}
+
+function hideLogout() {
+  document.getElementById('logoutModal').classList.remove('show');
+}
+
+function confirmLogout() {
+  hideLogout();
+
+  sessionStorage.removeItem('skd_nama');
+  sessionStorage.removeItem('skd_email');
+  sessionStorage.removeItem('skd_inisial');
+  localStorage.removeItem('skd_token');
+  localStorage.removeItem('skd_user');
+
+  showToast('Berhasil keluar. Sampai jumpa!');
+  setTimeout(function () {
+    window.location.href = 'index.html';
+  }, 1800);
+}
+
+
+/* ══════════════════════════════
+   EVENT LISTENERS
+══════════════════════════════ */
+document.getElementById('hamburger').addEventListener('click', function () {
+  document.getElementById('navMenu').classList.toggle('open');
+});
+
+document.getElementById('menuBeranda').addEventListener('click', function (e) {
+  e.preventDefault();
+  switchTab('beranda', this);
+});
+
+document.getElementById('menuMyTO').addEventListener('click', function (e) {
+  e.preventDefault();
+  switchTab('myto', this);
+  renderMyTo();
+});
+
+document.getElementById('btnLogout').addEventListener('click', function () {
+  showLogout();
+});
+
+document.getElementById('btnCancelLogout').addEventListener('click', function () {
+  hideLogout();
+});
+
+document.getElementById('btnConfirmLogout').addEventListener('click', function () {
+  confirmLogout();
+});
+
+document.getElementById('btnCancelReminder').addEventListener('click', function () {
+  hideReminder();
+});
+
+document.getElementById('btnMulaiUjian').addEventListener('click', function () {
+  mulaiUjian();
+});
+
+document.getElementById('reminderModal').addEventListener('click', function (e) {
+  if (e.target === this) hideReminder();
+});
+
+document.getElementById('searchInput').addEventListener('input', filterCards);
+document.getElementById('catFilter').addEventListener('change', filterCards);
+
+document.getElementById('logoutModal').addEventListener('click', function (e) {
+  if (e.target === this) hideLogout();
+});
+
+
+/* ══════════════════════════════
+   INISIALISASI HALAMAN
+   1. Render awal
+   2. Muat paket tryout dari database
+   3. Muat tryout dimiliki dari database
+   4. Re-render dengan data terbaru
+══════════════════════════════ */
+initAkun();
+renderMyTo();
+
+muatPaketTryout().then(function () {
+  renderCards(tryouts);
+});
+
+muatTryoutDimiliki().then(function () {
   renderCards(tryouts);
   renderMyTo();
+});

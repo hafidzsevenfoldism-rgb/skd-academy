@@ -21,7 +21,7 @@
   --badge-new:  #FF6B6B;
   --shadow-card: 0 4px 24px rgba(44, 120, 160, 0.10);
   --radius:     18px;
-  --nav-h:      70px;
+  --nav-h:      100px;
 }
 
 /* ══════════════════════════════
@@ -659,6 +659,14 @@ body {
 .btn-owned {
   background: linear-gradient(135deg, #1fa87c, #2ECC9A) !important;
   box-shadow: 0 4px 14px rgba(46, 204, 154, 0.3) !important;
+}
+
+.btn-coming-soon {
+  background: var(--muted) !important;
+  opacity: 0.7;
+  cursor: not-allowed;
+  color: #fff;
+  font-weight: 600;
 }
 
 /* ══════════════════════════════

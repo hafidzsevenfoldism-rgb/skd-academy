@@ -1,4 +1,4 @@
-const express = require('express');
+ const express = require('express');
 const pool    = require('../config/db');
 const auth    = require('../middleware/auth');
 
@@ -288,6 +288,123 @@ router.get('/hasil/:tryout_id', auth, async (req, res) => {
   } catch (err) {
     console.error('Hasil error:', err.message);
     return res.status(500).json({ error: 'Gagal mengambil hasil.' });
+  }
+});
+
+/* ══════════════════════════════════════════════
+   DELETE /api/tryout/reset-jawaban/:tryout_id
+   Hapus semua jawaban user untuk satu tryout
+   Dipanggil saat user klik "Mulai Ujian"
+   Header: Authorization: Bearer <token>
+══════════════════════════════════════════════ */
+router.delete('/reset-jawaban/:tryout_id', auth, async (req, res) => {
+  const { tryout_id } = req.params;
+  const user_id = req.user.id;
+
+  try {
+    // Hapus semua jawaban user untuk tryout ini
+    await pool.query(
+      `DELETE FROM jawaban_peserta
+       WHERE user_id = $1 AND tryout_id = $2`,
+      [user_id, tryout_id]
+    );
+
+    // Hapus juga hasil tryout sebelumnya agar bisa dikerjakan ulang
+    await pool.query(
+      `DELETE FROM hasil_tryout
+       WHERE user_id = $1 AND tryout_id = $2`,
+      [user_id, tryout_id]
+    );
+
+    return res.status(200).json({
+      message: 'Jawaban berhasil direset. Siap mengerjakan dari awal.'
+    });
+
+  } catch (err) {
+    console.error('Reset jawaban error:', err.message);
+    return res.status(500).json({ error: 'Gagal mereset jawaban.' });
+  }
+});
+/* ══════════════════════════════════════════════
+   POST /api/tryout/simpan-waktu
+   Simpan sisa waktu ke kolom sisa_waktu
+   di tabel jawaban_peserta (soal_id = 0)
+══════════════════════════════════════════════ */
+router.post('/simpan-waktu', auth, async (req, res) => {
+  const { tryout_id, sisa_waktu } = req.body;
+  const user_id = req.user.id;
+
+  if (!tryout_id || sisa_waktu === undefined) {
+    return res.status(400).json({ error: 'Data tidak lengkap.' });
+  }
+
+  try {
+    await pool.query(
+      `INSERT INTO jawaban_peserta
+         (user_id, tryout_id, soal_id, jawaban, sisa_waktu, updated_at)
+       VALUES ($1, $2, 0, NULL, $3, NOW())
+       ON CONFLICT (user_id, tryout_id, soal_id)
+       DO UPDATE SET sisa_waktu = $3, updated_at = NOW()`,
+      [user_id, tryout_id, sisa_waktu]
+    );
+
+    return res.status(200).json({ message: 'Waktu disimpan.', sisa_waktu });
+
+  } catch (err) {
+    console.error('Simpan waktu error:', err.message);
+    return res.status(500).json({ error: 'Gagal menyimpan waktu.' });
+  }
+});
+
+
+/* ══════════════════════════════════════════════
+   GET /api/tryout/get-waktu/:tryout_id
+   Ambil sisa waktu dari kolom sisa_waktu
+   di tabel jawaban_peserta (soal_id = 0)
+══════════════════════════════════════════════ */
+router.get('/get-waktu/:tryout_id', auth, async (req, res) => {
+  const { tryout_id } = req.params;
+  const user_id = req.user.id;
+
+  try {
+    const result = await pool.query(
+      `SELECT sisa_waktu FROM jawaban_peserta
+       WHERE user_id = $1 AND tryout_id = $2 AND soal_id = 0`,
+      [user_id, tryout_id]
+    );
+
+    const sisa = (result.rows.length > 0 && result.rows[0].sisa_waktu !== null)
+      ? result.rows[0].sisa_waktu
+      : 6000;
+
+    return res.status(200).json({ sisa_waktu: sisa });
+
+  } catch (err) {
+    console.error('Get waktu error:', err.message);
+    return res.status(500).json({ error: 'Gagal mengambil waktu.' });
+  }
+});
+/* ══════════════════════════════════════════════
+   GET /api/tryout/paket
+   Ambil daftar semua paket tryout yang tersedia
+   (publik — tidak perlu login)
+══════════════════════════════════════════════ */
+router.get('/paket', async (req, res) => {
+  try {
+    const result = await pool.query(
+      `SELECT tryout_id, nama_paket, deskripsi,
+              jumlah_soal, waktu_menit,
+              harga, harga_asli, stripe_color,
+              is_baru, is_aktif
+       FROM paket_tryout
+       ORDER BY tryout_id ASC`
+    );
+
+    return res.status(200).json({ paket: result.rows });
+
+  } catch (err) {
+    console.error('Get paket error:', err.message);
+    return res.status(500).json({ error: 'Gagal mengambil paket tryout.' });
   }
 });
 
