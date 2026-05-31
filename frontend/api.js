@@ -5,7 +5,7 @@
    <script src="api.js"></script>
 ══════════════════════════════════════════════ */
 
-const API_URL = window.API_URL || 'http://localhost:3000';
+const API_URL = window.API_URL || ' https://skd-academy.vercel.app';
 
 
 /* ══════════════════════════════
