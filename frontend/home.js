@@ -252,11 +252,11 @@ function renderMyTo() {
       </div>
 
       <div class="my-actions">
-        ${t.skor ? `<div class="score-badge">Skor: ${t.skor}</div>` : ''}
+        ${t.skor !== null ? `<div class="score-badge">Skor: ${t.skor}</div>` : ''}
         <button class="btn-mulai" onclick="showReminder(${t.id}, '${t.title}')">
           ${btnIcon} ${btnText}
         </button>
-        ${t.skor ? `<button class="btn-nilai" onclick="lihatNilai(${t.id})">
+        ${t.skor !== null ? `<button class="btn-nilai" onclick="lihatNilai(${t.id})">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
           </svg>
@@ -367,9 +367,18 @@ async function muatTryoutDimiliki() {
           riwayat.forEach(function (h) {
             hasilMap[h.tryout_id] = h;
           });
+          localStorage.setItem('skd_riwayat_cache', JSON.stringify(riwayat));
         }
       } catch (err) {
         console.warn('Gagal ambil riwayat nilai:', err.message);
+        try {
+          var cached = localStorage.getItem('skd_riwayat_cache');
+          if (cached) {
+            JSON.parse(cached).forEach(function (h) {
+              hasilMap[h.tryout_id] = h;
+            });
+          }
+        } catch (_) {}
       }
 
       dariServer.forEach(function (item) {
@@ -384,6 +393,19 @@ async function muatTryoutDimiliki() {
           skor:     hasil ? hasil.skor_total : null,
           waktu:    detail ? detail.waktu : 100
         });
+      });
+
+      // Fallback hasil dari cache lokal untuk tryout yang riwayatnya kosong
+      myTryouts.forEach(function (t) {
+        if (t.skor === null) {
+          try {
+            var h = JSON.parse(localStorage.getItem('skd_hasil_' + t.id));
+            if (h) {
+              t.skor = h.totalSkor;
+              t.progress = 100;
+            }
+          } catch (_) {}
+        }
       });
 
       // Simpan ke cache agar refresh tetap tampil
@@ -474,6 +496,7 @@ async function mulaiUjian() {
 
   hideReminder();
 
+  sessionStorage.removeItem('skd_review_mode');
   sessionStorage.setItem('skd_tryout_id', tryoutId);
 
   var to = tryouts.find(function (t) { return t.id === tryoutId; });
@@ -492,47 +515,71 @@ async function mulaiUjian() {
    LIHAT NILAI (MODAL HASIL)
 ══════════════════════════════ */
 async function lihatNilai(tryoutId) {
+  var hasil;
   try {
-    const data = await apiGetHasil(tryoutId);
-    const hasil = data;
-
-    document.getElementById('hasilSkor').textContent   = hasil.skor_total;
-    document.getElementById('hasilBenar').textContent  = hasil.total_benar;
-    document.getElementById('hasilSalah').textContent  = hasil.total_salah;
-    document.getElementById('hasilKosong').textContent = hasil.total_kosong;
-
-    var subText = '';
-    var lolosTwk = hasil.lolos_twk;
-    var lolosTiu = hasil.lolos_tiu;
-    var lolosTkp = hasil.lolos_tkp;
-    var lolosSkl = hasil.lolos_skd;
-
-    if (lolosSkl) {
-      subText =
-        '<strong style="color:#2ECC9A;font-size:1.1rem;">🎉 LOLOS PASSING GRADE SKD!</strong><br>' +
-        'Skor TWK: <strong>' + hasil.skor_twk + '</strong>/150 (Min. 65 ✅)<br>' +
-        'Skor TIU (Konversi): <strong>' + hasil.skor_tiu + '</strong>/175 (Min. 80 ✅)<br>' +
-        'Skor TKP: <strong>' + hasil.skor_tkp + '</strong> (Min. 166 ✅)';
-    } else {
-      var alasan = [];
-      if (!lolosTwk) alasan.push('TWK belum mencapai 65');
-      if (!lolosTiu) alasan.push('TIU Konversi belum mencapai 80');
-      if (!lolosTkp) alasan.push('TKP belum mencapai 166');
-
-      subText =
-        '<strong style="color:#FF6B6B;font-size:1.1rem;">❌ BELUM LOLOS PASSING GRADE SKD</strong><br>' +
-        'Skor TWK: <strong>' + hasil.skor_twk + '</strong>/150 (Min. 65 ' + (lolosTwk ? '✅' : '❌') + ')<br>' +
-        'Skor TIU (Konversi): <strong>' + hasil.skor_tiu + '</strong>/175 (Min. 80 ' + (lolosTiu ? '✅' : '❌') + ')<br>' +
-        'Skor TKP: <strong>' + hasil.skor_tkp + '</strong> (Min. 166 ' + (lolosTkp ? '✅' : '❌') + ')<br>' +
-        '<small style="color:var(--muted)">Catatan: ' + alasan.join(', ') + '</small>';
-    }
-    document.getElementById('hasilSub').innerHTML = subText;
-
-    document.getElementById('hasilModal').classList.add('show');
+    hasil = await apiGetHasil(tryoutId);
   } catch (err) {
     console.error('Gagal ambil nilai:', err.message);
-    showToast('Gagal memuat data nilai.');
+    try {
+      var cached = localStorage.getItem('skd_hasil_' + tryoutId);
+      if (cached) {
+        var h = JSON.parse(cached);
+        hasil = {
+          skor_total:   h.totalSkor,
+          total_benar:  h.totalBenar,
+          total_salah:  h.totalSalah,
+          total_kosong: h.totalKosong,
+          skor_twk:     h.twk.skor,
+          lolos_twk:    h.twk.lolos,
+          skor_tiu:     h.tiu.skorKonversi,
+          lolos_tiu:    h.tiu.lolos,
+          skor_tkp:     h.tkp.skor,
+          lolos_tkp:    h.tkp.lolos,
+          lolos_skd:    h.lolosSkd
+        };
+      }
+    } catch (_) {}
   }
+
+  if (!hasil) {
+    showToast('Gagal memuat data nilai.');
+    return;
+  }
+
+  document.getElementById('hasilSkor').textContent   = hasil.skor_total;
+  document.getElementById('hasilSkor').dataset.tryoutId = tryoutId;
+  document.getElementById('hasilBenar').textContent  = hasil.total_benar;
+  document.getElementById('hasilSalah').textContent  = hasil.total_salah;
+  document.getElementById('hasilKosong').textContent = hasil.total_kosong;
+
+  var subText = '';
+  var lolosTwk = hasil.lolos_twk;
+  var lolosTiu = hasil.lolos_tiu;
+  var lolosTkp = hasil.lolos_tkp;
+  var lolosSkl = hasil.lolos_skd;
+
+  if (lolosSkl) {
+    subText =
+      '<strong style="color:#2ECC9A;font-size:1.1rem;">🎉 LOLOS PASSING GRADE SKD!</strong><br>' +
+      'Skor TWK: <strong>' + hasil.skor_twk + '</strong>/150 (Min. 65 ✅)<br>' +
+      'Skor TIU (Konversi): <strong>' + hasil.skor_tiu + '</strong>/175 (Min. 80 ✅)<br>' +
+      'Skor TKP: <strong>' + hasil.skor_tkp + '</strong> (Min. 166 ✅)';
+  } else {
+    var alasan = [];
+    if (!lolosTwk) alasan.push('TWK belum mencapai 65');
+    if (!lolosTiu) alasan.push('TIU Konversi belum mencapai 80');
+    if (!lolosTkp) alasan.push('TKP belum mencapai 166');
+
+    subText =
+      '<strong style="color:#FF6B6B;font-size:1.1rem;">❌ BELUM LOLOS PASSING GRADE SKD</strong><br>' +
+      'Skor TWK: <strong>' + hasil.skor_twk + '</strong>/150 (Min. 65 ' + (lolosTwk ? '✅' : '❌') + ')<br>' +
+      'Skor TIU (Konversi): <strong>' + hasil.skor_tiu + '</strong>/175 (Min. 80 ' + (lolosTiu ? '✅' : '❌') + ')<br>' +
+      'Skor TKP: <strong>' + hasil.skor_tkp + '</strong> (Min. 166 ' + (lolosTkp ? '✅' : '❌') + ')<br>' +
+      '<small style="color:var(--muted)">Catatan: ' + alasan.join(', ') + '</small>';
+  }
+  document.getElementById('hasilSub').innerHTML = subText;
+
+  document.getElementById('hasilModal').classList.add('show');
 }
 
 /* ══════════════════════════════
@@ -609,6 +656,13 @@ document.getElementById('catFilter').addEventListener('change', filterCards);
 
 document.getElementById('logoutModal').addEventListener('click', function (e) {
   if (e.target === this) hideLogout();
+});
+
+document.getElementById('btnReviewHome').addEventListener('click', function () {
+  var tryoutId = parseInt(document.getElementById('hasilSkor').dataset.tryoutId);
+  sessionStorage.setItem('skd_tryout_id', tryoutId);
+  sessionStorage.setItem('skd_review_mode', 'true');
+  window.location.href = 'soal1.html';
 });
 
 document.getElementById('btnTutupHasil').addEventListener('click', function () {

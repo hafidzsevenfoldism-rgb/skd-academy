@@ -400,6 +400,8 @@ function tampilkanHasil() {
   // Simpan hasil akhir ke database
   var tryoutId    = parseInt(sessionStorage.getItem('skd_tryout_id')) || 1;
   var durasiDetik = 6000 - sisaWaktu; // 100 menit - sisa waktu
+  // Cache lokal agar tombol Lihat Nilai Saya tetap muncul meski API gagal
+  localStorage.setItem('skd_hasil_' + tryoutId, JSON.stringify(hasil));
   apiKumpulkan(tryoutId, hasil, durasiDetik).then(function () {
     console.log('Hasil berhasil disimpan ke database');
     // Hapus cache jawaban setelah berhasil dikumpulkan
@@ -509,7 +511,23 @@ document.addEventListener("DOMContentLoaded", async function() {
     if (e.target === this) this.classList.remove('show');
   });
 
-  // Inisialisasi Soal & Timer Pertama
+  // Deteksi mode review dari home page
+  var reviewMode = sessionStorage.getItem('skd_review_mode') === 'true';
+
+  if (reviewMode) {
+    sudahSelesai = true;
+    document.getElementById('timerWrap').style.display = 'none';
+    document.getElementById('btnSelesai').style.display = 'none';
+    document.getElementById('namaParket').textContent = 'Review Jawaban';
+
+    muatSoal().then(function () {
+      if (soalData.length > 0) {
+        jawaban = [];
+        renderSoal(0);
+      }
+    });
+  } else {
+    // Inisialisasi Soal & Timer Pertama
     muatJawaban().then(function () {
     var tryoutId = parseInt(sessionStorage.getItem('skd_tryout_id')) || 1;
     // Ambil sisa waktu dari database
@@ -528,5 +546,6 @@ document.addEventListener("DOMContentLoaded", async function() {
     renderSoal(0);
     startTimer();
   });
+  }
 
 });
