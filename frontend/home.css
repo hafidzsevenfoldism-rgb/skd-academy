@@ -813,6 +813,29 @@ body {
   box-shadow: 0 4px 14px rgba(46, 204, 154, 0.3);
 }
 
+.btn-nilai {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #2A9D8F, #52B788);
+  color: var(--white);
+  border: none;
+  border-radius: 12px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(46, 204, 154, 0.3);
+  transition: transform 0.18s, filter 0.18s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-nilai:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
 .score-badge {
   padding: 10px 16px;
   background: rgba(79, 195, 224, 0.10);
@@ -884,6 +907,86 @@ body {
   transform: translateY(-2px);
   filter: brightness(1.08);
 }
+
+/* ══════════════════════════════
+   MODAL HASIL TRY OUT
+══════════════════════════════ */
+.hasil-modal-box {
+  width: min(600px, 95vw);
+  padding: 40px 36px;
+}
+
+.hasil-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--sky-d), var(--sky));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+  color: var(--white);
+  box-shadow: 0 8px 24px rgba(79,195,224,0.4);
+}
+
+.skor-box {
+  background: linear-gradient(135deg, var(--navy), var(--navy-m));
+  border-radius: 18px;
+  padding: 28px 24px;
+  margin-bottom: 24px;
+}
+
+.skor-lbl {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 6px;
+}
+
+.skor-num {
+  font-family: 'Baloo 2', cursive;
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1;
+  background: linear-gradient(90deg, var(--sky), #8AE2F5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 18px;
+}
+
+.skor-detail {
+  display: flex;
+  gap: 12px;
+}
+
+.skor-detail-item {
+  flex: 1;
+  background: rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 12px 10px;
+}
+
+.skor-detail-lbl {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.45);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.skor-detail-val {
+  font-family: 'Baloo 2', cursive;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--white);
+}
+
+.skor-detail-val.green { color: var(--success); }
+.skor-detail-val.red   { color: #FF6B6B; }
 
 /* ══════════════════════════════
    TOAST NOTIFICATION

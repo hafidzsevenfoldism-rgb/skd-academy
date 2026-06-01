@@ -247,6 +247,42 @@
       </div>
     </div>
 
+    <!-- ══════════════════════════════
+        MODAL HASIL TRY OUT
+    ══════════════════════════════ -->
+    <div class="modal-overlay" id="hasilModal">
+      <div class="modal-box hasil-modal-box">
+        <div class="hasil-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <div class="modal-title">Try Out Selesai!</div>
+        <div class="modal-sub" id="hasilSub">Berikut hasil try out kamu</div>
+        <div class="skor-box">
+          <div class="skor-lbl">Total Nilai</div>
+          <div class="skor-num" id="hasilSkor">0</div>
+          <div class="skor-detail">
+            <div class="skor-detail-item">
+              <div class="skor-detail-lbl">Benar</div>
+              <div class="skor-detail-val green" id="hasilBenar">0</div>
+            </div>
+            <div class="skor-detail-item">
+              <div class="skor-detail-lbl">Salah</div>
+              <div class="skor-detail-val red" id="hasilSalah">0</div>
+            </div>
+            <div class="skor-detail-item">
+              <div class="skor-detail-lbl">Kosong</div>
+              <div class="skor-detail-val" id="hasilKosong">0</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-btns">
+          <button class="btn-cancel" id="btnTutupHasil">Tutup</button>
+        </div>
+      </div>
+    </div>
+
     <script src="api.js"></script>
     <script src="home.js"></script>
   </body>

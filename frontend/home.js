@@ -213,6 +213,9 @@ function renderMyTo() {
     card.className = 'my-to-card';
     card.style.animationDelay = (i * 0.08) + 's';
 
+    const btnText = t.progress > 0 ? 'Lanjutkan' : 'Mulai';
+    const btnIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+
     card.innerHTML = `
       <div class="my-icon ic-skd">${i + 1}</div>
 
@@ -250,24 +253,15 @@ function renderMyTo() {
 
       <div class="my-actions">
         ${t.skor ? `<div class="score-badge">Skor: ${t.skor}</div>` : ''}
-        <button class="btn-mulai ${selesai ? 'done' : ''}"
-          onclick="${selesai
-            ? `showToast('Membuka hasil try out...')`
-            : `showReminder(${t.id}, '${t.title}')`
-          }">
-          ${selesai
-            ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2.5"
-                    stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-              </svg> Lihat Hasil`
-            : `<svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2.5"
-                    stroke-linecap="round" stroke-linejoin="round">
-                <polygon points="5 3 19 12 5 21 5 3"/>
-              </svg> ${t.progress > 0 ? 'Lanjutkan' : 'Mulai'}`
-          }
+        <button class="btn-mulai" onclick="showReminder(${t.id}, '${t.title}')">
+          ${btnIcon} ${btnText}
         </button>
+        ${t.skor ? `<button class="btn-nilai" onclick="lihatNilai(${t.id})">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+          Lihat Nilai Saya
+        </button>` : ''}
       </div>`;
 
     list.appendChild(card);
@@ -365,15 +359,29 @@ async function muatTryoutDimiliki() {
     const dariServer = await apiGetDimiliki();
 
     if (dariServer && dariServer.length > 0) {
+      // Ambil juga riwayat nilai untuk cek tryout mana yang sudah selesai
+      var hasilMap = {};
+      try {
+        var riwayat = await apiGetRiwayat();
+        if (riwayat && riwayat.length > 0) {
+          riwayat.forEach(function (h) {
+            hasilMap[h.tryout_id] = h;
+          });
+        }
+      } catch (err) {
+        console.warn('Gagal ambil riwayat nilai:', err.message);
+      }
+
       dariServer.forEach(function (item) {
         purchased.add(item.tryout_id);
 
         const detail = tryouts.find(function (t) { return t.id === item.tryout_id; });
+        const hasil  = hasilMap[item.tryout_id];
         myTryouts.push({
           id:       item.tryout_id,
           title:    item.nama_paket,
-          progress: 0,
-          skor:     null,
+          progress: hasil ? 100 : 0,
+          skor:     hasil ? hasil.skor_total : null,
           waktu:    detail ? detail.waktu : 100
         });
       });
@@ -481,6 +489,53 @@ async function mulaiUjian() {
 
 
 /* ══════════════════════════════
+   LIHAT NILAI (MODAL HASIL)
+══════════════════════════════ */
+async function lihatNilai(tryoutId) {
+  try {
+    const data = await apiGetHasil(tryoutId);
+    const hasil = data;
+
+    document.getElementById('hasilSkor').textContent   = hasil.skor_total;
+    document.getElementById('hasilBenar').textContent  = hasil.total_benar;
+    document.getElementById('hasilSalah').textContent  = hasil.total_salah;
+    document.getElementById('hasilKosong').textContent = hasil.total_kosong;
+
+    var subText = '';
+    var lolosTwk = hasil.lolos_twk;
+    var lolosTiu = hasil.lolos_tiu;
+    var lolosTkp = hasil.lolos_tkp;
+    var lolosSkl = hasil.lolos_skd;
+
+    if (lolosSkl) {
+      subText =
+        '<strong style="color:#2ECC9A;font-size:1.1rem;">🎉 LOLOS PASSING GRADE SKD!</strong><br>' +
+        'Skor TWK: <strong>' + hasil.skor_twk + '</strong>/150 (Min. 65 ✅)<br>' +
+        'Skor TIU (Konversi): <strong>' + hasil.skor_tiu + '</strong>/175 (Min. 80 ✅)<br>' +
+        'Skor TKP: <strong>' + hasil.skor_tkp + '</strong> (Min. 166 ✅)';
+    } else {
+      var alasan = [];
+      if (!lolosTwk) alasan.push('TWK belum mencapai 65');
+      if (!lolosTiu) alasan.push('TIU Konversi belum mencapai 80');
+      if (!lolosTkp) alasan.push('TKP belum mencapai 166');
+
+      subText =
+        '<strong style="color:#FF6B6B;font-size:1.1rem;">❌ BELUM LOLOS PASSING GRADE SKD</strong><br>' +
+        'Skor TWK: <strong>' + hasil.skor_twk + '</strong>/150 (Min. 65 ' + (lolosTwk ? '✅' : '❌') + ')<br>' +
+        'Skor TIU (Konversi): <strong>' + hasil.skor_tiu + '</strong>/175 (Min. 80 ' + (lolosTiu ? '✅' : '❌') + ')<br>' +
+        'Skor TKP: <strong>' + hasil.skor_tkp + '</strong> (Min. 166 ' + (lolosTkp ? '✅' : '❌') + ')<br>' +
+        '<small style="color:var(--muted)">Catatan: ' + alasan.join(', ') + '</small>';
+    }
+    document.getElementById('hasilSub').innerHTML = subText;
+
+    document.getElementById('hasilModal').classList.add('show');
+  } catch (err) {
+    console.error('Gagal ambil nilai:', err.message);
+    showToast('Gagal memuat data nilai.');
+  }
+}
+
+/* ══════════════════════════════
    MODAL LOGOUT
 ══════════════════════════════ */
 function showLogout() {
@@ -554,6 +609,14 @@ document.getElementById('catFilter').addEventListener('change', filterCards);
 
 document.getElementById('logoutModal').addEventListener('click', function (e) {
   if (e.target === this) hideLogout();
+});
+
+document.getElementById('btnTutupHasil').addEventListener('click', function () {
+  document.getElementById('hasilModal').classList.remove('show');
+});
+
+document.getElementById('hasilModal').addEventListener('click', function (e) {
+  if (e.target === this) this.classList.remove('show');
 });
 
 
