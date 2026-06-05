@@ -9,7 +9,7 @@ router.get('/:tryout_id', auth, async (req, res) => {
 
   try {
     const soalResult = await pool.query(
-      `SELECT id, nomor_soal, kategori, teks, kunci, pembahasan
+      `SELECT id, nomor_soal, kategori, teks, kunci
        FROM soal
        WHERE tryout_id = $1
        ORDER BY nomor_soal ASC`,
@@ -41,12 +41,11 @@ router.get('/:tryout_id', auth, async (req, res) => {
     });
 
     const soalList = soalResult.rows.map(s => ({
-      id:         s.nomor_soal,
-      kategori:   s.kategori,
-      teks:       s.teks,
-      kunci:      s.kunci,
-      pembahasan: s.pembahasan || '',
-      pilihan:    pilihanMap[s.id] || []
+      id:       s.nomor_soal,
+      kategori: s.kategori,
+      teks:     s.teks,
+      kunci:    s.kunci,
+      pilihan:  pilihanMap[s.id] || []
     }));
 
     return res.status(200).json({ soal: soalList });

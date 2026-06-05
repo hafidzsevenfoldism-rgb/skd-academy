@@ -1374,10 +1374,10 @@ async function seedSoal() {
     
     for (const soal of soalData) {
       const result = await client.query(
-        `INSERT INTO soal (tryout_id, nomor_soal, kategori, teks, kunci, pembahasan)
-         VALUES (1, $1, $2, $3, $4, $5)
+        `INSERT INTO soal (tryout_id, nomor_soal, kategori, teks, kunci)
+         VALUES (1, $1, $2, $3, $4)
          RETURNING id`,
-        [soal.id, soal.kategori, soal.teks, soal.kunci, soal.pembahasan || '']
+        [soal.id, soal.kategori, soal.teks, soal.kunci]
       );
       const soalId = result.rows[0].id;
       
