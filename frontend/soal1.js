@@ -522,9 +522,11 @@ document.addEventListener("DOMContentLoaded", async function() {
 
     muatSoal().then(function () {
       if (soalData.length > 0) {
-        jawaban = [];
-        renderSoal(0);
+        jawaban = Array(soalData.length).fill(null);
+        return muatJawaban();
       }
+    }).then(function () {
+      renderSoal(0);
     });
   } else {
     // Inisialisasi Soal & Timer Pertama
