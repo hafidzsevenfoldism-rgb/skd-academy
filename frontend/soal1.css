@@ -867,3 +867,33 @@ body {
   }
 }
 
+/* ══════════════════════════════
+   PEMBAHASAN
+══════════════════════════════ */
+.pembahasan-box {
+  margin-top: 20px;
+  padding: 16px 20px;
+  background: #f0f7ff;
+  border-left: 4px solid var(--sky-d);
+  border-radius: 12px;
+  animation: fadeUp 0.35s cubic-bezier(.22,1,.36,1) both;
+}
+
+.pembahasan-header {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--sky-d);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.pembahasan-teks {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--mid);
+}
+

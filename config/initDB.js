@@ -126,6 +126,7 @@ async function initDB() {
         kategori    VARCHAR(10)  NOT NULL CHECK (kategori IN ('TWK', 'TIU', 'TKP')),
         teks        TEXT         NOT NULL,
         kunci       VARCHAR(1)   NOT NULL,
+        pembahasan  TEXT         DEFAULT '',
         UNIQUE (tryout_id, nomor_soal)
       );
     `);
