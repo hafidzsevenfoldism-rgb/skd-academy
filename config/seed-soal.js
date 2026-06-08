@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: require('path').join(__dirname, '..', 'backend', '.env') });
 const pool = require('../config/db');
 
 const soalData = [

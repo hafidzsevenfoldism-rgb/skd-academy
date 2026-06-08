@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: require('path').join(__dirname, '..', 'backend', '.env') });
 const pool = require('./db');
 
 async function initDB() {
@@ -54,6 +54,19 @@ async function initDB() {
       ON CONFLICT (tryout_id) DO NOTHING;
     `);
     console.log('  Seed Paket 1');
+
+    /* Seed: Paket 2 */
+    await client.query(`
+      INSERT INTO paket_tryout
+        (tryout_id, nama_paket, deskripsi, jumlah_soal, waktu_menit,
+         harga, harga_asli, stripe_color, is_baru, is_aktif)
+      VALUES
+         (2, 'Try Out SKD Paket 2',
+         'Simulasi SKD lanjutan: TWK + TIU + TKP dengan variasi soal terbaru.',
+         110, 100, 14900, 30000, '#E67E22', true, false)
+      ON CONFLICT (tryout_id) DO NOTHING;
+    `);
+    console.log('  Seed Paket 2');
 
     /* TABEL 3: TRYOUT DIMILIKI USER */
     await client.query(`

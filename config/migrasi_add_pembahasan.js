@@ -2,12 +2,12 @@ require('dotenv').config({ path: require('path').join(__dirname, '..', 'backend'
 const pool = require('./db');
 
 async function migrasi() {
-  console.log('Menambahkan kolom sisa_waktu ke tabel jawaban_peserta...');
+  console.log('Menambahkan kolom pembahasan ke tabel soal...');
   await pool.query(
-    `ALTER TABLE jawaban_peserta
-     ADD COLUMN IF NOT EXISTS sisa_waktu INTEGER`
+    `ALTER TABLE soal
+     ADD COLUMN IF NOT EXISTS pembahasan TEXT`
   );
-  console.log(' Kolom sisa_waktu berhasil ditambahkan');
+  console.log(' Kolom pembahasan berhasil ditambahkan');
   await pool.end();
 }
 

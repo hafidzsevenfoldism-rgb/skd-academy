@@ -15,7 +15,8 @@ const akun = {
 let tryouts = [];
 
 const tryoutFallback = [
-  { id: 1, title: "Try Out SKD Paket 1", desc: "Simulasi SKD lengkap: TWK + TIU + TKP sesuai standar BKN terbaru.", soal: 110, waktu: 100, harga: 0, hargaAsli: 30000, baru: true, stripe: "#4FC3E0" }
+  { id: 1, title: "Try Out SKD Paket 1", desc: "Simulasi SKD lengkap: TWK + TIU + TKP sesuai standar BKN terbaru.", soal: 110, waktu: 100, harga: 0, hargaAsli: 30000, baru: true, stripe: "#4FC3E0" },
+  { id: 2, title: "Try Out SKD Paket 2", desc: "Simulasi SKD lanjutan: TWK + TIU + TKP dengan variasi soal terbaru.", soal: 110, waktu: 100, harga: 14900, hargaAsli: 30000, baru: true, stripe: "#E67E22", comingSoon: true }
 ];
 
 async function muatPaketTryout() {
@@ -136,7 +137,7 @@ function renderCards(list) {
         <div class="price-wrap">
           <div class="price-old">Rp ${t.hargaAsli.toLocaleString('id-ID')}</div>
           <div class="price-row">
-            <span class="diskon-badge">50% OFF</span>
+            <span class="diskon-badge">${Math.round((t.hargaAsli - t.harga) / t.hargaAsli * 100)}% OFF</span>
             <div class="price-now">${t.harga === 0 ? 'Gratis' : 'Rp ' + t.harga.toLocaleString('id-ID')}</div>
           </div>
         </div>

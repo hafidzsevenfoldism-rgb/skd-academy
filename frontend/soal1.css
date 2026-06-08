@@ -742,8 +742,72 @@ body {
 }
 
 /* ══════════════════════════════
+   PEMBAHASAN BOX (review mode)
+   ══════════════════════════════ */
+.pembahasan-box {
+  margin-top: 22px;
+  padding: 18px 20px;
+  background: #F8FBFF;
+  border-left: 4px solid var(--sky);
+  border-radius: 0 12px 12px 0;
+  animation: fadeUp 0.35s cubic-bezier(.22,1,.36,1) both;
+}
+
+.pembahasan-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Baloo 2', cursive;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--sky-d);
+  margin-bottom: 10px;
+}
+
+.pembahasan-header svg {
+  color: var(--sky);
+  flex-shrink: 0;
+}
+
+.pembahasan-teks {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark);
+  line-height: 1.8;
+}
+
+.pembahasan-teks strong {
+  color: var(--sky-d);
+}
+
+.pembahasan-teks img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  margin: 12px auto;
+}
+
+.pembahasan-teks table {
+  max-width: 100%;
+  width: auto;
+  border-collapse: collapse;
+  margin: 12px auto;
+  table-layout: fixed;
+  word-break: break-word;
+}
+
+.pembahasan-teks table th,
+.pembahasan-teks table td {
+  padding: 8px 16px;
+  word-break: break-word;
+  white-space: normal;
+  border: 1.5px solid var(--border);
+}
+
+/* ══════════════════════════════
    RESPONSIVE
-══════════════════════════════ */
+   ══════════════════════════════ */
 @media (max-width: 768px) {
   .exam-layout {
     grid-template-columns: 1fr;

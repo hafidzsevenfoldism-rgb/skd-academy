@@ -146,6 +146,16 @@ function renderSoal(idx) {
     pilihanList.appendChild(item);
   });
 
+  // Pembahasan — hanya tampil di review mode
+  var pembahasanBox = document.getElementById('pembahasanBox');
+  var pembahasanTeks = document.getElementById('pembahasanTeks');
+  if (sudahSelesai && soal.pembahasan) {
+    pembahasanTeks.innerHTML = soal.pembahasan;
+    pembahasanBox.style.display = 'block';
+  } else {
+    pembahasanBox.style.display = 'none';
+  }
+
   // Update tombol prev/next
   document.getElementById('btnPrev').disabled = (idx === 0);
 
