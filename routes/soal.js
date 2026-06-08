@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.get('/:tryout_id', auth, async (req, res) => {
   const { tryout_id } = req.params;
+  const isReview = req.query.review === 'true';
 
   try {
     const soalResult = await pool.query(
@@ -44,8 +45,8 @@ router.get('/:tryout_id', auth, async (req, res) => {
       id:         s.nomor_soal,
       kategori:   s.kategori,
       teks:       s.teks,
-      kunci:      s.kunci,
-      pembahasan: s.pembahasan,
+      kunci:      isReview ? s.kunci : null,
+      pembahasan: isReview ? s.pembahasan : null,
       pilihan:    pilihanMap[s.id] || []
     }));
 

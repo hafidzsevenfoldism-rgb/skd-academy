@@ -3,13 +3,13 @@
 ════════════════════════════════════════════════ */
 let soalData = [];
 
-async function muatSoal() {
+async function muatSoal(review) {
   var tryoutId = parseInt(sessionStorage.getItem('skd_tryout_id')) || 1;
   try {
     const token = localStorage.getItem('skd_token');
     if (!token) { muatSoalDariCache(); return; }
 
-    const data = await apiRequest('/api/soal/' + tryoutId);
+    const data = await apiGetSoal(tryoutId, review);
     if (data && data.soal && data.soal.length > 0) {
       soalData = data.soal;
       localStorage.setItem('skd_soal_cache', JSON.stringify(soalData));
@@ -97,7 +97,7 @@ function renderSoal(idx) {
 }
 
   // Render teks soal (ganti \n dengan <br>)
-  document.getElementById('soalTeks').innerHTML = soal.teks;
+  document.getElementById('soalTeks').innerHTML = sanitizeHTML(soal.teks);
 
   // Animasi kartu soal
   var card = document.getElementById('soalCard');
@@ -140,8 +140,8 @@ function renderSoal(idx) {
     }
 
     item.innerHTML =
-      '<div class="pilihan-huruf">' + p.huruf + '</div>' +
-      '<div class="pilihan-teks">' + p.teks + '</div>';
+      '<div class="pilihan-huruf">' + escapeHTML(p.huruf) + '</div>' +
+      '<div class="pilihan-teks">' + escapeHTML(p.teks) + '</div>';
 
     pilihanList.appendChild(item);
   });
@@ -150,7 +150,7 @@ function renderSoal(idx) {
   var pembahasanBox = document.getElementById('pembahasanBox');
   var pembahasanTeks = document.getElementById('pembahasanTeks');
   if (sudahSelesai && soal.pembahasan) {
-    pembahasanTeks.innerHTML = soal.pembahasan;
+    pembahasanTeks.innerHTML = sanitizeHTML(soal.pembahasan);
     pembahasanBox.style.display = 'block';
   } else {
     pembahasanBox.style.display = 'none';
@@ -486,10 +486,10 @@ document.addEventListener("DOMContentLoaded", async function() {
   document.getElementById('btnSelesai').addEventListener('click', function () {
     var belum = jawaban.filter(function (j) { return j === null; }).length;
     var pesan = belum > 0
-      ? 'Masih ada <strong style="color:var(--error-color);">' + belum + ' soal</strong> yang belum dijawab. Yakin ingin mengumpulkan jawaban sekarang?'
+      ? 'Masih ada ' + belum + ' soal yang belum dijawab. Yakin ingin mengumpulkan jawaban sekarang?'
       : 'Semua soal sudah dijawab. Yakin ingin mengumpulkan lembar jawaban Anda?';
 
-    document.getElementById('konfirmasiSub').innerHTML = pesan;
+    document.getElementById('konfirmasiSub').textContent = pesan;
     document.getElementById('konfirmasiModal').classList.add('show');
   });
 
@@ -499,8 +499,9 @@ document.addEventListener("DOMContentLoaded", async function() {
   });
 
   // Konfirmasi kumpulkan
-  document.getElementById('btnKonfirmasiSelesai').addEventListener('click', function () {
+  document.getElementById('btnKonfirmasiSelesai').addEventListener('click', async function () {
     document.getElementById('konfirmasiModal').classList.remove('show');
+    await muatSoal(true);
     tampilkanHasil();
   });
 
@@ -530,7 +531,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     document.getElementById('btnSelesai').style.display = 'none';
     document.getElementById('namaParket').textContent = 'Review Jawaban';
 
-    muatSoal().then(function () {
+    muatSoal(true).then(function () {
       if (soalData.length > 0) {
         jawaban = Array(soalData.length).fill(null);
         return muatJawaban();

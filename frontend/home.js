@@ -99,6 +99,9 @@ function renderCards(list) {
     card.className = 'to-card';
     card.style.animationDelay = (i * 0.07) + 's';
 
+    var safeTitle = escapeHTML(t.title);
+    var safeDesc  = escapeHTML(t.desc);
+
     card.innerHTML = `
       <div class="card-stripe" style="background:${t.stripe}"></div>
 
@@ -108,8 +111,8 @@ function renderCards(list) {
       </div>
 
       <div class="card-body">
-        <div class="card-title">${t.title}</div>
-        <div class="card-desc">${t.desc}</div>
+        <div class="card-title">${safeTitle}</div>
+        <div class="card-desc">${safeDesc}</div>
         <div class="card-meta">
           <div class="meta-item">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
@@ -217,11 +220,13 @@ function renderMyTo() {
     const btnText = t.progress > 0 ? 'Mulai Ulang' : 'Mulai';
     const btnIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
 
+    var safeTitle = escapeHTML(t.title);
+
     card.innerHTML = `
       <div class="my-icon ic-skd">${i + 1}</div>
 
       <div class="my-info">
-        <div class="my-title">${t.title}</div>
+        <div class="my-title">${safeTitle}</div>
         <div class="my-meta">
           <div class="my-meta-item">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none"

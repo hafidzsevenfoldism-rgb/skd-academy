@@ -7,6 +7,30 @@
 
 const API_URL = window.API_URL || 'https://skd-academy.vercel.app';
 
+function escapeHTML(str) {
+  if (typeof str !== 'string') return str;
+  var div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
+
+function sanitizeHTML(html) {
+  if (typeof html !== 'string') return '';
+  return html
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
+    .replace(/on\w+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '')
+    .replace(/href\s*=\s*"javascript:/gi, 'href="#"')
+    .replace(/href\s*=\s*'javascript:/gi, "href='#'")
+    .replace(/href\s*=\s*javascript:/gi, 'href="#"');
+}
+
+function apiGetSoal(tryoutId, review) {
+  var endpoint = '/api/soal/' + tryoutId;
+  if (review) endpoint += '?review=true';
+  return apiRequest(endpoint);
+}
+
 
 /* ══════════════════════════════
    HELPER: Fetch ke backend
