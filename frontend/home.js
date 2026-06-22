@@ -610,7 +610,7 @@ function confirmLogout() {
 
   showToast('Berhasil keluar. Sampai jumpa!');
   setTimeout(function () {
-    window.location.href = 'index.html';
+    window.location.href = 'login.html';
   }, 1800);
 }
 

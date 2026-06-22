@@ -158,19 +158,19 @@ function tampilkanNotif() {
 
   // Tombol masuk sekarang
   document.getElementById('btnMasukSekarang').addEventListener('click', function () {
-    window.location.href = 'index.html';
+    window.location.href = 'login.html';
   });
 
   // Klik overlay juga redirect
   overlay.addEventListener('click', function (e) {
     if (e.target === overlay) {
-      window.location.href = 'index.html';
+      window.location.href = 'login.html';
     }
   });
 
   // Auto redirect setelah 4 detik
   setTimeout(function () {
-    window.location.href = 'index.html';
+    window.location.href = 'login.html';
   }, 4000);
 }
 

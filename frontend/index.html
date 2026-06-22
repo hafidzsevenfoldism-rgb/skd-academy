@@ -1,109 +1,383 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login — SKD Academy</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="index.css"/>
+  <title>SKD Academy — Raih Skor SKD Impianmu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="landing.css"/>
 </head>
 <body>
 
-  <!-- Background bubbles -->
-  <div class="bg-bubbles">
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-  </div>
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
+  <!-- ═══ NAVBAR ═══ -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html" class="nav-logo">
+        <img src="gambar/gambar1.png" alt="SKD Academy">
+      </a>
 
-  <!-- Login Card -->
-  <div class="card">
-
-    <!-- Logo -->
-    <div class="logo-wrap">
-      <img src="gambar/gambar1.png" alt="SKD Academy" style="width:190px;height:100px;object-fit:contain;">
+      <button class="hamburger" id="hamburger" aria-label="Buka Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
 
-    <!-- Welcome -->
-    <div class="welcome-block">
-      <div class="welcome-title">
-        Selamat Datang di<br><span>Website SKD Academy</span>
-      </div>
-      <div class="welcome-sub">Silakan masuk untuk melanjutkan belajar 🎓</div>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="#paket">Paket Belajar</a></li>
+      <li><a href="#testimoni">Testimoni</a></li>
+      <li><a href="#promo">Promo</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li class="nav-mobile-only">
+        <div class="nav-mobile-btns">
+          <a href="login.html" class="btn-nav-masuk">Masuk</a>
+          <a href="register.html" class="btn-nav-daftar">Daftar</a>
+        </div>
+      </li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="login.html" class="btn-nav-masuk">Masuk</a>
+      <a href="register.html" class="btn-nav-daftar">Daftar</a>
     </div>
+  </nav>
 
-    <div class="divider"></div>
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="hero-dots"></div>
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Solusi Belajar SKD No. 1 di Indonesia
+        </div>
 
-    <!-- Form -->
-    <form id="loginForm">
+        <h1>
+          Raih Skor SKD Impianmu &<br>
+          Wujudkan Karier di<br>
+          <span>CPNS</span> atau <span class="gold-text">Kedinasan</span>
+        </h1>
 
-      <!-- Email -->
-      <div class="form-group">
-        <label for="email">Email</label>
-        <div class="input-wrap">
-          <input type="email" id="email" placeholder="nama@email.com" required autocomplete="email"/>
-          <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="4" width="20" height="16" rx="2"/>
-            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        <p class="hero-desc">
+          Ribuan pejuang SKD telah mempercayakan persiapan mereka kepada SKD Academy.
+          Dengan try out berkualitas tinggi, analisis skor detail, dan pembahasan lengkap —
+          <strong style="color:var(--sky);">passing grade bukan lagi sekadar mimpi.</strong>
+        </p>
+
+        <div class="hero-problem">
+          <p>
+            <strong>❌ Bingung mulai belajar dari mana?</strong> Skor stagnan meski sudah belajar keras?
+            Ingin simulasi try out yang benar-benar mirip dengan ujian asli?
+            <strong style="color:var(--sky);">SKD Academy hadir sebagai solusinya.</strong>
+          </p>
+        </div>
+
+        <a href="register.html" class="hero-cta">
+          Mulai Belajar Sekarang
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
           </svg>
+        </a>
+
+        <div class="hero-stats-row">
+          <div class="hero-stat">
+            <div class="hero-stat-num">1.200+</div>
+            <div class="hero-stat-lbl">Soal Terkini</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">500+</div>
+            <div class="hero-stat-lbl">Peserta Aktif</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">95%</div>
+            <div class="hero-stat-lbl">Kepuasan</div>
+          </div>
         </div>
       </div>
 
-      <!-- Password -->
-      <div class="form-group">
-        <label for="password">Password</label>
-        <div class="input-wrap">
-          <input type="password" id="password" placeholder="Masukkan password" required autocomplete="current-password"/>
-          <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="11" width="18" height="11" rx="2"/>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-          </svg>
-          <button type="button" class="toggle-pw" id="togglePw" aria-label="Tampilkan/Sembunyikan password">
-            <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                 fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
-              <circle cx="12" cy="12" r="3"/>
+      <div class="hero-right">
+        <img src="gambar/landingpage.png" alt="Ilustrasi SKD Academy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PAKET BELAJAR ═══ -->
+  <section class="section section-light" id="paket">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">Pilihan Paket</div>
+        <div class="section-title">Pilih <span>Paket Belajar</span> yang Sesuai</div>
+        <div class="section-sub">Dari gratis hingga premium, semua dirancang untuk memaksimalkan skor SKD-mu</div>
+      </div>
+
+      <div class="paket-grid">
+        <div class="paket-card">
+          <div class="paket-stripe"></div>
+          <div class="paket-card-body">
+            <div class="paket-icon">📘</div>
+            <div class="paket-name">Try Out SKD Paket 1</div>
+            <div class="paket-desc">Simulasi SKD lengkap: TWK + TIU + TKP sesuai standar BKN terbaru. Cocok untuk pemula.</div>
+            <ul class="paket-features">
+              <li>110 soal sesuai kisi-kisi BKN</li>
+              <li>Timer otomatis 100 menit</li>
+              <li>Analisis skor per kategori</li>
+              <li>Pembahasan jawaban lengkap</li>
+            </ul>
+            <a href="register.html" class="hero-cta" style="width:100%;justify-content:center;padding:12px;font-size:15px;text-align:center;">
+              Mulai Gratis
+            </a>
+          </div>
+        </div>
+
+        <div class="paket-card">
+          <div class="paket-stripe"></div>
+          <div class="paket-card-body">
+            <div class="paket-icon">📗</div>
+            <div class="paket-name">Try Out SKD Paket 2</div>
+            <div class="paket-desc">Variasi soal terbaru dengan tingkat kesulitan lebih tinggi. Tantang kemampuanmu di sini!</div>
+            <ul class="paket-features">
+              <li>110 soal variasi terbaru</li>
+              <li>Tingkat kesulitan progresif</li>
+              <li>Analisis passing grade real-time</li>
+              <li>Akses seumur hidup</li>
+            </ul>
+            <a href="register.html" class="hero-cta" style="width:100%;justify-content:center;padding:12px;font-size:15px;text-align:center;background:linear-gradient(135deg, var(--gold) 0%, var(--gold-l) 60%, #f0c56e 100%);box-shadow:0 6px 20px rgba(200,144,58,0.45);">
+              Mulai Rp149.000
+            </a>
+          </div>
+        </div>
+
+        <div class="paket-card">
+          <div class="paket-stripe" style="background:linear-gradient(90deg, #1fa87c, #2ECC9A);"></div>
+          <div class="paket-card-body">
+            <div class="paket-icon" style="background:linear-gradient(135deg, #1fa87c, #2ECC9A);">🏆</div>
+            <div class="paket-name">Paket Premium All Access</div>
+            <div class="paket-desc">Akses semua paket try out, fitur eksklusif, dan prioritas pembahasan. Untuk kamu yang serius lolos SKD!</div>
+            <ul class="paket-features">
+              <li>Semua paket try out</li>
+              <li>Ribuan soal bonus</li>
+              <li>Konsultasi pribadi</li>
+              <li>Sertifikat kelulusan digital</li>
+            </ul>
+            <a href="register.html" class="hero-cta" style="width:100%;justify-content:center;padding:12px;font-size:15px;text-align:center;background:linear-gradient(135deg, #1fa87c, #2ECC9A);box-shadow:0 6px 20px rgba(46,204,154,0.45);">
+              Segera Hadir
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TESTIMONI ═══ -->
+  <section class="section section-dark" id="testimoni">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label" style="color:var(--gold-l);">Testimoni</div>
+        <div class="section-title">Apa Kata <span>Mereka</span></div>
+        <div class="section-sub">Ribuan peserta telah merasakan manfaat belajar bersama SKD Academy</div>
+      </div>
+
+      <div class="testimoni-grid">
+        <div class="testimoni-card">
+          <div class="testimoni-stars">★★★★★</div>
+          <div class="testimoni-text">
+            "Berkat SKD Academy, skor TWK saya naik drastis dari 45 jadi 85 dalam waktu 2 minggu. Try out-nya sangat mirip dengan ujian asli!"
+          </div>
+          <div class="testimoni-author">
+            <div class="testimoni-avatar">A</div>
+            <div>
+              <div class="testimoni-name">Ahmad Fauzi</div>
+              <div class="testimoni-role">Peserta CPNS 2025</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimoni-card">
+          <div class="testimoni-stars">★★★★★</div>
+          <div class="testimoni-text">
+            "Pembahasannya super detail! Saya jadi paham kenapa jawaban saya salah dan bagaimana cara menjawab yang benar. Recommended banget!"
+          </div>
+          <div class="testimoni-author">
+            <div class="testimoni-avatar">S</div>
+            <div>
+              <div class="testimoni-name">Siti Rahmawati</div>
+              <div class="testimoni-role">Peserta Kedinasan 2025</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimoni-card">
+          <div class="testimoni-stars">★★★★☆</div>
+          <div class="testimoni-text">
+            "Awalnya ragu, tapi setelah coba try out gratisnya, saya langsung beli paket premium. Soal-soalnya bervariasi dan selalu update."
+          </div>
+          <div class="testimoni-author">
+            <div class="testimoni-avatar">R</div>
+            <div>
+              <div class="testimoni-name">Rizky Pratama</div>
+              <div class="testimoni-role">Mahasiswa Tingkat Akhir</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROMO ═══ -->
+  <section class="section section-light" id="promo">
+    <div class="section-inner">
+      <div class="promo-banner">
+        <div class="promo-left">
+          <div class="promo-badge">Promo Terbatas</div>
+          <div class="promo-title">Dapatkan Diskon <span>50%</span> untuk Paket Premium!</div>
+          <div class="promo-desc">Gunakan kode <strong style="color:var(--gold-l);">SKD50</strong> saat pendaftaran dan nikmati semua fitur premium dengan harga spesial. Promo berlaku untuk 100 pendaftar pertama!</div>
+        </div>
+        <div class="promo-right">
+          <a href="register.html" class="btn-promo">
+            Klaim Sekarang
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FAQ ═══ -->
+  <section class="section section-light" id="faq" style="padding-top:0;">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-label">FAQ</div>
+        <div class="section-title">Pertanyaan yang <span>Sering Diajukan</span></div>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">
+            Apa itu SKD Academy?
+            <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
             </svg>
           </button>
+          <div class="faq-answer">
+            <p>SKD Academy adalah platform latihan soal SKD CPNS dan Kedinasan berbasis online. Kami menyediakan try out berkualitas dengan soal-soal yang sesuai kisi-kisi BKN terbaru, lengkap dengan pembahasan detail dan analisis skor.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Berapa biaya try out di SKD Academy?
+            <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Kami punya paket gratis (Try Out Paket 1) yang bisa kamu akses tanpa biaya. Untuk paket lanjutan dan premium, harganya sangat terjangkau mulai dari Rp149.000. Semua paket sudah termasuk akses seumur hidup.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Bagaimana cara memulai belajar?
+            <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Cukup daftar akun gratis, login, lalu pilih paket try out yang kamu inginkan. Kamu bisa langsung mengerjakan soal dan melihat hasilnya secara real-time. Sangat mudah dan cepat!</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Apakah soal-soalnya update sesuai kisi-kisi terbaru?
+            <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Ya! Tim kami selalu memantau perkembangan kisi-kisi SKD dari BKN dan memperbarui soal-soal secara berkala. Kamu tidak perlu khawatir ketinggalan materi terbaru.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Apakah hasil try out bisa dilihat kapan saja?
+            <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Tentu! Semua riwayat try out dan hasil skor tersimpan di akunmu. Kamu bisa melihatnya kapan saja, lengkap dengan analisis per kategori (TWK, TIU, TKP) dan status passing grade.</p>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Forgot -->
-      <div class="forgot">
-        <a href="#">Lupa password?</a>
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="gambar/gambar1.png" alt="SKD Academy">
+        <p>Platform latihan soal SKD CPNS dan Kedinasan No. 1 di Indonesia. Raih skor impianmu bersama kami.</p>
       </div>
-
-      <!-- Submit Button -->
-      <button type="submit" class="btn-login" id="btnLogin">MASUK</button>
-
-    </form>
-
-    <!-- Register -->
-    <div class="register-row">
-      Belum punya akun? <a href="register.html">Daftar Sekarang</a>
+      <div>
+        <h4>Menu</h4>
+        <ul>
+          <li><a href="#paket">Paket Belajar</a></li>
+          <li><a href="#testimoni">Testimoni</a></li>
+          <li><a href="#promo">Promo</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Akun</h4>
+        <ul>
+          <li><a href="login.html">Masuk</a></li>
+          <li><a href="register.html">Daftar</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontak</h4>
+        <ul>
+          <li><a href="mailto:hafidzsevenfoldism@gmail.com">Email</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">YouTube</a></li>
+        </ul>
+      </div>
     </div>
-
-    <!-- Footer -->
-    <div class="footer-info">
-      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
-           fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-      </svg>
-      Koneksi aman &amp; terenkripsi
+    <div class="footer-bottom">
+      © 2026 SKD Academy. Hak Cipta Dilindungi.
     </div>
+  </footer>
 
-  </div>
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function () {
+      document.getElementById('navMenu').classList.toggle('open');
+    });
 
-  <script src="api.js"></script>
-  <script src="index.js"></script>
+    document.querySelectorAll('.faq-question').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item = this.parentElement;
+        var isOpen = item.classList.contains('open');
+
+        document.querySelectorAll('.faq-item.open').forEach(function (openItem) {
+          openItem.classList.remove('open');
+        });
+
+        if (!isOpen) {
+          item.classList.add('open');
+        }
+      });
+    });
+
+    document.querySelectorAll('.nav-menu a[href^="#"]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        document.getElementById('navMenu').classList.remove('open');
+      });
+    });
+  </script>
 </body>
 </html>
