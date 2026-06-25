@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
 });
 
 async function kirimEmailReset(to, token) {
-  const resetLink = (process.env.FRONTEND_URL || 'http://localhost:5500') +
+  const resetLink = (process.env.FRONTEND_URL || 'http://localhost:5500/frontend') +
     '/resetpassword.html?token=' + token;
 
   await transporter.sendMail({
