@@ -16,7 +16,7 @@ let tryouts = [];
 
 const tryoutFallback = [
   { id: 1, title: "Try Out SKD Paket 1", desc: "Simulasi SKD lengkap: TWK + TIU + TKP sesuai standar BKN terbaru.", soal: 110, waktu: 100, harga: 0, hargaAsli: 30000, baru: true, stripe: "#4FC3E0" },
-  { id: 2, title: "Try Out SKD Paket 2", desc: "Simulasi SKD lanjutan: TWK + TIU + TKP dengan variasi soal terbaru.", soal: 110, waktu: 100, harga: 14900, hargaAsli: 30000, baru: true, stripe: "#E67E22", comingSoon: true }
+  { id: 2, title: "Try Out SKD Paket 2", desc: "Simulasi SKD lanjutan: TWK + TIU + TKP dengan variasi soal terbaru.", soal: 110, waktu: 100, harga: 14900, hargaAsli: 30000, baru: true, stripe: "#E67E22" }
 ];
 
 async function muatPaketTryout() {
@@ -165,7 +165,7 @@ function renderCards(list) {
                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72
                             a2 2 0 0 0 2-1.61L23 6H6"/>
                  </svg>
-                 ${t.harga === 0 ? 'Klaim Gratis' : 'Beli Sekarang'}
+                 ${t.harga === 0 ? 'Klaim Gratis' : t.id === 2 ? 'Investasi Sekarang' : 'Beli Sekarang'}
                </button>`
         }
       </div>`;
