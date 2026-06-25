@@ -8,6 +8,7 @@ const rateLimit = require('express-rate-limit');
 const authRoutes   = require('./routes/auth');
 const tryoutRoutes = require('./routes/tryout');
 const soalRoutes   = require('./routes/soal');
+const lupaPasswordRoutes = require('./routes/lupapassword');
 
 const app  = express();
 const PORT = process.env.PORT || 3000;
@@ -65,6 +66,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/auth',   authLimiter, authRoutes);
+app.use('/api/auth',   authLimiter, lupaPasswordRoutes);
 app.use('/api/tryout', tryoutRoutes);
 app.use('/api/soal',   soalRoutes);
 

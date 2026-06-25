@@ -157,6 +157,19 @@ async function initDB() {
     `);
     console.log('  Tabel pilihan_jawaban');
 
+    /* TABEL 8: RESET TOKENS */
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS reset_tokens (
+        id          SERIAL       PRIMARY KEY,
+        user_id     INTEGER      NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        token       VARCHAR(64)  NOT NULL UNIQUE,
+        expires_at  TIMESTAMPTZ  NOT NULL,
+        used        BOOLEAN      NOT NULL DEFAULT FALSE,
+        created_at  TIMESTAMPTZ  NOT NULL DEFAULT NOW()
+      );
+    `);
+    console.log('  Tabel reset_tokens');
+
     /* INDEX */
     await client.query(`
       CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
