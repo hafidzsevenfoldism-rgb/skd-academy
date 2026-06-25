@@ -141,7 +141,7 @@ function renderSoal(idx) {
 
     item.innerHTML =
       '<div class="pilihan-huruf">' + escapeHTML(p.huruf) + '</div>' +
-      '<div class="pilihan-teks">' + escapeHTML(p.teks) + '</div>';
+      '<div class="pilihan-teks">' + sanitizeHTML(p.teks) + '</div>';
 
     pilihanList.appendChild(item);
   });
