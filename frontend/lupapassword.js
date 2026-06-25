@@ -11,21 +11,10 @@ document.getElementById('lupaForm').addEventListener('submit', async function (e
   btn.disabled      = true;
 
   try {
-    const res = await fetch('/api/auth/lupa-password', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email })
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      alert(data.error || 'Terjadi kesalahan.');
-    } else {
-      alert('Jika email terdaftar, link reset password sudah dikirim. Silakan cek inbox/spam email kamu.');
-    }
+    await apiRequest('/api/auth/lupa-password', 'POST', { email });
+    alert('Jika email terdaftar, link reset password sudah dikirim. Silakan cek inbox/spam email kamu.');
   } catch (err) {
-    alert('Gagal terhubung ke server. Coba lagi nanti.');
+    alert(err.message || 'Gagal terhubung ke server. Coba lagi nanti.');
   } finally {
     btn.textContent   = 'Kirim Link Reset';
     btn.style.opacity = '1';

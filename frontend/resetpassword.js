@@ -29,22 +29,11 @@ document.getElementById('resetForm').addEventListener('submit', async function (
   btn.disabled      = true;
 
   try {
-    var res = await fetch('/api/auth/reset-password', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ token: token, password: password })
-    });
-
-    var data = await res.json();
-
-    if (!res.ok) {
-      alert(data.error || 'Terjadi kesalahan.');
-    } else {
-      alert('Password berhasil direset. Silakan login dengan password baru.');
-      window.location.href = 'login.html';
-    }
+    await apiRequest('/api/auth/reset-password', 'POST', { token: token, password: password });
+    alert('Password berhasil direset. Silakan login dengan password baru.');
+    window.location.href = 'login.html';
   } catch (err) {
-    alert('Gagal terhubung ke server. Coba lagi nanti.');
+    alert(err.message || 'Gagal terhubung ke server. Coba lagi nanti.');
   } finally {
     btn.textContent   = 'Reset Password';
     btn.style.opacity = '1';
