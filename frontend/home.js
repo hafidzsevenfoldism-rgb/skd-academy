@@ -16,7 +16,7 @@ let tryouts = [];
 
 const tryoutFallback = [
   { id: 1, title: "Try Out SKD Paket 1", desc: "Simulasi SKD lengkap: TWK + TIU + TKP sesuai standar BKN terbaru.", soal: 110, waktu: 100, harga: 0, hargaAsli: 30000, baru: true, stripe: "#4FC3E0" },
-  { id: 2, title: "Try Out SKD Paket 2", desc: "Simulasi SKD lanjutan: TWK + TIU + TKP dengan variasi soal terbaru.", soal: 110, waktu: 100, harga: 14900, hargaAsli: 30000, baru: true, stripe: "#E67E22" }
+  { id: 2, title: "Try Out SKD Paket 2", desc: "Simulasi SKD lanjutan: TWK + TIU + TKP dengan pembahasan rinci dijamin paham", soal: 110, waktu: 100, harga: 14900, hargaAsli: 30000, baru: true, stripe: "#E67E22" }
 ];
 
 async function muatPaketTryout() {
