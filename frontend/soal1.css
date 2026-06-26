@@ -237,6 +237,7 @@ body {
   margin-bottom: 26px;
   padding-bottom: 20px;
   border-bottom: 1.5px solid var(--border);
+  text-align: justify;
 }
 
 /* Pilihan jawaban */
@@ -332,6 +333,7 @@ body {
   color: var(--dark);
   line-height: 1.6;
   padding-top: 5px;
+  text-align: justify;
 }
 
 /* Navigasi soal */
@@ -774,6 +776,7 @@ body {
   font-weight: 600;
   color: var(--dark);
   line-height: 1.8;
+  text-align: justify;
 }
 
 .pembahasan-teks strong {
