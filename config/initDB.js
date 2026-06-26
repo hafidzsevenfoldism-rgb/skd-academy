@@ -170,6 +170,24 @@ async function initDB() {
     `);
     console.log('  Tabel reset_tokens');
 
+    /* TABEL 9: TRANSAKSI */
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS transactions (
+        id              SERIAL        PRIMARY KEY,
+        user_id         INTEGER       NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        tryout_id       INTEGER       NOT NULL,
+        invoice_number  VARCHAR(64)   NOT NULL UNIQUE,
+        amount          INTEGER       NOT NULL,
+        status          VARCHAR(20)   NOT NULL DEFAULT 'PENDING',
+        doku_ref        VARCHAR(100),
+        payment_method  VARCHAR(50),
+        paid_at         TIMESTAMPTZ,
+        expires_at      TIMESTAMPTZ,
+        created_at      TIMESTAMPTZ   NOT NULL DEFAULT NOW()
+      );
+    `);
+    console.log('  Tabel transactions');
+
     /* INDEX */
     await client.query(`
       CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);

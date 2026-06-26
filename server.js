@@ -9,6 +9,7 @@ const authRoutes   = require('./routes/auth');
 const tryoutRoutes = require('./routes/tryout');
 const soalRoutes   = require('./routes/soal');
 const lupaPasswordRoutes = require('./routes/lupapassword');
+const paymentRoutes      = require('./routes/payment');
 
 const app  = express();
 const PORT = process.env.PORT || 3000;
@@ -69,6 +70,7 @@ app.use('/api/auth',   authLimiter, authRoutes);
 app.use('/api/auth',   authLimiter, lupaPasswordRoutes);
 app.use('/api/tryout', tryoutRoutes);
 app.use('/api/soal',   soalRoutes);
+app.use('/api/payment', paymentRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ error: 'Endpoint tidak ditemukan.' });

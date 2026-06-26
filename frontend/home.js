@@ -310,6 +310,19 @@ async function beliTryout(id) {
     return;
   }
 
+  // Jika berbayar → redirect ke payment gateway
+  if (to.harga > 0) {
+    try {
+      const data = await apiCreatePayment(to.id);
+      window.location.href = data.payment_url;
+      return;
+    } catch (err) {
+      console.error('Gagal buat pembayaran:', err.message);
+      showToast(err.message || 'Gagal memproses pembayaran.');
+      return;
+    }
+  }
+
   try {
     await apiBeli(to.id, to.title, to.harga);
 
@@ -334,8 +347,7 @@ async function beliTryout(id) {
     filterCards();
     renderMyTo();
 
-    const label = to.harga === 0 ? 'diklaim' : 'dibeli';
-    showToast('✓ "' + to.title + '" berhasil ' + label + '!');
+    showToast('✓ "' + to.title + '" berhasil diklaim!');
 
   } catch (err) {
     console.error('Gagal simpan tryout:', err.message);

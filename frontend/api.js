@@ -108,6 +108,10 @@ async function apiBeli(tryout_id, nama_paket, harga) {
   return await apiRequest('/api/tryout/beli', 'POST', { tryout_id, nama_paket, harga });
 }
 
+async function apiCreatePayment(tryout_id) {
+  return await apiRequest('/api/payment/create', 'POST', { tryout_id });
+}
+
 async function apiGetDimiliki() {
   const data = await apiRequest('/api/tryout/dimiliki');
   return data.tryout;
