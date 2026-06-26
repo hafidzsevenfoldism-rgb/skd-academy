@@ -596,7 +596,7 @@ const soalData = [
     id: 38, kategori: "TIU",
     teks: "'Hartono penasaran ingin meneliti albino lebih dalam karena ia belum memahami zat melanin yang berperan dalam kejadian albino'. Hubungan objek-objek pada kalimat tersebut setara dengan...",
     pilihan: [
-      { huruf: "A", teks: "Sebelum benar-benar menyelam di latu, Rifqi harus <i>open water</i> terlebih dahulu di kolam khusus <i>diving</i> dan mempelajari berbagai teori tentang <i>diving</i>" },
+      { huruf: "A", teks: "Sebelum benar-benar menyelam di laut, Rifqi harus <i>open water</i> terlebih dahulu di kolam khusus <i>diving</i> dan mempelajari berbagai teori tentang <i>diving</i>" },
       { huruf: "B", teks: "Banyak <i>content creator</i> yang memodifikasi resep makanan menjadi versi yang lebih sehat" },
       { huruf: "C", teks: "Penyanyi biasanya sering melakukan pemanasan setiap pagi dan menjaga suara dari efek konsumsi makanan tertentu" },
       { huruf: "D", teks: "Lembaga memiliki peraturan untuk menjaga kestabilan alur kerja yang wajib dipatuhi seluruh pegawai" },
@@ -609,7 +609,7 @@ const soalData = [
   // ─── Soal 39 ───
   {
     id: 39, kategori: "TIU",
-    teks: "Perseroang terbatas tidak memberi pesangon kepada pegawai atau perseroan terbatas ditutup." +
+    teks: "Perseroan terbatas tidak memberi pesangon kepada pegawai atau perseroan terbatas ditutup." +
           "<br>Ternyata perseroan terbatas tidak ditutup. Kesimpulannya adalah...",
     pilihan: [
       { huruf: "A", teks: "Perseroan terbatas tidak memberi pesangon kepada pegawai" },
@@ -652,13 +652,13 @@ const soalData = [
       { huruf: "E", teks: "Toko pertanian tidak menyediakan stok pupuk sesuai jadwal apabila sebagian pedagang tidak menjual kangkung bulan ini" }
     ],
     kunci: "B",
-    pembahasan: "p = 'sebagian pedagang tidak menjual kangkung bulan ini. <br> q = 'petani tidak menanam sayur. <br> r = 'toko pertanian tidak menyediakan stok'. <br> premis 1 = p > q. <br> premis 2 = q > r. <br> kesimpulan = p > q. <br> Oleh karena itu, simpulan yang tepat adalah opsi B, yaitu ' Sebagian pedagang tidak menjual kangkung bulan ini apabila toko pertanian tidak menyediakan stok pupuk sesuai jadwal."
+    pembahasan: "p = 'sebagian pedagang tidak menjual kangkung bulan ini. <br> q = 'petani tidak menanam sayur. <br> r = 'toko pertanian tidak menyediakan stok'. <br> premis 1 = p ➔ q. <br> premis 2 = q ➔ r. <br> kesimpulan = p ➔ r. <br> Oleh karena itu, simpulan yang tepat adalah opsi B, yaitu 'Sebagian pedagang tidak menjual kangkung bulan ini apabila toko pertanian tidak menyediakan stok pupuk sesuai jadwal.'"
   },
 
   // ─── Soal 42 ───
   {
     id: 42, kategori: "TIU",
-    teks: "Hasil dari 1<math><mfrac> <mn>3</mn><mn>5</mn> </mfrac></math> %times; 1,5 : 20% adalah...",
+    teks: "Hasil dari 1<math><mfrac> <mn>3</mn><mn>5</mn> </mfrac></math> &times; 1,5 : 20% adalah...",
     pilihan: [
       { huruf: "A", teks: "140" },
       { huruf: "B", teks: "120" },
@@ -697,7 +697,7 @@ const soalData = [
       { huruf: "E", teks: "<math><mfrac> <mn>1</mn><mn>3</mn> </mfrac></math>" }
     ],
     kunci: "C",
-    pembahasan: "<math><mfrac> <mn>1</mn><mn>3</mn> </mfrac></math> + 0,75 - <math><mfrac> <mn>5</mn><mn>4</mn> </mfrac></math> = <math><mfrac> <mn>1</mn><mn>3</mn> </mfrac></math> + <math><mfrac> <mn>3</mn><mn>4</mn> </mfrac></math> - <math><mfrac> <mn>5</mn><mn>4</mn> </mfrac></math> <br> = <math><mfrac> <mn>1</mn><mn>3</mn> </mfrac></math> - <math><mfrac> <mn>2</mn><mn>4</mn> </mfrac></math> <br> <math><mfrac> <mn>1</mn><mn>3</mn> </mfrac></math> - <math><mfrac> <mn>1</mn><mn>2</mn> </mfrac></math> <br> = <math><mfrac> <mn>2 - 3</mn><mn>6</mn> </mfrac></math> <br> = - <math><mfrac> <mn>1</mn><mn>6</mn> </mfrac></math> <br> = -0,166"
+    pembahasan: "<math><mfrac> <mn>1</mn><mn>3</mn> </mfrac></math> + 0,75 - <math><mfrac> <mn>5</mn><mn>4</mn> </mfrac></math> = <math><mfrac> <mn>1</mn><mn>3</mn> </mfrac></math> + <math><mfrac> <mn>3</mn><mn>4</mn> </mfrac></math> - <math><mfrac> <mn>5</mn><mn>4</mn> </mfrac></math> <br> = <math><mfrac> <mn>1</mn><mn>3</mn> </mfrac></math> - <math><mfrac> <mn>2</mn><mn>4</mn> </mfrac></math> <br> = <math><mfrac> <mn>1</mn><mn>3</mn> </mfrac></math> - <math><mfrac> <mn>1</mn><mn>2</mn> </mfrac></math> <br> = <math><mfrac> <mn>2 - 3</mn><mn>6</mn> </mfrac></math> <br> = - <math><mfrac> <mn>1</mn><mn>6</mn> </mfrac></math> <br> = -0,166"
   },
 
   // ─── Soal 45 ───
@@ -711,7 +711,7 @@ const soalData = [
       { huruf: "D", teks: "24" },
       { huruf: "E", teks: "26" }
     ],
-    kunci: "C",
+    kunci: "D",
     pembahasan: "16 bebek ➔ 27 hari <br> 16 + 2 = 18 bebek ➔ x hari.<br> Soal di atas adalah jenis soal perbandingan berbalik nilai karena semakin banyak bebek, maka akan semakin sedikit jumlah hari nya. maka rumusnya adalah <math><mfrac> <mn>atas &times; atas</mn><mn>bawah</mn> <br> x= <math><mfrac> <mn>16 &times; 27</mn><mn>18</mn> </mfrac></math> = 24"
   },
 
@@ -727,7 +727,7 @@ const soalData = [
       { huruf: "E", teks: "15" }
     ],
     kunci: "C",
-    pembahasan: "Lima pegawai mampu menghasilkan 20 sarung tenun selama 2 hari. Artinya, dalam sehari, 5 pegawai tersebut dapat menghasilkan 10 sarung tenun. Maka, dapat kita cari berapa banyak sarung tenun yang dihasilkan 2 pegawai selama sehari yaitu : <br> 5 pegawai ➔ 10 sarung <br> 2 pegawai ➔ x sarung <br> karena ini merupakan perbandingan senilai maka dikali silang <br> x = <math><mfrac> <mn>2 &times; 10</mn><mn>5</mn> </mfrac></math> = 4. <br> = 4 &times; 3 = 12 <br> Jadi, banyak sarung tenun yang dihasilkan adalah 12 buah."
+    pembahasan: "Lima pegawai mampu menghasilkan 20 sarung tenun selama 2 hari. Artinya, dalam sehari, 5 pegawai tersebut dapat menghasilkan 10 sarung tenun. Maka, dapat kita cari berapa banyak sarung tenun yang dihasilkan 2 pegawai selama sehari yaitu : <br> 5 pegawai ➔ 10 sarung <br> 2 pegawai ➔ x sarung <br> karena ini merupakan perbandingan senilai maka dikali silang <br> x = <math><mfrac> <mn>2 &times; 10</mn><mn>5</mn> </mfrac></math> = 4. <br> 4 merupakan banyak sarung tenun yang dihasilkan selama sehari <br> = 4 &times; 3 = 12 <br> Jadi, banyak sarung tenun yang dihasilkan selama 3 hari adalah 12 buah."
   },
 
   // ─── Soal 47 ───
@@ -960,7 +960,7 @@ const soalData = [
   // ─── Soal 62 ───
   {
     id: 62, kategori: "TIU",
-    teks: "Gia, Umay, dan Restia datang ke toko kado untuk membeli tiga kado pernikahan rekan mereka dan mencari kado yang berbeda. Mereka sepakat untuk membeli pilihan kado berupa handuk, gelas, rice cooker, dan/atau selimut. Aturannya sebagai berikut. <br> - Umay memilih mencari rice cooker yang sesuai dengan selera calon pengantin. <br> - Restia mencari kado gelas. <br> - Jika membeli selimut, maka gelas tidak dibeli, begitu juga sebaliknya. <br> - Jika Gia membeli rice cooker, Umay harus membeli kado lain. <br> Restia tidak membeli selimut. <br> Jika Umay membeli rice cooker dan Gia membeli selimut, manakah pernyataan berikut yang benar?",
+    teks: "Gia, Umay, dan Restia datang ke toko kado untuk membeli tiga kado pernikahan rekan mereka dan mencari kado yang berbeda. Mereka sepakat untuk membeli pilihan kado berupa handuk, gelas, rice cooker, dan/atau selimut. Aturannya sebagai berikut. <br> - Umay memilih mencari rice cooker yang sesuai dengan selera calon pengantin. <br> - Restia mencari kado gelas. <br> - Jika membeli selimut, maka gelas tidak dibeli, begitu juga sebaliknya. <br> - Jika Gia membeli rice cooker, Umay harus membeli kado lain. <br> - Restia tidak membeli selimut. <br> Jika Umay membeli rice cooker dan Gia membeli selimut, manakah pernyataan berikut yang benar?",
     pilihan: [
       { huruf: "A", teks: "Umay membeli handuk" },
       { huruf: "B", teks: "Kado yang dibeli adalah rice cooker, selimut, dan handuk" },
@@ -975,7 +975,7 @@ const soalData = [
   // ─── Soal 63 ───
   {
     id: 63, kategori: "TIU",
-    teks: "Gia, Umay, dan Restia datang ke toko kado untuk membeli tiga kado pernikahan rekan mereka dan mencari kado yang berbeda. Mereka sepakat untuk membeli pilihan kado berupa handuk, gelas, rice cooker, dan/atau selimut. Aturannya sebagai berikut. <br> - Umay memilih mencari rice cooker yang sesuai dengan selera calon pengantin. <br> - Restia mencari kado gelas. <br> - Jika membeli selimut, maka gelas tidak dibeli, begitu juga sebaliknya. <br> - Jika Gia membeli rice cooker, Umay harus membeli kado lain. <br> Restia tidak membeli selimut. <br> Jika Restia membeli gelas dan Gia membeli rice cooker, maka apa yang dibeli umay?",
+    teks: "Gia, Umay, dan Restia datang ke toko kado untuk membeli tiga kado pernikahan rekan mereka dan mencari kado yang berbeda. Mereka sepakat untuk membeli pilihan kado berupa handuk, gelas, rice cooker, dan/atau selimut. Aturannya sebagai berikut. <br> - Umay memilih mencari rice cooker yang sesuai dengan selera calon pengantin. <br> - Restia mencari kado gelas. <br> - Jika membeli selimut, maka gelas tidak dibeli, begitu juga sebaliknya. <br> - Jika Gia membeli rice cooker, Umay harus membeli kado lain. <br> - Restia tidak membeli selimut. <br> Jika Restia membeli gelas dan Gia membeli rice cooker, maka apa yang dibeli umay?",
     pilihan: [
       { huruf: "A", teks: "Hanya membeli handuk" },
       { huruf: "B", teks: "Hanya membeli kertas kado" },
@@ -992,11 +992,11 @@ const soalData = [
     id: 64, kategori: "TIU",
     teks: "Ada empat kelompok mahasiswa yang akan mempresentasikan mengenai peran tenaga kesehatan. Tim Fita dan Endo akan mempresentasikan peran tenaga kesehatan di klinik. Tim Zola dan Oki di puskesmas, tim Lita dan Ari di rumah sakit, dan Tim Beni dan Nina di tempat pasca kejadian bencana. Endo, Zola, dan Ari ada kelas mata kuliah lain dan harus lebih cepat menyelesaikan presentasi. <br> Jika kelas lain Ari lebih dahulu daripada Zola dan Endo, bagaimana urutan presentasi yang kemungkinan bisa dilakukan?",
     pilihan: [
-      { huruf: "A", teks: "Lita, Ari, Endo, Zola, Fita, Nina, Oki, Beni" },
-      { huruf: "B", teks: "Beni, Ari, Fita, Lita, Nina, Oki, Endo, Zola" },
-      { huruf: "C", teks: "Beni, Lita, Fita, Ari, Nina, Zola, Oki, Endo" },
-      { huruf: "D", teks: "Lita, Ari, Fita, Endo, Zola, Oki, Beni, Nina" },
-      { huruf: "E", teks: "Lita, Ari, Nina, Beni, Endo, Fita, Zola, Oki" }
+      { huruf: "A", teks: "Lita Ari, Endo Zola, Fita Nina, Oki Beni" },
+      { huruf: "B", teks: "Beni Ari, Fita Lita, Nina Oki, Endo Zola" },
+      { huruf: "C", teks: "Beni Lita, Fita Ari, Nina Zola, Oki Endo" },
+      { huruf: "D", teks: "Lita Ari, Fita Endo, Zola Oki, Beni Nina" },
+      { huruf: "E", teks: "Lita Ari, Nina Beni, Endo Fita, Zola Oki" }
     ],
     kunci: "D",
     pembahasan: "Urutan presentasi yang memungkinkan adalah tim Lita Ari - Zola Oki - Fita Endo - Beni Nina atau tim <b>Lita Ari - Fita Endo - Zola Oki - Beni Nina</b>"
@@ -1108,7 +1108,7 @@ const soalData = [
       { huruf: "E", teks: "Mengajari rekan anda tahap demi tahap pembuatan rumus excel yang dikerjakan di laptopnya sendiri", poin: 3 }
     ],
     kunci: "B",
-    pembahasan: "A = 4, B =  5, C = 1, D =2, E = 3 <br> Pada soal tersebut diinforrnasikan bahwa Anda menguasai excel sehingga diminta tolong oleh rekan lama Anda untuk membantunya. Opsi menentukan jadwal bertemu untuk berdiskusi menghasilkan rumus formula seperti yang ia inginkan lebih efektif dan efisien karena dapat dengan leluasa berdiskusi dan mengerjakannya sampai selesai yang mungkin selesai di hari yang sama."
+    pembahasan: "A = 4, B =  5, C = 1, D =2, E = 3 <br> Pada soal tersebut diinformasikan bahwa Anda menguasai excel sehingga diminta tolong oleh rekan lama Anda untuk membantunya. Opsi menentukan jadwal bertemu untuk berdiskusi menghasilkan rumus formula seperti yang ia inginkan lebih efektif dan efisien karena dapat dengan leluasa berdiskusi dan mengerjakannya sampai selesai yang mungkin selesai di hari yang sama."
   },
 
   // ─── Soal 72 ───
@@ -1132,7 +1132,7 @@ const soalData = [
     teks: "Anda bergabung di tim proyek yang mewajibkan memiliki android dengan minimal RAM tertentu untuk menggunakan aplikasi yang bisa menginput dan transfer data. Ternyata penggunaan aplikasi tersebut tidak semudah aplikasi sebelumnya, sedangkan anggota tim lainnya sudah menguasainya. Apa yang akan anda lakukan?",
     pilihan: [
       { huruf: "A", teks: "Meminta waktu salah satu anggota tim untuk mengajari anda cara menggunakan aplikasi tersebut hingga mahir", poin: 5 },
-      { huruf: "B", teks: "Terus mencobanya sendiri saat menginput dan trasnfer data walaupun dengan risiko data tidak tersimpan jika salah caranya", poin: 4 },
+      { huruf: "B", teks: "Terus mencobanya sendiri saat menginput dan transfer data walaupun dengan risiko data tidak tersimpan jika salah caranya", poin: 4 },
       { huruf: "C", teks: "Menggunakan cara konfensional sebagai data backup hingga berhasil menginput dan transfer data di aplikasi tersebut", poin: 1 },
       { huruf: "D", teks: "Izin kepada atasan untuk menggunakan aplikasi lama yang dapat digunakan untuk menginput dan transfer data yang mungkin sedikit berbeda dan waktu yang lebih lama", poin: 2 },
       { huruf: "E", teks: "Meminta kepada atasan untuk memberikan anda pelatihan lagi secara khusus untuk menguasai menggunakan aplikasi tersebut", poin: 3 }
@@ -1163,12 +1163,12 @@ const soalData = [
     pilihan: [
       { huruf: "A", teks: "Membuat catatan kecil terkait langkah-langkah penggunaan aplikasi yang digunakan sejak awal bekerja", poin: 1 },
       { huruf: "B", teks: "Menentukan jadwal tersendiri untuk terus update dan mempelajari teknologi yang harus berkembang di kantor saat ini", poin: 5 },
-      { huruf: "C", teks: "Memberikan kesempatan pada rekan lainnya yang ingin diajari oleh anda jika sudah menguasai beberapa teknologi", poin: 4 },
-      { huruf: "D", teks: "Mendatangi atau hadir dalam seminar yang membahas mengenai adaptasi terhadap perkembangan teknologi yang berkaitan dengan peningkatan karier", poin: 3 },
+      { huruf: "C", teks: "Memberikan kesempatan pada rekan lainnya yang ingin diajari oleh anda jika sudah menguasai beberapa teknologi", poin: 3 },
+      { huruf: "D", teks: "Mendatangi atau hadir dalam seminar yang membahas mengenai adaptasi terhadap perkembangan teknologi yang berkaitan dengan peningkatan karier", poin: 4 },
       { huruf: "E", teks: "Menonton banyak tutorial dan informasi mengenai teknologi terbaru saat ini yang biasa digunakan oleh banyak kantor", poin: 2 }
     ],
     kunci: "B",
-    pembahasan: "A = 1, B = 5, C = 4, D =  3, E = 2 <br> Menyesuaikan diri dan terus aktif terhadap perkembangan teknologi sebaiknya difokuskan apa yang digunakan dan diperlukan oleh pekerjaan yang dijalani. Maka jawaban yang paling tepat adalah menentukan jadwal tersendiri untuk terus update dan mempelajari teknologi yang harus berkembang di kantor saat ini."
+    pembahasan: "A = 1, B = 5, C = 3, D =  4, E = 2 <br> Menyesuaikan diri dan terus aktif terhadap perkembangan teknologi sebaiknya difokuskan apa yang digunakan dan diperlukan oleh pekerjaan yang dijalani. Maka jawaban yang paling tepat adalah menentukan jadwal tersendiri untuk terus update dan mempelajari teknologi yang harus berkembang di kantor saat ini."
   },
 
   // ─── Soal 76 ───
@@ -1309,7 +1309,7 @@ const soalData = [
   // ─── Soal 85 ───
   {
     id: 85, kategori: "TKP",
-    teks: "Andi tumbuh dan berkembang di lingkungan keluarga yang beragam suku, budaya, dan agama. Keponakan Anda penasaran dengan beberapa pertanyaan terkait keagamaan dan sedang mencari titik terang spiritualnya. Apa yang dapat keluarga Anda lakukan? ",
+    teks: "Anda tumbuh dan berkembang di lingkungan keluarga yang beragam suku, budaya, dan agama. Keponakan Anda penasaran dengan beberapa pertanyaan terkait keagamaan dan sedang mencari titik terang spiritualnya. Apa yang dapat keluarga Anda lakukan? ",
     pilihan: [
       { huruf: "A", teks: "Memperhatikan dan sesekali mendokumentasikan perjalanan spiritual keponakan Anda sebagai apresiasi dan kenang-kenangan", poin: 2 },
       { huruf: "B", teks: "Memberikan kesempatan untuk mendapatkan bimbingan dari satu orang tokoh agama yang paling ingin ia tahu tentang seluk beluk agama tersebut", poin: 1 },
@@ -1326,7 +1326,7 @@ const soalData = [
     id: 86, kategori: "TKP",
     teks: "Aparat negara berperan penting dalam deradikalisasi masyarakat yang pernah terlibat dalam terorisme, salah satunya adalah narapidana kasus teroris. Apa upaya deradikalisasi yang dapat dilakukan?",
     pilihan: [
-      { huruf: "A", teks: "Menciptakan lingungan kerja yang damai di lingkungan staf lapas terutama di lapas kasus teroris", poin: 1 },
+      { huruf: "A", teks: "Menciptakan lingkungan kerja yang damai di lingkungan staf lapas terutama di lapas kasus teroris", poin: 1 },
       { huruf: "B", teks: "Mengirimkan satu orang ahli deradikalisasi untuk mengajak diskusi satu per satu narapidana kasus teroris untuk disadarkan dari radikalisme dan terorisme", poin: 4 },
       { huruf: "C", teks: "Menyediakan berbagai judul buku yang berkaitan dengan deradikalisasi untuk dibaca narapidana di lapas", poin: 3 },
       { huruf: "D", teks: "Mengadakan kegiatan deradikalisasi untuk membina narapidana kasus teroris di lapas dengan narasumber ahli agama dan mengadakan sesi dialog", poin: 5 },
@@ -1356,14 +1356,14 @@ const soalData = [
     id: 88, kategori: "TKP",
     teks: "Arni seorang fresh graduate muda yang baru saja lulus kuliah dan bekerja sebagai pegawai di salah satu perusahaan start up yang dituntut untuk menguasai teknologi terbaru setiap tiga bulan. Hal tersebut membuat Arni cukup merasakan tekanan yang tinggi dalam pekerjaanya. Apa yang dapat Arni lakukan?",
     pilihan: [
-      { huruf: "A", teks: "Mencicil menyelesaikan laporan akhir bulan, mempelajari teknologi terbaru yang digunakan oleh perusahaan, dan memanfaatkan fasilitas kantor dengan baik", poin: 2 },
-      { huruf: "B", teks: "Disiplin hadir di town hall, berani memberikan gagasan yang inovatif, dan selalu berkoodinasi dengan atasan", poin: 3 },
+      { huruf: "A", teks: "Mencicil menyelesaikan laporan akhir bulan, mempelajari teknologi terbaru yang digunakan oleh perusahaan, dan memanfaatkan fasilitas kantor dengan baik", poin: 3 },
+      { huruf: "B", teks: "Disiplin hadir di town hall, berani memberikan gagasan yang inovatif, dan selalu berkoodinasi dengan atasan", poin: 2 },
       { huruf: "C", teks: "Rutin mengikutin perkembangan informasi internal, menjaga relasi dengan rekan kerja terutama atasan, dan rutin berlatih menggunakan teknologi yang diperkenalkan oleh perusahaan", poin: 5 },
       { huruf: "D", teks: "Mempelajari secara mandiri sistem teknologi yang biasa digunakan untuk menyelesaikan tugas kerjanya dan meminta tolong untuk diajari oleh anggota timnya jika ada yang belum ia paham", poin: 4 },
       { huruf: "E", teks: "Mempelajari visi dan misi perusahaan, mengenal budaya kerjanya, dan bersikap ramah dengan sesama rekan kerja", poin: 1 }
     ],
     kunci: "C",
-    pembahasan: "A = 2, B = 3, C = 5, D = 4, E = 1<br> Tuntutan untuk terus menguasai teknologi terbaru perlu diatasi dengan berbagai cara. Arni dapat rutin mengikuti perkembangan informasi internal, menjaga relasi dengan rekan kerja, dan rutin menggunakan teknologi yang diperkenalkan oleh perusahaan."
+    pembahasan: "A = 3, B =2, C = 5, D = 4, E = 1<br> Tuntutan untuk terus menguasai teknologi terbaru perlu diatasi dengan berbagai cara. Arni dapat rutin mengikuti perkembangan informasi internal, menjaga relasi dengan rekan kerja, dan rutin menggunakan teknologi yang diperkenalkan oleh perusahaan."
   },
 
   // ─── Soal 89 ───
@@ -1465,7 +1465,7 @@ const soalData = [
       { huruf: "B", teks: "Menepati janji setiap kali bertemu dengan <em>stakeholder, follow up</em> langsung kepada direktur setiap minggunya, dan mendelegasikan beberapa pekerjaannya ke rekan kerja yang duduk di sebelahnya", poin: 3 },
       { huruf: "C", teks: "Melakukan perencanaan dengan memecah beberapa kegiatan tersebut menjadi detail yang lebih kecil dan ditentukan masing-masing waktunya untuk diselesaikan tepat waktu", poin: 5 },
       { huruf: "D", teks: "Selalu <em>meeting</em> tepat waktu sesuai dengan jadwal yang sudah ditentukan, memastikan catatan <em>meeting</em> tidak ada yang terlewat, dan datang ke kantor juga tepat waktu", poin: 4 },
-      { huruf: "E", teks: "Meminta bantuan manajer musisinya untuk mengerjakan sebagian pekerjaannya sebagai musisi dan menjadi rekan berdiskusi seputar musk", poin: 2 }
+      { huruf: "E", teks: "Meminta bantuan manajer musisinya untuk mengerjakan sebagian pekerjaannya sebagai musisi dan menjadi rekan berdiskusi seputar musik", poin: 2 }
     ],
     kunci: "C",
     pembahasan: "A = 1, B = 3, C = 5, D = 4, E = 2<br> Karena Aldo memiliki lebih dari satu pekerjaan yang tidak bisa ia tinggal, maka ia harus memecah beberapa kegiatan menjadi lebih detail dan lebih kecil dan ditentukan masing-masing waktunya untuk diselesaikan tepat waktu."
@@ -1479,11 +1479,11 @@ const soalData = [
       { huruf: "A", teks: "Bekerja sama dengan media untuk memberitakan kondisi jalan selama perjalanan mudik dan melakukan rekayasa lalu lintas", poin: 4 },
       { huruf: "B", teks: "Menyediakan akses pelayanan kesehatan darurat yang ada di beberapa <em>rest area</em> yang dijaga oleh beberapa orang polisi", poin: 2 },
       { huruf: "C", teks: "Menyediakan poso-posko mudik yang dapat menjadi tempat untuk melaporkan adanya tindak kriminal atau menjadi tempat istirahat sementara selama perjalanan mudik", poin: 3 },
-      { huruf: "D", teks: "Mensosialisasikan bahwa masyarakat yang ingin dikawal di hari mudiknya yang melewati daerah rawan bahaya bisa datang ke pos polri yang sudah disediakan", poin: 5 },
+      { huruf: "D", teks: "Menyosialisasikan bahwa masyarakat yang ingin dikawal di hari mudiknya yang melewati daerah rawan bahaya bisa datang ke pos polri yang sudah disediakan", poin: 5 },
       { huruf: "E", teks: "Memberikan surat pemberitahuan di masing-masing kelurahan untuk tetap waspada selama perjalanan mudik", poin: 1 }
     ],
     kunci: "D",
-    pembahasan: "A = 4, B = 2, C = 3, D = 5, E = 1<br> Demi keamanan perjalanan mudik, polisi dapat mensosialisasikan bahwa masyarakat yang ingin dikawal di hari mudiknya yang melewati daerah rawan bisa datang ke pos polisi yang sudah disediakan "
+    pembahasan: "A = 4, B = 2, C = 3, D = 5, E = 1<br> Demi keamanan perjalanan mudik, polisi dapat menyosialisasikan bahwa masyarakat yang ingin dikawal di hari mudiknya yang melewati daerah rawan bisa datang ke pos polisi yang sudah disediakan "
   },
 
   // ─── Soal 97 ───
@@ -1672,7 +1672,7 @@ const soalData = [
     teks: "Fikri merupakan seorang kepala produksi di suatu pabrik. Ia saat ini sedang mempersiapkan acara pernikahannya dan cuckup membuatnya stres. Lalu ada suatu waktu ia menerima laporan bahwa ada produk <em>reject</em> karena kesalahan operator produksi yang membuat pelanggan kecewa. Tindakan apa yang harus Fikri lakukan?",
     pilihan: [
       { huruf: "A", teks: "Mempresentasikan berbagai jenis produk yang diproduksi oleh pabrik tersebut kepada para pelanggan prospek dan meyakinkan mereka bahwa kualitas produk yang dihasilkan sesuai standar nasional dan internasional", poin: 2 },
-      { huruf: "B", teks: "Memanggil supervisor-supervisor yang bertugas di area produksi untuk berdiskusi mencari akar masalahnya dan cara untuk mengembalikan kepercayaan pelanggan lagi dan komunikasi asertif", poin: 5 },
+      { huruf: "B", teks: "Memanggil supervisor-supervisor yang bertugas di area produksi untuk berdiskusi mencari akar masalahnya dan cara untuk mengembalikan kepercayaan pelanggan lagi dengan komunikasi asertif", poin: 5 },
       { huruf: "C", teks: "Mencatat seluruh kebutuhan untuk kegiatan produksi dan menganalisis antara modal dan profit yang didapatkan dalam periode waktu tertentu", poin: 1 },
       { huruf: "D", teks: "Memahami setiap tahapan produksi dan selalu mengingatkan operator dan supervisor di area produksi untuk terus bekerja sesuai dengan standar prosedur operasional yang berlaku", poin: 4 },
       { huruf: "E", teks: "Memastikan dahulu adanya laporan tersebut kemudian berdiskusi dengan top management dengan analisis faktor dan risiko dari perencanaan produksi untuk berikutnya", poin: 3 }
