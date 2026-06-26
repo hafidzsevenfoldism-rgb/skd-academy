@@ -59,7 +59,7 @@ const soalData = [
   // ─── Soal 3 ───
   {
     id: 3, kategori: "TWK",
-    teks: "Pada masa pergerakan kemerdekaan Indonesia. Para pejuang kemerdekaan baik dari kaum nasionalis, agama, tokoh daerah , kaum pemuda  dan yang lainnya tetap bisa menunjukkan tekad yang sama untuk meraih kemerdekaan Indonesia meskipun dari latar belakang yang berbeda-beda. Hal tersebut dapat menjadi karena mereka sama-sama menanamkan nilai…",
+    teks: "Pada masa pergerakan kemerdekaan Indonesia. Para pejuang kemerdekaan baik dari kaum nasionalis, agama, tokoh daerah, kaum pemuda  dan yang lainnya tetap bisa menunjukkan tekad yang sama untuk meraih kemerdekaan Indonesia meskipun dari latar belakang yang berbeda-beda. Hal tersebut dapat menjadi karena mereka sama-sama menanamkan nilai…",
     pilihan: [
       { huruf: "A", teks: "Agama" },
       { huruf: "B", teks: "Kemanusiaan" },
@@ -173,7 +173,7 @@ const soalData = [
       { huruf: "E", teks: "Mendengarkan lagu tradisional Indonesia" }
     ],
     kunci: "D",
-    pembahasan: "Kata kunci untuk menjawab soal ini ada pada kalimat 'berjuang dan berkorban demi kepentingan negara'. Opsi jawaban yang menunjukkan rela berkorban demi kepentingan negara ada pada opsi D, yaitu dengan melaporkan pelaku kasus korupsi kepada pihak yang berwewenang dengan memberikan sejumlah buktu meskipun mendapatkan ancaman. Opsi ini juga mencerminkan sikap yang lebih mendalam, menunjukkan kesiapan untuk berjuang melawan korupsi demi kepentingan negara, bahkan dengan risiko pribadi."
+    pembahasan: "Kata kunci untuk menjawab soal ini ada pada kalimat 'berjuang dan berkorban demi kepentingan negara'. Opsi jawaban yang menunjukkan rela berkorban demi kepentingan negara ada pada opsi D, yaitu dengan melaporkan pelaku kasus korupsi kepada pihak yang berwewenang dengan memberikan sejumlah bukti meskipun mendapatkan ancaman. Opsi ini juga mencerminkan sikap yang lebih mendalam, menunjukkan kesiapan untuk berjuang melawan korupsi demi kepentingan negara, bahkan dengan risiko pribadi."
   },
 
   // ─── Soal 11 ───
@@ -181,7 +181,7 @@ const soalData = [
     id: 11, kategori: "TWK",
     teks: "Patriotisme merupakan semangat untuk berkorban demi negara atau sikap yang ditunjukkan melalui tindakan berani, rela berkorban, dan tidak mudah menyerah dalam membela bangsa. Sikap tersebut dapat diwujudkan dengan… ",
     pilihan: [
-      { huruf: "A", teks: "Menggunakan bagasa Indonesia dan bahasa daerah dengan baik dan benar" },
+      { huruf: "A", teks: "Menggunakan bahasa Indonesia dan bahasa daerah dengan baik dan benar" },
       { huruf: "B", teks: "Berani membela kebenaran meskipun harus berhadapan dengan pihak yang berkuasa" },
       { huruf: "C", teks: "Bangga menggunakan batik sebagai warisan budaya lokal" },
       { huruf: "D", teks: "Hormat kepada bendera sebagai simbol negara" },
