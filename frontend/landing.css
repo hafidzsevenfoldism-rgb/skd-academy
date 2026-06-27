@@ -897,6 +897,7 @@ body {
 
   .hamburger {
     display: flex;
+    margin-left: auto;
   }
 
   .nav-right {
@@ -918,6 +919,27 @@ body {
   .nav-mobile-btns .btn-nav-daftar {
     text-align: center;
     display: block;
+  }
+
+  .nav-mobile-btns .btn-nav-masuk {
+    background: transparent;
+    border: 2px solid rgba(79, 195, 224, 0.5);
+    color: var(--sky);
+    padding: 9px 22px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    font-weight: 800;
+  }
+
+  .nav-mobile-btns .btn-nav-daftar {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-l) 60%, #f0c56e 100%);
+    border: none;
+    color: var(--white);
+    padding: 9px 22px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    font-weight: 800;
+    box-shadow: 0 4px 14px rgba(200, 144, 58, 0.4);
   }
 
   .hero {
