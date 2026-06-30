@@ -4,83 +4,90 @@
   var txnStatus = params.get('transaction_status');
 
   var loading = document.getElementById('loadingMsg');
-  var resultContent = document.getElementById('resultContent');
 
   if (!orderId) {
     loading.innerHTML = '<p style="color:#ff6b6b;">Data pembayaran tidak ditemukan.</p>';
     return;
   }
 
-  // Jika Midtrans langsung redirect dengan status
+  function showSuccess() {
+    loading.innerHTML =
+      '<div style="font-size:64px;color:#4CAF50;margin:20px 0;">✓</div>' +
+      '<h2 style="color:#fff;font-size:24px;">Pembayaran Berhasil!</h2>' +
+      '<p style="color:#8899aa;margin:10px 0 20px;">Try out SKD Paket 2 sudah siap kamu kerjakan.</p>' +
+      '<a href="home.html" class="btn-login" style="display:inline-block;text-decoration:none;">Ke Halaman Utama</a>';
+  }
+
+  function showFailed(title) {
+    loading.innerHTML =
+      '<div style="font-size:64px;color:#ff6b6b;margin:20px 0;">✕</div>' +
+      '<h2 style="color:#fff;font-size:24px;">' + title + '</h2>' +
+      '<p style="color:#8899aa;margin:10px 0 20px;">Silakan coba lagi.</p>' +
+      '<a href="home.html" class="btn-login" style="display:inline-block;text-decoration:none;">Coba Lagi</a>';
+  }
+
+  function showPending() {
+    loading.innerHTML =
+      '<div style="font-size:64px;color:#ffa726;margin:20px 0;">⏳</div>' +
+      '<h2 style="color:#fff;font-size:24px;">Menunggu Pembayaran</h2>' +
+      '<p style="color:#8899aa;margin:10px 0 20px;">Memverifikasi pembayaran...</p>';
+  }
+
+  // Jika URL langsung kasih status final (dari Midtrans redirect)
   if (txnStatus) {
     var lowerStatus = txnStatus.toLowerCase();
     if (lowerStatus === 'capture' || lowerStatus === 'settlement') {
-      loading.innerHTML =
-        '<div style="font-size:64px;color:#4CAF50;margin:20px 0;">✓</div>' +
-        '<h2 style="color:#fff;font-size:24px;">Pembayaran Berhasil!</h2>' +
-        '<p style="color:#8899aa;margin:10px 0 20px;">Try out SKD Paket 2 sudah siap kamu kerjakan.</p>' +
-        '<a href="home.html" class="btn-login" style="display:inline-block;text-decoration:none;">Ke Halaman Utama</a>';
+      showSuccess();
       return;
     }
-
     if (lowerStatus === 'deny' || lowerStatus === 'cancel') {
-      loading.innerHTML =
-        '<div style="font-size:64px;color:#ff6b6b;margin:20px 0;">✕</div>' +
-        '<h2 style="color:#fff;font-size:24px;">Pembayaran Gagal / Dibatalkan</h2>' +
-        '<p style="color:#8899aa;margin:10px 0 20px;">Silakan coba lagi.</p>' +
-        '<a href="home.html" class="btn-login" style="display:inline-block;text-decoration:none;">Coba Lagi</a>';
+      showFailed('Pembayaran Gagal / Dibatalkan');
       return;
     }
-
-    if (lowerStatus === 'pending') {
-      loading.innerHTML =
-        '<div style="font-size:64px;color:#ffa726;margin:20px 0;">⏳</div>' +
-        '<h2 style="color:#fff;font-size:24px;">Menunggu Pembayaran</h2>' +
-        '<p style="color:#8899aa;margin:10px 0 20px;">Pembayaran sedang diproses. Silakan cek halaman utama.</p>' +
-        '<a href="home.html" class="btn-login" style="display:inline-block;text-decoration:none;">Ke Halaman Utama</a>';
-      return;
-    }
-
     if (lowerStatus === 'expire') {
-      loading.innerHTML =
-        '<div style="font-size:64px;color:#ff6b6b;margin:20px 0;">✕</div>' +
-        '<h2 style="color:#fff;font-size:24px;">Pembayaran Kedaluwarsa</h2>' +
-        '<p style="color:#8899aa;margin:10px 0 20px;">Waktu pembayaran habis. Silakan coba lagi.</p>' +
-        '<a href="home.html" class="btn-login" style="display:inline-block;text-decoration:none;">Coba Lagi</a>';
+      showFailed('Pembayaran Kedaluwarsa');
       return;
     }
   }
 
-  // Fallback: cek status dari API
-  (async function () {
-    try {
-      var data = await apiRequest('/api/payment/status/' + encodeURIComponent(orderId), 'GET');
-      var tx = data.transaction;
+  function delay(ms) {
+    return new Promise(function (resolve) { setTimeout(resolve, ms); });
+  }
 
-      if (tx.status === 'PAID') {
-        loading.innerHTML =
-          '<div style="font-size:64px;color:#4CAF50;margin:20px 0;">✓</div>' +
-          '<h2 style="color:#fff;font-size:24px;">Pembayaran Berhasil!</h2>' +
-          '<p style="color:#8899aa;margin:10px 0 20px;">Try out SKD Paket 2 sudah siap kamu kerjakan.</p>' +
-          '<a href="home.html" class="btn-login" style="display:inline-block;text-decoration:none;">Ke Halaman Utama</a>';
-      } else if (tx.status === 'PENDING') {
-        loading.innerHTML =
-          '<div style="font-size:64px;color:#ffa726;margin:20px 0;">⏳</div>' +
-          '<h2 style="color:#fff;font-size:24px;">Menunggu Pembayaran</h2>' +
-          '<p style="color:#8899aa;margin:10px 0 20px;">Pembayaran sedang diproses. Silakan cek halaman utama.</p>' +
-          '<a href="home.html" class="btn-login" style="display:inline-block;text-decoration:none;">Ke Halaman Utama</a>';
-      } else {
-        loading.innerHTML =
-          '<div style="font-size:64px;color:#ff6b6b;margin:20px 0;">✕</div>' +
-          '<h2 style="color:#fff;font-size:24px;">Pembayaran ' + tx.status + '</h2>' +
-          '<p style="color:#8899aa;margin:10px 0 20px;">Silakan coba lagi.</p>' +
-          '<a href="home.html" class="btn-login" style="display:inline-block;text-decoration:none;">Coba Lagi</a>';
-      }
-    } catch (err) {
-      loading.innerHTML =
-        '<h2 style="color:#fff;font-size:24px;">Pembayaran Diproses</h2>' +
-        '<p style="color:#8899aa;margin:10px 0 20px;">Silakan cek halaman utama untuk melihat status tryout kamu.</p>' +
-        '<a href="home.html" class="btn-login" style="display:inline-block;text-decoration:none;">Ke Halaman Utama</a>';
+  // Polling status API tiap 3 detik (max 90 detik)
+  // Backup kalau webhook telat atau tidak sampai
+  (async function () {
+    showPending();
+
+    for (var i = 0; i < 30; i++) {
+      await delay(3000);
+
+      try {
+        var data = await apiRequest('/api/payment/status/' + encodeURIComponent(orderId), 'GET');
+        var tx = data.transaction;
+
+        if (tx.status === 'PAID') {
+          showSuccess();
+          return;
+        }
+
+        if (tx.status === 'FAILED') {
+          showFailed('Pembayaran Gagal');
+          return;
+        }
+
+        if (tx.status === 'EXPIRED') {
+          showFailed('Pembayaran Kedaluwarsa');
+          return;
+        }
+      } catch (_) {}
     }
+
+    // 90 detik masih PENDING — suruh cek di home
+    loading.innerHTML =
+      '<div style="font-size:64px;color:#ffa726;margin:20px 0;">⏳</div>' +
+      '<h2 style="color:#fff;font-size:24px;">Menunggu Konfirmasi</h2>' +
+      '<p style="color:#8899aa;margin:10px 0 20px;">Pembayaran sedang diproses. Silakan cek halaman utama.</p>' +
+      '<a href="home.html" class="btn-login" style="display:inline-block;text-decoration:none;">Ke Halaman Utama</a>';
   })();
 })();
