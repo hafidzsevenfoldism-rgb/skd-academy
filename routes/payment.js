@@ -266,7 +266,7 @@ async function processPayment(data, serverKey) {
         await pool.query(
           `INSERT INTO tryout_dibeli (user_id, tryout_id, nama_paket, harga)
            VALUES ($1, $2, $3, $4)`,
-          [user_id, tryout_id, paket.rows[0].nama_paket, gross_amount || 0]
+          [user_id, tryout_id, paket.rows[0].nama_paket, Math.round(Number(gross_amount)) || 0]
         );
       }
     }
