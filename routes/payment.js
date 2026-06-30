@@ -109,7 +109,8 @@ router.post('/create', auth, async (req, res) => {
     const snapData = await snapRes.json();
 
     if (!snapRes.ok) {
-      throw new Error(snapData.error_message || 'Gagal membuat pembayaran Midtrans');
+      console.error('Midtrans error detail:', snapRes.status, JSON.stringify(snapData));
+      throw new Error(snapData.error_message || JSON.stringify(snapData) || 'Gagal membuat pembayaran Midtrans');
     }
 
     await pool.query(
