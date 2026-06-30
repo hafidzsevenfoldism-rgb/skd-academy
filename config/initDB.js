@@ -179,7 +179,7 @@ async function initDB() {
         invoice_number  VARCHAR(64)   NOT NULL UNIQUE,
         amount          INTEGER       NOT NULL,
         status          VARCHAR(20)   NOT NULL DEFAULT 'PENDING',
-        doku_ref        VARCHAR(100),
+        midtrans_ref    VARCHAR(100),
         payment_method  VARCHAR(50),
         paid_at         TIMESTAMPTZ,
         expires_at      TIMESTAMPTZ,
@@ -187,6 +187,12 @@ async function initDB() {
       );
     `);
     console.log('  Tabel transactions');
+
+    /* Migrasi: rename doku_ref → midtrans_ref jika kolom lama masih ada */
+    try {
+      await client.query(`ALTER TABLE transactions RENAME COLUMN doku_ref TO midtrans_ref`);
+      console.log('  Migrasi: doku_ref → midtrans_ref');
+    } catch (_) { /* kolom sudah bernama midtrans_ref atau tidak ada */ }
 
     /* INDEX */
     await client.query(`

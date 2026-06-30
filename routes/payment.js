@@ -1,14 +1,13 @@
 const express = require('express');
 const crypto  = require('crypto');
 const pool    = require('../config/db');
-const { createPayment, generateDigest, generateSignature } = require('../config/doku');
 const auth    = require('../middleware/auth');
 
 const router = express.Router();
 
 /* ══════════════════════════════════════════════
    POST /api/payment/create
-   Buat transaksi + call DOKU → return payment.url
+   Buat transaksi + call Midtrans Snap → return redirect_url
    Body: { tryout_id }
 ══════════════════════════════════════════════ */
 router.post('/create', auth, async (req, res) => {
@@ -55,18 +54,59 @@ router.post('/create', auth, async (req, res) => {
       email: user.rows[0].email
     };
 
-    const dokuResult = await createPayment(invoiceNumber, harga, customer);
+    const frontendUrl = process.env.FRONTEND_URL || 'https://hafidzsevenfoldism-rgb.github.io/skd-academy';
+
+    const serverKey = process.env.MIDTRANS_SERVER_KEY;
+    if (!serverKey) {
+      return res.status(500).json({ error: 'MIDTRANS_SERVER_KEY tidak diatur.' });
+    }
+
+    const isProduction = process.env.MIDTRANS_IS_PRODUCTION === 'true';
+    const snapUrl = isProduction
+      ? 'https://app.midtrans.com/snap/v1/transactions'
+      : 'https://app.sandbox.midtrans.com/snap/v1/transactions';
+
+    const authHeader = 'Basic ' + Buffer.from(serverKey + ':').toString('base64');
+
+    const snapBody = {
+      transaction_details: {
+        order_id: invoiceNumber,
+        gross_amount: harga
+      },
+      customer_details: {
+        first_name: customer.name,
+        email: customer.email
+      },
+      callbacks: {
+        finish: frontendUrl + '/payment-result.html'
+      }
+    };
+
+    const snapRes = await fetch(snapUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': authHeader
+      },
+      body: JSON.stringify(snapBody)
+    });
+
+    const snapData = await snapRes.json();
+
+    if (!snapRes.ok) {
+      throw new Error(snapData.error_message || 'Gagal membuat pembayaran Midtrans');
+    }
 
     await pool.query(
-      `INSERT INTO transactions (user_id, tryout_id, invoice_number, amount, status, expires_at)
-       VALUES ($1, $2, $3, $4, 'PENDING',
+      `INSERT INTO transactions (user_id, tryout_id, invoice_number, amount, status, midtrans_ref, expires_at)
+       VALUES ($1, $2, $3, $4, 'PENDING', $5,
                NOW() + INTERVAL '60 minutes')`,
-      [user_id, tryout_id, invoiceNumber, harga]
+      [user_id, tryout_id, invoiceNumber, harga, snapData.token]
     );
 
     return res.status(200).json({
       invoice_number: invoiceNumber,
-      payment_url: dokuResult.paymentUrl,
+      payment_url: snapData.redirect_url,
       amount: harga
     });
 
@@ -78,56 +118,43 @@ router.post('/create', auth, async (req, res) => {
 
 /* ══════════════════════════════════════════════
    POST /api/payment/notification
-   Webhook dari DOKU — verifikasi signature, update status
+   Webhook dari Midtrans — verifikasi signature, update status
 ══════════════════════════════════════════════ */
 router.post('/notification', async (req, res) => {
   try {
     const notification = req.body;
-    const rawBody = JSON.stringify(notification);
-    const invoiceNumber = notification.order && notification.order.invoice_number;
+    const orderId = notification.order_id;
+    const transactionStatus = notification.transaction_status;
+    const statusCode = notification.status_code;
+    const grossAmount = notification.gross_amount;
+    const signatureKey = notification.signature_key;
 
-    if (!invoiceNumber) {
-      return res.status(400).json({ error: 'invoice_number tidak ditemukan.' });
+    if (!orderId || !transactionStatus) {
+      return res.status(400).json({ error: 'Data notifikasi tidak lengkap.' });
     }
 
-    const clientId = process.env.DOKU_CLIENT_ID;
-    const secret   = process.env.DOKU_SECRET_KEY;
+    const serverKey = process.env.MIDTRANS_SERVER_KEY;
+    const hash = crypto.createHash('sha512')
+      .update(orderId + statusCode + grossAmount + serverKey)
+      .digest('hex');
 
-    const requestId      = req.headers['request-id'];
-    const requestTimestamp = req.headers['request-timestamp'];
-    const requestTarget  = '/api/payment/notification';
-    const signatureHeader  = req.headers['signature'] || '';
-
-    if (clientId && secret && requestId && requestTimestamp) {
-      const digest = generateDigest(rawBody);
-      const expectedSig = generateSignature(
-        clientId, requestId, requestTimestamp, requestTarget, digest, secret
-      );
-
-      const expectedToken = expectedSig.replace('HMACSHA256=', '');
-      const receivedToken = signatureHeader.replace('HMACSHA256=', '');
-
-      if (expectedToken !== receivedToken) {
-        console.error('DOKU notification signature mismatch');
-        return res.status(401).json({ error: 'Invalid signature' });
-      }
+    if (hash !== signatureKey) {
+      console.error('Midtrans notification signature mismatch');
+      return res.status(401).json({ error: 'Invalid signature' });
     }
-
-    const transactionStatus = notification.transaction && notification.transaction.status;
-    const dokuRef = notification.transaction && (notification.transaction.id || notification.transaction.reference_id);
 
     let status = 'PENDING';
-    if (transactionStatus === 'SUCCESS' || transactionStatus === 'PAYMENT_SUCCESS') {
+    if (transactionStatus === 'capture' || transactionStatus === 'settlement') {
       status = 'PAID';
-    } else if (transactionStatus === 'FAILED') {
+    } else if (transactionStatus === 'deny' || transactionStatus === 'cancel') {
       status = 'FAILED';
-    } else if (transactionStatus === 'EXPIRED') {
+    } else if (transactionStatus === 'expire') {
       status = 'EXPIRED';
     }
 
     const tx = await pool.query(
       'SELECT id, status FROM transactions WHERE invoice_number = $1',
-      [invoiceNumber]
+      [orderId]
     );
 
     if (tx.rows.length === 0) {
@@ -138,20 +165,22 @@ router.post('/notification', async (req, res) => {
       return res.status(200).json({ message: 'Already processed.' });
     }
 
+    const paymentMethod = notification.payment_type || null;
+
     if (status === 'PAID') {
       await pool.query('BEGIN');
 
       await pool.query(
         `UPDATE transactions
-         SET status = $1, doku_ref = $2, paid_at = NOW(),
+         SET status = $1, midtrans_ref = COALESCE(midtrans_ref, $2), paid_at = NOW(),
              payment_method = $3
          WHERE invoice_number = $4`,
-        [status, dokuRef, notification.payment_channel || null, invoiceNumber]
+        [status, notification.transaction_id || null, paymentMethod, orderId]
       );
 
       const txn = await pool.query(
         'SELECT user_id, tryout_id FROM transactions WHERE invoice_number = $1',
-        [invoiceNumber]
+        [orderId]
       );
 
       if (txn.rows.length > 0) {
@@ -169,7 +198,7 @@ router.post('/notification', async (req, res) => {
           await pool.query(
             `INSERT INTO tryout_dibeli (user_id, tryout_id, nama_paket, harga)
              VALUES ($1, $2, $3, $4)`,
-            [user_id, tryout_id, paket.rows[0].nama_paket, notification.order.amount || 0]
+            [user_id, tryout_id, paket.rows[0].nama_paket, notification.gross_amount || 0]
           );
         }
       }
@@ -177,8 +206,8 @@ router.post('/notification', async (req, res) => {
       await pool.query('COMMIT');
     } else {
       await pool.query(
-        'UPDATE transactions SET status = $1, doku_ref = $2 WHERE invoice_number = $3',
-        [status, dokuRef || null, invoiceNumber]
+        'UPDATE transactions SET status = $1, payment_method = $2 WHERE invoice_number = $3',
+        [status, paymentMethod, orderId]
       );
     }
 
