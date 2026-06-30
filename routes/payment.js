@@ -42,6 +42,21 @@ router.post('/create', auth, async (req, res) => {
       return res.status(400).json({ error: 'Try out sudah kamu miliki.' });
     }
 
+    /* Cegah double klik: tolak jika ada transaksi PENDING yang belum expired */
+    const pendingTxn = await pool.query(
+      `SELECT id, invoice_number FROM transactions
+       WHERE user_id = $1 AND tryout_id = $2
+         AND status = 'PENDING'
+         AND (expires_at IS NULL OR expires_at > NOW())`,
+      [user_id, tryout_id]
+    );
+    if (pendingTxn.rows.length > 0) {
+      return res.status(400).json({
+        error: 'Kamu sudah memiliki pembayaran yang tertunda. Selesaikan pembayaran sebelumnya.',
+        existing_invoice: pendingTxn.rows[0].invoice_number
+      });
+    }
+
     const invoiceNumber = 'SKD-' + Date.now() + '-' + tryout_id;
 
     const user = await pool.query(
