@@ -36,14 +36,37 @@
   // Jika URL langsung kasih status final (dari Midtrans redirect)
   if (txnStatus) {
     var lowerStatus = txnStatus.toLowerCase();
+
     if (lowerStatus === 'capture' || lowerStatus === 'settlement') {
-      showSuccess();
+      showPending();
+
+      // Kirim konfirmasi ke backend agar tryout langsung aktif
+      var statusCode = params.get('status_code');
+      var grossAmount = params.get('gross_amount');
+      var signatureKey = params.get('signature_key');
+
+      (async function () {
+        try {
+          await apiRequest('/api/payment/confirm', 'POST', {
+            order_id: orderId,
+            transaction_status: txnStatus,
+            status_code: statusCode,
+            gross_amount: grossAmount,
+            signature_key: signatureKey
+          });
+        } catch (_) {}
+
+        showSuccess();
+      })();
+
       return;
     }
+
     if (lowerStatus === 'deny' || lowerStatus === 'cancel') {
       showFailed('Pembayaran Gagal / Dibatalkan');
       return;
     }
+
     if (lowerStatus === 'expire') {
       showFailed('Pembayaran Kedaluwarsa');
       return;
@@ -54,8 +77,7 @@
     return new Promise(function (resolve) { setTimeout(resolve, ms); });
   }
 
-  // Polling status API tiap 3 detik (max 90 detik)
-  // Backup kalau webhook telat atau tidak sampai
+  // Polling status API tiap 3 detik (max 90 detik) — backup kalau redirect tanpa status
   (async function () {
     showPending();
 
@@ -83,7 +105,6 @@
       } catch (_) {}
     }
 
-    // 90 detik masih PENDING — suruh cek di home
     loading.innerHTML =
       '<div style="font-size:64px;color:#ffa726;margin:20px 0;">⏳</div>' +
       '<h2 style="color:#fff;font-size:24px;">Menunggu Konfirmasi</h2>' +

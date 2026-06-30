@@ -138,101 +138,16 @@ router.post('/create', auth, async (req, res) => {
 ══════════════════════════════════════════════ */
 router.post('/notification', async (req, res) => {
   try {
-    const notification = req.body;
-    const orderId = notification.order_id;
-    const transactionStatus = notification.transaction_status;
-    const statusCode = notification.status_code;
-    const grossAmount = notification.gross_amount;
-    const signatureKey = notification.signature_key;
-
-    if (!orderId || !transactionStatus) {
-      return res.status(400).json({ error: 'Data notifikasi tidak lengkap.' });
-    }
-
     const serverKey = process.env.MIDTRANS_SERVER_KEY;
-    const hash = crypto.createHash('sha512')
-      .update(orderId + statusCode + grossAmount + serverKey)
-      .digest('hex');
-
-    if (hash !== signatureKey) {
-      console.error('Midtrans notification signature mismatch');
-      return res.status(401).json({ error: 'Invalid signature' });
+    if (!serverKey) {
+      return res.status(500).json({ error: 'MIDTRANS_SERVER_KEY tidak diatur.' });
     }
 
-    let status = 'PENDING';
-    if (transactionStatus === 'capture' || transactionStatus === 'settlement') {
-      status = 'PAID';
-    } else if (transactionStatus === 'deny' || transactionStatus === 'cancel') {
-      status = 'FAILED';
-    } else if (transactionStatus === 'expire') {
-      status = 'EXPIRED';
-    }
-
-    const tx = await pool.query(
-      'SELECT id, status FROM transactions WHERE invoice_number = $1',
-      [orderId]
-    );
-
-    if (tx.rows.length === 0) {
-      return res.status(404).json({ error: 'Transaksi tidak ditemukan.' });
-    }
-
-    if (tx.rows[0].status === 'PAID') {
-      return res.status(200).json({ message: 'Already processed.' });
-    }
-
-    const paymentMethod = notification.payment_type || null;
-
-    if (status === 'PAID') {
-      await pool.query('BEGIN');
-
-      await pool.query(
-        `UPDATE transactions
-         SET status = $1, midtrans_ref = COALESCE(midtrans_ref, $2), paid_at = NOW(),
-             payment_method = $3
-         WHERE invoice_number = $4`,
-        [status, notification.transaction_id || null, paymentMethod, orderId]
-      );
-
-      const txn = await pool.query(
-        'SELECT user_id, tryout_id FROM transactions WHERE invoice_number = $1',
-        [orderId]
-      );
-
-      if (txn.rows.length > 0) {
-        const { user_id, tryout_id } = txn.rows[0];
-
-        const sudahBeli = await pool.query(
-          'SELECT id FROM tryout_dibeli WHERE user_id = $1 AND tryout_id = $2',
-          [user_id, tryout_id]
-        );
-        if (sudahBeli.rows.length === 0) {
-          const paket = await pool.query(
-            'SELECT nama_paket FROM paket_tryout WHERE tryout_id = $1',
-            [tryout_id]
-          );
-          await pool.query(
-            `INSERT INTO tryout_dibeli (user_id, tryout_id, nama_paket, harga)
-             VALUES ($1, $2, $3, $4)`,
-            [user_id, tryout_id, paket.rows[0].nama_paket, notification.gross_amount || 0]
-          );
-        }
-      }
-
-      await pool.query('COMMIT');
-    } else {
-      await pool.query(
-        'UPDATE transactions SET status = $1, payment_method = $2 WHERE invoice_number = $3',
-        [status, paymentMethod, orderId]
-      );
-    }
-
-    return res.status(200).json({ message: 'OK' });
-
+    const result = await processPayment(req.body, serverKey);
+    return res.status(200).json(result);
   } catch (err) {
-    await pool.query('ROLLBACK').catch(function () {});
     console.error('Payment notification error:', err.message);
-    return res.status(500).json({ error: 'Terjadi kesalahan.' });
+    return res.status(500).json({ error: err.message || 'Terjadi kesalahan.' });
   }
 });
 
@@ -260,5 +175,111 @@ router.get('/status/:invoiceNumber', auth, async (req, res) => {
     return res.status(500).json({ error: 'Terjadi kesalahan.' });
   }
 });
+
+/* ══════════════════════════════════════════════
+   POST /api/payment/confirm
+   Dipanggil dari payment-result.js setelah redirect dari Midtrans.
+   Backup ketika webhook notification tidak sampai.
+   Body: { order_id, transaction_status, status_code, gross_amount, signature_key }
+══════════════════════════════════════════════ */
+router.post('/confirm', auth, async (req, res) => {
+  try {
+    const serverKey = process.env.MIDTRANS_SERVER_KEY;
+    if (!serverKey) {
+      return res.status(500).json({ error: 'MIDTRANS_SERVER_KEY tidak diatur.' });
+    }
+
+    const result = await processPayment(req.body, serverKey);
+    return res.status(200).json(result);
+  } catch (err) {
+    console.error('Payment confirm error:', err.message);
+    return res.status(500).json({ error: err.message || 'Terjadi kesalahan.' });
+  }
+});
+
+/* ─── Helper: proses notifikasi/konfirmasi dari Midtrans ─── */
+async function processPayment(data, serverKey) {
+  const { order_id, transaction_status, status_code, gross_amount, signature_key } = data;
+
+  if (!order_id || !transaction_status) {
+    throw new Error('Data tidak lengkap.');
+  }
+
+  const hash = crypto.createHash('sha512')
+    .update(order_id + status_code + gross_amount + serverKey)
+    .digest('hex');
+
+  if (hash !== signature_key) {
+    console.error('Midtrans signature mismatch for', order_id);
+    throw new Error('Invalid signature');
+  }
+
+  let status = 'PENDING';
+  if (transaction_status === 'capture' || transaction_status === 'settlement') {
+    status = 'PAID';
+  } else if (transaction_status === 'deny' || transaction_status === 'cancel') {
+    status = 'FAILED';
+  } else if (transaction_status === 'expire') {
+    status = 'EXPIRED';
+  }
+
+  const tx = await pool.query(
+    'SELECT id, status FROM transactions WHERE invoice_number = $1',
+    [order_id]
+  );
+
+  if (tx.rows.length === 0) throw new Error('Transaksi tidak ditemukan.');
+  if (tx.rows[0].status === 'PAID') return { message: 'Already processed.', status: 'PAID' };
+
+  const paymentMethod = data.payment_type || null;
+  const transactionId = data.transaction_id || null;
+
+  if (status === 'PAID') {
+    await pool.query('BEGIN');
+
+    await pool.query(
+      `UPDATE transactions
+       SET status = $1, midtrans_ref = COALESCE(midtrans_ref, $2), paid_at = NOW(),
+           payment_method = $3
+       WHERE invoice_number = $4`,
+      [status, transactionId, paymentMethod, order_id]
+    );
+
+    const txn = await pool.query(
+      'SELECT user_id, tryout_id FROM transactions WHERE invoice_number = $1',
+      [order_id]
+    );
+
+    if (txn.rows.length > 0) {
+      const { user_id, tryout_id } = txn.rows[0];
+
+      const sudahBeli = await pool.query(
+        'SELECT id FROM tryout_dibeli WHERE user_id = $1 AND tryout_id = $2',
+        [user_id, tryout_id]
+      );
+
+      if (sudahBeli.rows.length === 0) {
+        const paket = await pool.query(
+          'SELECT nama_paket FROM paket_tryout WHERE tryout_id = $1',
+          [tryout_id]
+        );
+        await pool.query(
+          `INSERT INTO tryout_dibeli (user_id, tryout_id, nama_paket, harga)
+           VALUES ($1, $2, $3, $4)`,
+          [user_id, tryout_id, paket.rows[0].nama_paket, gross_amount || 0]
+        );
+      }
+    }
+
+    await pool.query('COMMIT');
+  } else {
+    await pool.query(
+      'UPDATE transactions SET status = $1, payment_method = $2 WHERE invoice_number = $3',
+      [status, paymentMethod, order_id]
+    );
+  }
+
+  return { message: 'OK', status };
+}
 
 module.exports = router;
