@@ -13,7 +13,7 @@
   function showSuccess() {
     loading.innerHTML =
       '<div style="font-size:64px;color:#4CAF50;margin:20px 0;">✓</div>' +
-      '<h2 style="color:#fff;font-size:24px;">Pembayaran Berhasil!</h2>' +
+      '<h2 style="color:#C8903A;font-size:24px;">Pembayaran Berhasil!</h2>' +
       '<p style="color:#8899aa;margin:10px 0 20px;">Try out SKD Paket 2 sudah siap kamu kerjakan.</p>' +
       '<a href="home.html" class="btn-login" style="display:inline-block;text-decoration:none;">Ke Halaman Utama</a>';
   }
@@ -21,7 +21,7 @@
   function showFailed(title) {
     loading.innerHTML =
       '<div style="font-size:64px;color:#ff6b6b;margin:20px 0;">✕</div>' +
-      '<h2 style="color:#fff;font-size:24px;">' + title + '</h2>' +
+      '<h2 style="color:#C8903A;font-size:24px;">' + title + '</h2>' +
       '<p style="color:#8899aa;margin:10px 0 20px;">Silakan coba lagi.</p>' +
       '<a href="home.html" class="btn-login" style="display:inline-block;text-decoration:none;">Coba Lagi</a>';
   }
@@ -29,7 +29,7 @@
   function showPending() {
     loading.innerHTML =
       '<div style="font-size:64px;color:#ffa726;margin:20px 0;">⏳</div>' +
-      '<h2 style="color:#fff;font-size:24px;">Menunggu Pembayaran</h2>' +
+      '<h2 style="color:#C8903A;font-size:24px;">Menunggu Pembayaran</h2>' +
       '<p style="color:#8899aa;margin:10px 0 20px;">Memverifikasi pembayaran...</p>';
   }
 
@@ -107,7 +107,7 @@
 
     loading.innerHTML =
       '<div style="font-size:64px;color:#ffa726;margin:20px 0;">⏳</div>' +
-      '<h2 style="color:#fff;font-size:24px;">Menunggu Konfirmasi</h2>' +
+      '<h2 style="color:#C8903A;font-size:24px;">Menunggu Konfirmasi</h2>' +
       '<p style="color:#8899aa;margin:10px 0 20px;">Pembayaran sedang diproses. Silakan cek halaman utama.</p>' +
       '<a href="home.html" class="btn-login" style="display:inline-block;text-decoration:none;">Ke Halaman Utama</a>';
   })();
