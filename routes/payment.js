@@ -69,7 +69,7 @@ router.post('/create', auth, async (req, res) => {
       email: user.rows[0].email
     };
 
-    const frontendUrl = process.env.FRONTEND_URL || 'https://hafidzsevenfoldism-rgb.github.io/skd-academy';
+    const frontendUrl = process.env.FRONTEND_URL || 'https://skd-academy.my.id';
 
     const serverKey = process.env.MIDTRANS_SERVER_KEY;
     if (!serverKey) {
