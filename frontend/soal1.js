@@ -45,7 +45,7 @@ let timerInterval;
 function startTimer() {
   var tryoutId = parseInt(sessionStorage.getItem('skd_tryout_id')) || 1;
 
-  timerInterval = setInterval(function () {
+  timerInterval = setInterval(async function () {
     sisaWaktu--;
 
     var menit = Math.floor(sisaWaktu / 60);
@@ -71,6 +71,7 @@ function startTimer() {
     if (sisaWaktu <= 0) {
       clearInterval(timerInterval);
       localStorage.removeItem('skd_waktu_' + tryoutId);
+      await muatSoal(true);
       tampilkanHasil();
     }
   }, 1000);
