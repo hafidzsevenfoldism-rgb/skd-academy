@@ -77,6 +77,7 @@ function simpanDataUser(token, user) {
 async function apiRegister(nama, email, password) {
   const data = await apiRequest('/api/auth/register', 'POST', { nama, email, password });
   simpanDataUser(data.token, data.user);
+  if (typeof fbq === 'function') fbq('track', 'CompleteRegistration');
   return data;
 }
 

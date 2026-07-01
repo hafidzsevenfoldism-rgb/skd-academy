@@ -2,6 +2,7 @@
   var params = new URLSearchParams(window.location.search);
   var orderId = params.get('order_id');
   var txnStatus = params.get('transaction_status');
+  var grossAmount = params.get('gross_amount');
 
   var loading = document.getElementById('loadingMsg');
 
@@ -11,6 +12,7 @@
   }
 
   function showSuccess() {
+    if (typeof fbq === 'function' && grossAmount) fbq('track', 'Purchase', {value: Number(grossAmount), currency: 'IDR'});
     loading.innerHTML =
       '<div style="font-size:64px;color:#4CAF50;margin:20px 0;">✓</div>' +
       '<h2 style="color:#C8903A;font-size:24px;">Pembayaran Berhasil!</h2>' +

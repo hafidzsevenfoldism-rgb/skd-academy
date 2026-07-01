@@ -314,6 +314,7 @@ async function beliTryout(id) {
   if (to.harga > 0) {
     try {
       const data = await apiCreatePayment(to.id);
+      if (typeof fbq === 'function') fbq('track', 'InitiateCheckout', {value: to.harga, currency: 'IDR', content_name: to.title});
       window.location.href = data.payment_url;
       return;
     } catch (err) {
@@ -516,6 +517,8 @@ async function mulaiUjian() {
 
   sessionStorage.removeItem('skd_review_mode');
   sessionStorage.setItem('skd_tryout_id', tryoutId);
+
+  if (typeof fbq === 'function') fbq('track', 'StartTrial');
 
   var to = tryouts.find(function (t) { return t.id === tryoutId; });
   if (to) {
