@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://skd-academy.my.id/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://skd-academy.my.id/register.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skd-academy.my.id/login.html</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://skd-academy.my.id/lupapassword.html</loc>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://skd-academy.my.id/resetpassword.html</loc>
+    <priority>0.3</priority>
+  </url>
+</urlset>

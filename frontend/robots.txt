@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://skd-academy.my.id/sitemap.xml
