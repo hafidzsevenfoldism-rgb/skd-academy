@@ -2,6 +2,7 @@
    DATA SOAL — dimuat dari database via API
 ════════════════════════════════════════════════ */
 let soalData = [];
+var SOAL_CACHE_VERSION = '2';
 
 async function muatSoal(review) {
   var tryoutId = parseInt(sessionStorage.getItem('skd_tryout_id')) || 1;
@@ -13,6 +14,7 @@ async function muatSoal(review) {
     if (data && data.soal && data.soal.length > 0) {
       soalData = data.soal;
       localStorage.setItem('skd_soal_cache', JSON.stringify(soalData));
+      localStorage.setItem('skd_soal_cache_ver', SOAL_CACHE_VERSION);
     } else {
       muatSoalDariCache();
     }
@@ -23,6 +25,12 @@ async function muatSoal(review) {
 }
 
 function muatSoalDariCache() {
+  var ver = localStorage.getItem('skd_soal_cache_ver');
+  if (ver !== SOAL_CACHE_VERSION) {
+    localStorage.removeItem('skd_soal_cache');
+    localStorage.removeItem('skd_soal_cache_ver');
+    return;
+  }
   var cached = localStorage.getItem('skd_soal_cache');
   if (cached) {
     soalData = JSON.parse(cached);
