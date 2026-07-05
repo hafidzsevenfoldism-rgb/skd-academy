@@ -367,6 +367,12 @@ router.get('/get-waktu/:tryout_id', auth, async (req, res) => {
   const user_id = req.user.id;
 
   try {
+    const paket = await pool.query(
+      'SELECT waktu_menit FROM paket_tryout WHERE tryout_id = $1',
+      [tryout_id]
+    );
+    const totalDurasi = (paket.rows[0]?.waktu_menit || 100) * 60;
+
     const result = await pool.query(
       `SELECT sisa_waktu FROM jawaban_peserta
        WHERE user_id = $1 AND tryout_id = $2 AND soal_id = 0`,
@@ -375,9 +381,9 @@ router.get('/get-waktu/:tryout_id', auth, async (req, res) => {
 
     const sisa = (result.rows.length > 0 && result.rows[0].sisa_waktu !== null)
       ? result.rows[0].sisa_waktu
-      : 6000;
+      : totalDurasi;
 
-    return res.status(200).json({ sisa_waktu: sisa });
+    return res.status(200).json({ sisa_waktu: sisa, total_durasi: totalDurasi });
 
   } catch (err) {
     console.error('Get waktu error:', err.message);

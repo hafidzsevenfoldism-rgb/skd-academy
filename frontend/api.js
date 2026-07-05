@@ -211,5 +211,5 @@ async function apiSimpanWaktu(tryout_id, sisa_waktu) {
 async function apiGetWaktu(tryout_id) {
   const data = await apiRequest('/api/tryout/get-waktu/' + tryout_id);
   console.log('Response get-waktu dari server:', data);
-  return data.sisa_waktu;
+  return data;
 }
