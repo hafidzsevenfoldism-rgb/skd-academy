@@ -44,7 +44,6 @@
 
       // Kirim konfirmasi ke backend agar tryout langsung aktif
       var statusCode = params.get('status_code');
-      var grossAmount = params.get('gross_amount');
       var signatureKey = params.get('signature_key');
 
       (async function () {

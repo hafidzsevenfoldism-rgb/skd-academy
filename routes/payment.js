@@ -235,43 +235,51 @@ async function processPayment(data, serverKey) {
   const transactionId = data.transaction_id || null;
 
   if (status === 'PAID') {
-    await pool.query('BEGIN');
+    const client = await pool.connect();
+    try {
+      await client.query('BEGIN');
 
-    await pool.query(
-      `UPDATE transactions
-       SET status = $1, midtrans_ref = COALESCE(midtrans_ref, $2), paid_at = NOW(),
-           payment_method = $3
-       WHERE invoice_number = $4`,
-      [status, transactionId, paymentMethod, order_id]
-    );
-
-    const txn = await pool.query(
-      'SELECT user_id, tryout_id FROM transactions WHERE invoice_number = $1',
-      [order_id]
-    );
-
-    if (txn.rows.length > 0) {
-      const { user_id, tryout_id } = txn.rows[0];
-
-      const sudahBeli = await pool.query(
-        'SELECT id FROM tryout_dibeli WHERE user_id = $1 AND tryout_id = $2',
-        [user_id, tryout_id]
+      await client.query(
+        `UPDATE transactions
+         SET status = $1, midtrans_ref = COALESCE(midtrans_ref, $2), paid_at = NOW(),
+             payment_method = $3
+         WHERE invoice_number = $4`,
+        [status, transactionId, paymentMethod, order_id]
       );
 
-      if (sudahBeli.rows.length === 0) {
-        const paket = await pool.query(
-          'SELECT nama_paket FROM paket_tryout WHERE tryout_id = $1',
-          [tryout_id]
-        );
-        await pool.query(
-          `INSERT INTO tryout_dibeli (user_id, tryout_id, nama_paket, harga)
-           VALUES ($1, $2, $3, $4)`,
-          [user_id, tryout_id, paket.rows[0].nama_paket, Math.round(Number(gross_amount)) || 0]
-        );
-      }
-    }
+      const txn = await client.query(
+        'SELECT user_id, tryout_id FROM transactions WHERE invoice_number = $1',
+        [order_id]
+      );
 
-    await pool.query('COMMIT');
+      if (txn.rows.length > 0) {
+        const { user_id, tryout_id } = txn.rows[0];
+
+        const sudahBeli = await client.query(
+          'SELECT id FROM tryout_dibeli WHERE user_id = $1 AND tryout_id = $2',
+          [user_id, tryout_id]
+        );
+
+        if (sudahBeli.rows.length === 0) {
+          const paket = await client.query(
+            'SELECT nama_paket FROM paket_tryout WHERE tryout_id = $1',
+            [tryout_id]
+          );
+          await client.query(
+            `INSERT INTO tryout_dibeli (user_id, tryout_id, nama_paket, harga)
+             VALUES ($1, $2, $3, $4)`,
+            [user_id, tryout_id, paket.rows[0].nama_paket, Math.round(Number(gross_amount)) || 0]
+          );
+        }
+      }
+
+      await client.query('COMMIT');
+    } catch (err) {
+      await client.query('ROLLBACK');
+      throw err;
+    } finally {
+      client.release();
+    }
   } else {
     await pool.query(
       'UPDATE transactions SET status = $1, payment_method = $2 WHERE invoice_number = $3',
