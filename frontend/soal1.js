@@ -70,8 +70,7 @@ function muatSoalDariCache() {
 let currentSoal  = 0;
 let jawaban      = [];
 let sudahSelesai = false;
-let sisaWaktu    = 0;
-let totalDurasi  = 0;
+let sisaWaktu    = 6000; // 100 menit
 let timerInterval;
 
 /* ══════════════════════════════
@@ -452,7 +451,7 @@ function tampilkanHasil() {
 
   // Simpan hasil akhir ke database
   var tryoutId    = parseInt(sessionStorage.getItem('skd_tryout_id')) || 1;
-  var durasiDetik = (totalDurasi || 6000) - sisaWaktu;
+  var durasiDetik = 6000 - sisaWaktu; // 100 menit - sisa waktu
   apiKumpulkan(tryoutId, hasil, durasiDetik).then(function () {
     console.log('Hasil berhasil disimpan ke database');
     // Hapus cache jawaban setelah berhasil dikumpulkan
@@ -587,10 +586,9 @@ document.addEventListener("DOMContentLoaded", async function() {
     muatJawaban().then(function () {
     var tryoutId = parseInt(sessionStorage.getItem('skd_tryout_id')) || 1;
     // Ambil sisa waktu dari database
-    return apiGetWaktu(tryoutId).then(function (res) {
-      if (res && res.sisa_waktu != null) {
-        sisaWaktu = res.sisa_waktu;
-        totalDurasi = res.total_durasi || sisaWaktu;
+    return apiGetWaktu(tryoutId).then(function (waktu) {
+      if (waktu !== null && waktu !== undefined) {
+        sisaWaktu = waktu;
       }
     }).catch(function () {
       // Gagal ambil dari server — fallback ke localStorage
