@@ -7,23 +7,11 @@
   --sky-l:  #A8E6F5;
   --gold:   #C8903A;
   --gold-l: #E8B45A;
-  --gold-text: #9A7322;
   --cream:  #FFF8EE;
   --dark:   #1A2535;
   --mid:    #3A4A60;
   --shadow: 0 8px 40px rgba(44, 120, 160, 0.18);
   --radius: 24px;
-
-  --space-1: 4px;  --space-2: 8px;  --space-3: 12px;
-  --space-4: 16px; --space-5: 20px; --space-6: 24px;
-  --space-8: 32px; --space-10: 40px;
-
-  --z-dropdown: 50;
-  --z-sticky: 100;
-  --z-modal-backdrop: 200;
-  --z-modal: 300;
-  --z-toast: 400;
-  --z-tooltip: 500;
 }
 
 /* ══════════════════════════════
@@ -311,7 +299,7 @@ input::placeholder {
 .forgot a {
   font-size: 12.5px;
   font-weight: 700;
-  color: var(--gold-text);
+  color: var(--gold);
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -373,7 +361,7 @@ input::placeholder {
 }
 
 .register-row a {
-  color: var(--gold-text);
+  color: var(--gold);
   text-decoration: none;
   font-weight: 800;
   transition: color 0.2s;
@@ -424,54 +412,13 @@ input::placeholder {
 
 /* ══════════════════════════════
    RESPONSIVE
-   Breakpoints: 375px mobile | 768px tablet | 1024px desktop | 1440px wide
-═════════════════════════════ */
-@media (max-width: 375px) {
+══════════════════════════════ */
+@media (max-width: 480px) {
   .card {
     padding: 36px 26px 32px;
   }
 
   .skd-letters {
     font-size: 42px;
-  }
-}
-
-@media (max-width: 768px) {
-  .card {
-    padding: 40px 32px 36px;
-  }
-}
-
-:focus-visible {
-  outline: 3px solid var(--sky);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-.skip-link {
-  position: absolute;
-  top: -100%;
-  left: var(--space-2);
-  z-index: var(--z-tooltip);
-  padding: var(--space-2) var(--space-4);
-  background: var(--sky);
-  color: var(--white);
-  border-radius: 0 0 8px 8px;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  text-decoration: none;
-  transition: top 0.2s;
-}
-.skip-link:focus {
-  top: 0;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }
