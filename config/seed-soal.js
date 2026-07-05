@@ -653,7 +653,7 @@ const soalData = [
   {
     id: 53, kategori: "TIU",
     teks: "Dalam satu minggu, empat konten kreator YouTube yaitu Andi, Bella, Citra, dan Dio mengunggah video edukatif. Setiap kali video mereka mendapat 1 like, nilainya dianggap 2 poin, sedangkan setiap 1 subscribe baru bernilai 3 poin. Data jumlah like dan subscribe yang diperoleh masing-masing kreator ditunjukkan pada tabel berikut." +
-          "<img src='gambar/soal53.jpeg'</img> <br>" +
+          "<img src='gambar/soal53.jpeg'></img> <br>" +
           "Berdasarkan data di atas, siapakah yang memperoleh jumlah nilai tertinggi?",
     pilihan: [
       { huruf: "A", teks: "Andi" },

@@ -12,6 +12,7 @@ async function muatSoal(review) {
     const data = await apiGetSoal(tryoutId, review);
     if (data && data.soal && data.soal.length > 0) {
       soalData = data.soal;
+      localStorage.removeItem('skd_soal_cache');
       localStorage.setItem('skd_soal_cache', JSON.stringify(soalData));
     } else {
       muatSoalDariCache();
