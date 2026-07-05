@@ -759,7 +759,7 @@ const soalData = [
       { huruf: "E", teks: "4A < B" }
     ],
     kunci: "C",
-    pembahasan: "5,6 juta (penghasilan) ➔ 140.000 (zakat) <br>3,2 juta (penghasilan) ➔ A (zakat). <br>Ini adalah tipikal soal perbandingan senilai karena semakin besar penghasilan maka semakin besar juga zakatnya. Karena perbandingan senilai maka rumusnya adalah dikali silang. untuk lebih sederhananya, penghasilan kita sederhanakan menjadi 56 dan 32 dengan cara menghilangkan koma. <br> A = <math><mfrac> <mn>32 &times; 140.000</mn><mn>56</mn> </mfrac></math> <br> A = <math><mfrac> <mn>4 &times 140.000</mn><mn>7</mn> </mfrac></math> = 80.000 <br> Karena A = 80.000 maka kita subtitusikan ke pilihan ganda, opsi yang tepat adalah C yaitu 80.000 - 60.000 = 20.000 "
+    pembahasan: "5,6 juta (penghasilan) ➔ 140.000 (zakat) <br>3,2 juta (penghasilan) ➔ A (zakat). <br>Ini adalah tipikal soal perbandingan senilai karena semakin besar penghasilan maka semakin besar juga zakatnya. Karena perbandingan senilai maka rumusnya adalah dikali silang. untuk lebih sederhananya, penghasilan kita sederhanakan menjadi 56 dan 32 dengan cara menghilangkan koma. <br> A = <math><mfrac> <mn>32 &times; 140.000</mn><mn>56</mn> </mfrac></math> <br> A = <math><mfrac> <mn>4 &times; 140.000</mn><mn>7</mn> </mfrac></math> = 80.000 <br> Karena A = 80.000 maka kita subtitusikan ke pilihan ganda, opsi yang tepat adalah C yaitu 80.000 - 60.000 = 20.000 "
   },
 
   // ─── Soal 49 ───
@@ -785,7 +785,7 @@ const soalData = [
       { huruf: "A", teks: "A > B" },
       { huruf: "B", teks: "<math><mfrac> <mn>1</mn><mn>A</mn> </mfrac></math> < <math><mfrac> <mn>1</mn><mn>B</mn> </mfrac></math>" },
       { huruf: "C", teks: "<math><mfrac> <mn>1</mn><mn>A</mn> </mfrac></math> - <math><mfrac> <mn>1</mn><mn>B</mn> </mfrac></math> = 2" },
-      { huruf: "D", teks: "3A - B = <math><mfrac> <mn>1</mn><mn>2</mn> </mfrac </math>" },
+      { huruf: "D", teks: "3A - B = <math><mfrac> <mn>1</mn><mn>2</mn> </mfrac></math>" },
       { huruf: "E", teks: "3A > 2B" }
     ],
     kunci: "D",
