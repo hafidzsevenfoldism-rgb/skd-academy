@@ -311,6 +311,20 @@
       </div>
     </div>
 
+    <!-- ══════════════════════════════
+        LOADING OVERLAY
+    ══════════════════════════════ -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-box">
+        <div class="loading-spinner" id="loadingSpinner"></div>
+        <div class="loading-text" id="loadingText">Memuat data...</div>
+        <div class="loading-error" id="loadingError" style="display:none;">
+          <p>Gagal memuat data. Periksa koneksi internet kamu.</p>
+          <button class="btn-retry" id="btnRetry">Coba Lagi</button>
+        </div>
+      </div>
+    </div>
+
     <script src="api.js"></script>
     <script src="home.js"></script>
   </body>

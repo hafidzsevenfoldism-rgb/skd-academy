@@ -452,8 +452,6 @@ function tampilkanHasil() {
   // Simpan hasil akhir ke database
   var tryoutId    = parseInt(sessionStorage.getItem('skd_tryout_id')) || 1;
   var durasiDetik = 6000 - sisaWaktu; // 100 menit - sisa waktu
-  // Cache lokal agar tombol Lihat Nilai Saya tetap muncul meski API gagal
-  localStorage.setItem('skd_hasil_' + tryoutId, JSON.stringify(hasil));
   apiKumpulkan(tryoutId, hasil, durasiDetik).then(function () {
     console.log('Hasil berhasil disimpan ke database');
     // Hapus cache jawaban setelah berhasil dikumpulkan

@@ -2,6 +2,9 @@
    DATA AKUN PENGGUNA
    Dibaca dari sessionStorage yang disimpan oleh login.js
 ══════════════════════════════ */
+if (!localStorage.getItem('skd_token')) {
+  window.location.href = 'login.html';
+}
 const akun = {
   nama:    sessionStorage.getItem('skd_nama')    || 'Pengguna',
   email:   sessionStorage.getItem('skd_email')   || 'pengguna@email.com',
@@ -14,49 +17,111 @@ const akun = {
 ══════════════════════════════ */
 let tryouts = [];
 
-const tryoutFallback = [
-  { id: 1, title: "Try Out SKD Paket 1", desc: "Simulasi SKD lengkap: TWK + TIU + TKP sesuai standar BKN terbaru.", soal: 110, waktu: 100, harga: 0, hargaAsli: 30000, baru: true, stripe: "#4FC3E0" },
-  { id: 2, title: "Try Out SKD Paket 2", desc: "Simulasi SKD lanjutan: TWK + TIU + TKP dengan pembahasan rinci dijamin paham", soal: 110, waktu: 100, harga: 14900, hargaAsli: 30000, baru: true, stripe: "#E67E22" }
-];
+/* ══════════════════════════════
+   MUAT SEMUA DATA — blocking retry
+   Menampilkan overlay sampai semua
+   data berhasil dimuat dari server.
+══════════════════════════════ */
+async function muatSemuaData() {
+  var overlay  = document.getElementById('loadingOverlay');
+  var spinner  = document.getElementById('loadingSpinner');
+  var txt      = document.getElementById('loadingText');
+  var errBox   = document.getElementById('loadingError');
+  var retryBtn = document.getElementById('btnRetry');
 
-async function muatPaketTryout() {
-  try {
-    const token = localStorage.getItem('skd_token');
-    if (!token) { pakaiCachePaket(); return; }
+  overlay.style.display = 'flex';
+  spinner.style.display = 'block';
+  txt.textContent = 'Memuat data...';
+  errBox.style.display = 'none';
 
-    const data = await apiRequest('/api/tryout/paket');
-    if (data && data.paket && data.paket.length > 0) {
-      tryouts = data.paket.map(function (p) {
-        return {
-          id:         p.tryout_id,
-          title:      p.nama_paket,
-          desc:       p.deskripsi,
-          soal:       p.jumlah_soal,
-          waktu:      p.waktu_menit,
-          harga:      p.harga,
-          hargaAsli:  p.harga_asli,
-          baru:       p.is_baru,
-          stripe:     p.stripe_color,
-          comingSoon: !p.is_aktif
+  while (true) {
+    try {
+      const token = localStorage.getItem('skd_token');
+      if (!token) {
+        overlay.style.display = 'none';
+        return;
+      }
+
+      // ── Phase 1: Paket tryout ──
+      txt.textContent = 'Memuat try out...';
+      const data = await apiRequest('/api/tryout/paket');
+      if (data && data.paket && data.paket.length > 0) {
+        tryouts = data.paket.map(function (p) {
+          return {
+            id:         p.tryout_id,
+            title:      p.nama_paket,
+            desc:       p.deskripsi,
+            soal:       p.jumlah_soal,
+            waktu:      p.waktu_menit,
+            harga:      p.harga,
+            hargaAsli:  p.harga_asli,
+            baru:       p.is_baru,
+            stripe:     p.stripe_color,
+            comingSoon: !p.is_aktif
+          };
+        });
+      }
+
+      // ── Phase 2: Tryout dimiliki + riwayat ──
+      txt.textContent = 'Memuat data try out kamu...';
+
+      purchased.clear();
+      myTryouts.length = 0;
+
+      var dariServer = await apiGetDimiliki();
+
+      if (dariServer && dariServer.length > 0) {
+        var hasilMap = {};
+        try {
+          var riwayat = await apiGetRiwayat();
+          if (riwayat && riwayat.length > 0) {
+            riwayat.forEach(function (h) {
+              hasilMap[h.tryout_id] = h;
+            });
+          }
+        } catch (err) {
+          console.warn('Gagal ambil riwayat nilai:', err.message);
+        }
+
+        dariServer.forEach(function (item) {
+          purchased.add(item.tryout_id);
+          var detail = tryouts.find(function (t) { return t.id === item.tryout_id; });
+          var hasil  = hasilMap[item.tryout_id];
+          myTryouts.push({
+            id:       item.tryout_id,
+            title:    item.nama_paket,
+            progress: hasil ? 100 : 0,
+            skor:     hasil ? hasil.skor_total : null,
+            waktu:    detail ? detail.waktu : 100
+          });
+        });
+      }
+
+      // Semua berhasil — sembunyikan overlay
+      overlay.style.display = 'none';
+
+      // Render setelah semua data siap
+      renderCards(tryouts);
+      renderMyTo();
+
+      return;
+
+    } catch (err) {
+      console.warn('Gagal memuat data:', err.message);
+
+      spinner.style.display = 'none';
+      txt.textContent = 'Gagal memuat data';
+      errBox.style.display = 'block';
+
+      await new Promise(function (resolve) {
+        retryBtn.onclick = function () {
+          errBox.style.display = 'none';
+          spinner.style.display = 'block';
+          txt.textContent = 'Memuat ulang...';
+          resolve();
         };
       });
-      localStorage.setItem('skd_paket_cache', JSON.stringify(tryouts));
-    } else {
-      pakaiCachePaket();
     }
-  } catch (err) {
-    console.warn('Gagal muat paket dari server, pakai cache:', err.message);
-    pakaiCachePaket();
-  }
-  filterCards();
-}
-
-function pakaiCachePaket() {
-  const cached = localStorage.getItem('skd_paket_cache');
-  if (cached) {
-    tryouts = JSON.parse(cached);
-  } else {
-    tryouts = tryoutFallback.slice();
   }
 }
 
@@ -357,113 +422,6 @@ async function beliTryout(id) {
 }
 
 
-/* ══════════════════════════════
-   MUAT TRYOUT DIMILIKI DARI DATABASE
-   Dipanggil saat halaman pertama kali dibuka
-══════════════════════════════ */
-async function muatTryoutDimiliki() {
-  purchased.clear();
-  myTryouts.length = 0;
-
-  // LANGKAH 1: Coba ambil dari database via API
-  try {
-    const token = localStorage.getItem('skd_token');
-
-    // Jika tidak ada token, skip API dan langsung pakai cache
-    if (!token) {
-      muatDariCache();
-      return;
-    }
-
-    const dariServer = await apiGetDimiliki();
-
-    if (dariServer && dariServer.length > 0) {
-      // Ambil juga riwayat nilai untuk cek tryout mana yang sudah selesai
-      var hasilMap = {};
-      try {
-        var riwayat = await apiGetRiwayat();
-        if (riwayat && riwayat.length > 0) {
-          riwayat.forEach(function (h) {
-            hasilMap[h.tryout_id] = h;
-          });
-          localStorage.setItem('skd_riwayat_cache', JSON.stringify(riwayat));
-        }
-      } catch (err) {
-        console.warn('Gagal ambil riwayat nilai:', err.message);
-        try {
-          var cached = localStorage.getItem('skd_riwayat_cache');
-          if (cached) {
-            JSON.parse(cached).forEach(function (h) {
-              hasilMap[h.tryout_id] = h;
-            });
-          }
-        } catch (_) {}
-      }
-
-      dariServer.forEach(function (item) {
-        purchased.add(item.tryout_id);
-
-        const detail = tryouts.find(function (t) { return t.id === item.tryout_id; });
-        const hasil  = hasilMap[item.tryout_id];
-        myTryouts.push({
-          id:       item.tryout_id,
-          title:    item.nama_paket,
-          progress: hasil ? 100 : 0,
-          skor:     hasil ? hasil.skor_total : null,
-          waktu:    detail ? detail.waktu : 100
-        });
-      });
-
-      // Fallback hasil dari cache lokal untuk tryout yang riwayatnya kosong
-      myTryouts.forEach(function (t) {
-        if (t.skor === null) {
-          try {
-            var h = JSON.parse(localStorage.getItem('skd_hasil_' + t.id));
-            if (h) {
-              t.skor = h.totalSkor;
-              t.progress = 100;
-            }
-          } catch (_) {}
-        }
-      });
-
-      // Simpan ke cache agar refresh tetap tampil
-      localStorage.setItem('skd_purchased', JSON.stringify([...purchased]));
-      localStorage.setItem('skd_myTryouts', JSON.stringify(myTryouts));
-
-    } else {
-      // Server berhasil diakses tapi data kosong —
-      // bisa jadi akun baru, bersihkan cache lama
-      localStorage.removeItem('skd_purchased');
-      localStorage.removeItem('skd_myTryouts');
-    }
-
-  } catch (err) {
-    // LANGKAH 2: API gagal → pakai cache localStorage
-    console.warn('API gagal, pakai cache lokal:', err.message);
-    muatDariCache();
-  }
-}
-
-// Fungsi bantu: muat dari cache localStorage
-function muatDariCache() {
-  const cachePurchased = localStorage.getItem('skd_purchased');
-  const cacheMyTryouts = localStorage.getItem('skd_myTryouts');
-
-  if (cachePurchased) {
-    JSON.parse(cachePurchased).forEach(function (id) {
-      purchased.add(id);
-    });
-  }
-
-  if (cacheMyTryouts) {
-    JSON.parse(cacheMyTryouts).forEach(function (t) {
-      const sudahAda = myTryouts.some(function (m) { return m.id === t.id; });
-      if (!sudahAda) myTryouts.push(t);
-    });
-  }
-}
-
 
 /* ══════════════════════════════
    SWITCH TAB
@@ -537,30 +495,11 @@ async function mulaiUjian() {
 ══════════════════════════════ */
 async function lihatNilai(tryoutId) {
   var hasil;
-  try {
-    hasil = await apiGetHasil(tryoutId);
-  } catch (err) {
-    console.error('Gagal ambil nilai:', err.message);
     try {
-      var cached = localStorage.getItem('skd_hasil_' + tryoutId);
-      if (cached) {
-        var h = JSON.parse(cached);
-        hasil = {
-          skor_total:   h.totalSkor,
-          total_benar:  h.totalBenar,
-          total_salah:  h.totalSalah,
-          total_kosong: h.totalKosong,
-          skor_twk:     h.twk.skor,
-          lolos_twk:    h.twk.lolos,
-          skor_tiu:     h.tiu.skorKonversi,
-          lolos_tiu:    h.tiu.lolos,
-          skor_tkp:     h.tkp.skor,
-          lolos_tkp:    h.tkp.lolos,
-          lolos_skd:    h.lolosSkd
-        };
+        hasil = await apiGetHasil(tryoutId);
+      } catch (err) {
+        console.error('Gagal ambil nilai:', err.message);
       }
-    } catch (_) {}
-  }
 
   if (!hasil) {
     showToast('Gagal memuat data nilai.');
@@ -617,11 +556,7 @@ function hideLogout() {
 function confirmLogout() {
   hideLogout();
 
-  sessionStorage.removeItem('skd_nama');
-  sessionStorage.removeItem('skd_email');
-  sessionStorage.removeItem('skd_inisial');
-  localStorage.removeItem('skd_token');
-  localStorage.removeItem('skd_user');
+  clearDataCache();
 
   showToast('Berhasil keluar. Sampai jumpa!');
   setTimeout(function () {
@@ -744,19 +679,11 @@ function renderSkeletonMyTo() {
 /* ══════════════════════════════
    INISIALISASI HALAMAN
    1. Render skeleton awal
-   2. Muat paket tryout dari database
-   3. Muat tryout dimiliki dari database
-   4. Re-render dengan data terbaru
+   2. Muat semua data dari database (blocking retry)
+   3. Re-render dengan data terbaru
 ══════════════════════════════ */
 initAkun();
 renderSkeletonCards();
 renderSkeletonMyTo();
 
-muatPaketTryout().then(function () {
-  renderCards(tryouts);
-});
-
-muatTryoutDimiliki().then(function () {
-  renderCards(tryouts);
-  renderMyTo();
-});
+muatSemuaData();

@@ -63,6 +63,15 @@ async function apiRequest(endpoint, method = 'GET', body = null) {
 
 /* ──────────────────────────────── */
 
+function clearDataCache() {
+  Object.keys(localStorage).filter(function (k) { return k.startsWith('skd_'); }).forEach(function (k) {
+    localStorage.removeItem(k);
+  });
+  Object.keys(sessionStorage).filter(function (k) { return k.startsWith('skd_'); }).forEach(function (k) {
+    sessionStorage.removeItem(k);
+  });
+}
+
 function simpanDataUser(token, user) {
   localStorage.setItem('skd_token', token);
   localStorage.setItem('skd_user',  JSON.stringify(user));
@@ -76,6 +85,7 @@ function simpanDataUser(token, user) {
 ══════════════════════════════ */
 async function apiRegister(nama, email, password) {
   const data = await apiRequest('/api/auth/register', 'POST', { nama, email, password });
+  clearDataCache();
   simpanDataUser(data.token, data.user);
   if (typeof fbq === 'function') fbq('track', 'CompleteRegistration');
   return data;
@@ -83,14 +93,13 @@ async function apiRegister(nama, email, password) {
 
 async function apiLogin(email, password) {
   const data = await apiRequest('/api/auth/login', 'POST', { email, password });
+  clearDataCache();
   simpanDataUser(data.token, data.user);
   return data;
 }
 
 function apiLogout() {
-  localStorage.removeItem('skd_token');
-  localStorage.removeItem('skd_user');
-  sessionStorage.clear();
+  clearDataCache();
 }
 
 function isLoggedIn() {
