@@ -214,6 +214,18 @@ src="https://www.facebook.com/tr?id=1176938350543217&ev=PageView&noscript=1"
     </div>
   </div>
   
+  <!-- LOADING SOAL OVERLAY -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-box">
+      <div class="loading-spinner" id="loadingSpinner"></div>
+      <div class="loading-text" id="loadingText">Memuat soal...</div>
+      <div class="loading-error" id="loadingError" style="display:none;">
+        <p>Gagal memuat soal. Periksa koneksi internet kamu.</p>
+        <button class="btn-retry" id="btnRetry">Coba Lagi</button>
+      </div>
+    </div>
+  </div>
+
   <script src="api.js"></script>
   <script src="soal1.js"></script>
 </body>

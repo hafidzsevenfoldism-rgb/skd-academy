@@ -5,21 +5,49 @@ let soalData = [];
 
 async function muatSoal(review) {
   var tryoutId = parseInt(sessionStorage.getItem('skd_tryout_id')) || 1;
-  try {
-    const token = localStorage.getItem('skd_token');
-    if (!token) { muatSoalDariCache(); return; }
+  var overlay = document.getElementById('loadingOverlay');
+  var spinner = document.getElementById('loadingSpinner');
+  var txt = document.getElementById('loadingText');
+  var errBox = document.getElementById('loadingError');
+  var retryBtn = document.getElementById('btnRetry');
 
-    const data = await apiGetSoal(tryoutId, review);
-    if (data && data.soal && data.soal.length > 0) {
-      soalData = data.soal;
-      localStorage.removeItem('skd_soal_cache');
-      localStorage.setItem('skd_soal_cache', JSON.stringify(soalData));
-    } else {
-      muatSoalDariCache();
+  overlay.style.display = 'flex';
+  spinner.style.display = 'block';
+  txt.textContent = 'Memuat soal...';
+  errBox.style.display = 'none';
+
+  while (true) {
+    try {
+      const token = localStorage.getItem('skd_token');
+      if (!token) {
+        txt.textContent = 'Silakan login terlebih dahulu';
+        return;
+      }
+
+      const data = await apiGetSoal(tryoutId, review);
+      if (data && data.soal && data.soal.length > 0) {
+        soalData = data.soal;
+        localStorage.removeItem('skd_soal_cache');
+        localStorage.setItem('skd_soal_cache', JSON.stringify(soalData));
+        overlay.style.display = 'none';
+        return;
+      }
+    } catch (err) {
+      console.warn('Gagal muat soal:', err.message);
     }
-  } catch (err) {
-    console.warn('Gagal muat soal dari server, pakai cache:', err.message);
-    muatSoalDariCache();
+
+    spinner.style.display = 'none';
+    txt.textContent = 'Gagal memuat soal';
+    errBox.style.display = 'block';
+
+    await new Promise(function (resolve) {
+      retryBtn.onclick = function () {
+        errBox.style.display = 'none';
+        spinner.style.display = 'block';
+        txt.textContent = 'Memuat soal...';
+        resolve();
+      };
+    });
   }
 }
 
