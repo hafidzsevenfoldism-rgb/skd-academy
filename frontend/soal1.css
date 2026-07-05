@@ -7,6 +7,7 @@
   --sky-l:  #C8EEF8;
   --gold:   #C8903A;
   --gold-l: #E8B45A;
+  --gold-text: #9A7322;
   --navy:   #0D1F33;
   --navy-m: #1A3550;
   --dark:   #1A2535;
@@ -19,6 +20,17 @@
   --danger: #FF6B6B;
   --radius: 16px;
   --nav-h:  100px;
+
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px;
+  --space-4: 16px; --space-5: 20px; --space-6: 24px;
+  --space-8: 32px; --space-10: 40px;
+
+  --z-dropdown: 50;
+  --z-sticky: 100;
+  --z-modal-backdrop: 200;
+  --z-modal: 300;
+  --z-toast: 400;
+  --z-tooltip: 500;
 }
 
 /* ══════════════════════════════
@@ -997,5 +1009,39 @@ body {
 .btn-retry:hover {
   filter: brightness(1.08);
   transform: translateY(-2px);
+}
+
+:focus-visible {
+  outline: 3px solid var(--sky);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-2);
+  z-index: var(--z-tooltip);
+  padding: var(--space-2) var(--space-4);
+  background: var(--sky);
+  color: var(--white);
+  border-radius: 0 0 8px 8px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 

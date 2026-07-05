@@ -696,14 +696,61 @@ document.getElementById('hasilModal').addEventListener('click', function (e) {
 
 
 /* ══════════════════════════════
+   SKELETON LOADING
+══════════════════════════════ */
+function renderSkeletonCards() {
+  const grid = document.getElementById('cardsGrid');
+  grid.innerHTML = '';
+  for (let i = 0; i < 4; i++) {
+    const sk = document.createElement('div');
+    sk.className = 'skeleton-card';
+    sk.innerHTML = `
+      <div class="skeleton-stripe"></div>
+      <div class="skeleton-body">
+        <div class="skeleton-line w-75"></div>
+        <div class="skeleton-line w-50"></div>
+        <div class="skeleton-line h-20"></div>
+        <div class="skeleton-line w-40"></div>
+      </div>
+      <div class="skeleton-footer">
+        <div class="skeleton-line w-40 h-32"></div>
+        <div class="skeleton-line w-25 h-32"></div>
+      </div>`;
+    grid.appendChild(sk);
+  }
+}
+
+function renderSkeletonMyTo() {
+  const list = document.getElementById('myToList');
+  list.innerHTML = '';
+  for (let i = 0; i < 2; i++) {
+    const sk = document.createElement('div');
+    sk.className = 'skeleton-my-card';
+    sk.innerHTML = `
+      <div class="skeleton-avatar skeleton"></div>
+      <div class="skeleton-my-body">
+        <div class="skeleton-line w-75"></div>
+        <div class="skeleton-line w-50"></div>
+        <div class="skeleton-line w-40"></div>
+      </div>
+      <div class="skeleton-my-actions">
+        <div class="skeleton-btn skeleton"></div>
+        <div class="skeleton-btn skeleton"></div>
+      </div>`;
+    list.appendChild(sk);
+  }
+}
+
+/* ══════════════════════════════
    INISIALISASI HALAMAN
-   1. Render awal
+   1. Render skeleton awal
    2. Muat paket tryout dari database
    3. Muat tryout dimiliki dari database
    4. Re-render dengan data terbaru
 ══════════════════════════════ */
 initAkun();
-renderMyTo();
+renderSkeletonCards();
+renderSkeletonMyTo();
 
 muatPaketTryout().then(function () {
   renderCards(tryouts);

@@ -7,6 +7,7 @@
   --sky-l:      #C8EEF8;
   --gold:       #C8903A;
   --gold-l:     #E8B45A;
+  --gold-text:  #9A7322;
   --cream:      #FFF8EE;
   --navy:       #0D1F33;
   --navy-m:     #1A3550;
@@ -22,6 +23,17 @@
   --shadow-card: 0 4px 24px rgba(44, 120, 160, 0.10);
   --radius:     18px;
   --nav-h:      100px;
+
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px;
+  --space-4: 16px; --space-5: 20px; --space-6: 24px;
+  --space-8: 32px; --space-10: 40px;
+
+  --z-dropdown: 50;
+  --z-sticky: 100;
+  --z-modal-backdrop: 200;
+  --z-modal: 300;
+  --z-toast: 400;
+  --z-tooltip: 500;
 }
 
 /* ══════════════════════════════
@@ -460,7 +472,7 @@ body {
 }
 
 .cat-twk  { background: rgba(79, 195, 224, 0.12); color: var(--sky-d); }
-.cat-tiu  { background: rgba(200, 144, 58, 0.12);  color: var(--gold); }
+.cat-tiu  { background: rgba(200, 144, 58, 0.12);  color: var(--gold-text); }
 .cat-tkp  { background: rgba(46, 204, 154, 0.12);  color: #1fa87c; }
 .cat-full { background: rgba(123, 90, 200, 0.12);  color: #7b5ac8; }
 .cat-skd  { background: rgba(79, 195, 224, 0.12);  color: var(--sky-d); }
@@ -550,7 +562,7 @@ body {
   font-family: 'Baloo 2', cursive;
   font-size: 20px;
   font-weight: 800;
-  color: var(--gold);
+  color: var(--gold-text);
   line-height: 1;
 }
 
@@ -874,7 +886,7 @@ body {
 .score-badge.gold-score {
   background: rgba(200, 144, 58, 0.10);
   border-color: rgba(200, 144, 58, 0.25);
-  color: var(--gold);
+  color: var(--gold-text);
 }
 
 /* ══════════════════════════════
@@ -1283,8 +1295,9 @@ body {
 
 /* ══════════════════════════════
    RESPONSIVE
+   Breakpoints: 375px mobile | 768px tablet | 1024px desktop | 1440px wide
 ══════════════════════════════ */
-@media (max-width: 680px) {
+@media (max-width: 768px) {
   .navbar { padding: 0 18px; }
 
   .nav-menu {
@@ -1317,4 +1330,127 @@ body {
   .hero-stats { gap: 16px; }
   .my-to-card { flex-wrap: wrap; }
   .my-actions { justify-content: flex-start; }
+}
+
+/* ══════════════════════════════
+   SKELETON LOADING
+══════════════════════════════ */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--border) 25%, #e8f0f5 50%, var(--border) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+.skeleton-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  border: 1.5px solid var(--border);
+}
+
+.skeleton-stripe {
+  height: 6px;
+  background: linear-gradient(90deg, var(--sky-l), var(--border));
+}
+
+.skeleton-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeleton-line {
+  height: 14px;
+  width: 100%;
+}
+
+.skeleton-line.w-75 { width: 75%; }
+.skeleton-line.w-50 { width: 50%; }
+.skeleton-line.w-40 { width: 40%; }
+.skeleton-line.h-20 { height: 20px; }
+.skeleton-line.h-32 { height: 32px; }
+
+.skeleton-footer {
+  padding: 14px 20px;
+  border-top: 1.5px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+}
+
+.skeleton-my-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  box-shadow: var(--shadow-card);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.skeleton-avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  flex-shrink: 0;
+}
+
+.skeleton-my-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeleton-my-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.skeleton-btn {
+  width: 100px;
+  height: 38px;
+  border-radius: 12px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--sky);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-2);
+  z-index: var(--z-tooltip);
+  padding: var(--space-2) var(--space-4);
+  background: var(--sky);
+  color: var(--white);
+  border-radius: 0 0 8px 8px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
