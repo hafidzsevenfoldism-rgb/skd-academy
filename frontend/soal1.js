@@ -26,7 +26,12 @@ async function muatSoal(review) {
 function muatSoalDariCache() {
   var cached = localStorage.getItem('skd_soal_cache');
   if (cached) {
-    soalData = JSON.parse(cached);
+    var data = JSON.parse(cached);
+    if (data.length > 0 && data[0].kunci === null) {
+      localStorage.removeItem('skd_soal_cache');
+      return;
+    }
+    soalData = data;
   }
 }
 
