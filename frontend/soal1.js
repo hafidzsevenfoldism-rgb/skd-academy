@@ -71,7 +71,9 @@ function startTimer() {
     if (sisaWaktu <= 0) {
       clearInterval(timerInterval);
       localStorage.removeItem('skd_waktu_' + tryoutId);
+      var jawabanBackup = jawaban.slice();
       await muatSoal(true);
+      if (jawabanBackup.some(function (j) { return j !== null; })) jawaban = jawabanBackup;
       tampilkanHasil();
     }
   }, 1000);
@@ -376,6 +378,11 @@ function hitungSkorDetail() {
   // Total skor: TWK + TIU (konversi) + TKP (akumulasi poin langsung)
   const totalSkor = skorTwkAktual + skorTiuKonversi + skorTkp;
 
+  console.log('Hitung skor - TWK:', { benar: benarTwk, salah: salahTwk, kosong: kosongTwk, skor: skorTwkAktual });
+  console.log('Hitung skor - TIU:', { benar: benarTiu, salah: salahTiu, kosong: kosongTiu, skor: skorTiuAktual });
+  console.log('Hitung skor - TKP:', { benar: benarTkp, salah: salahTkp, kosong: kosongTkp, skor: skorTkp });
+  console.log('Total skor:', totalSkor);
+
   // Pengecekan Passing Grade
   const lolosTwk = (skorTwkAktual >= 65);
   const lolosTiu = (skorTiuKonversi >= 80);
@@ -502,7 +509,9 @@ document.addEventListener("DOMContentLoaded", async function() {
   // Konfirmasi kumpulkan
   document.getElementById('btnKonfirmasiSelesai').addEventListener('click', async function () {
     document.getElementById('konfirmasiModal').classList.remove('show');
+    var jawabanBackup = jawaban.slice();
     await muatSoal(true);
+    if (jawabanBackup.some(function (j) { return j !== null; })) jawaban = jawabanBackup;
     tampilkanHasil();
   });
 
