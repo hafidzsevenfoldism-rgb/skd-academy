@@ -45,7 +45,7 @@ router.get('/:tryout_id', auth, async (req, res) => {
       id:         s.nomor_soal,
       kategori:   s.kategori,
       teks:       s.teks,
-      kunci:      isReview ? s.kunci : null,
+      kunci:      s.kunci,
       pembahasan: isReview ? s.pembahasan : null,
       pilihan:    pilihanMap[s.id] || []
     }));
