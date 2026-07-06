@@ -34,6 +34,12 @@ async function muatSemuaData() {
   txt.textContent = 'Memuat data...';
   errBox.style.display = 'none';
 
+  await new Promise(function (resolve) {
+    requestAnimationFrame(function () {
+      setTimeout(resolve, 0);
+    });
+  });
+
   while (true) {
     try {
       const token = localStorage.getItem('skd_token');
