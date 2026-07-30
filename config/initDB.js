@@ -63,8 +63,8 @@ async function initDB() {
       VALUES
          (2, 'Try Out SKD Paket 2',
          'Simulasi SKD lanjutan: TWK + TIU + TKP dengan variasi soal terbaru.',
-         110, 100, 14900, 30000, '#E67E22', true, false)
-      ON CONFLICT (tryout_id) DO NOTHING;
+         110, 100, 14900, 30000, '#E67E22', true, true)
+      ON CONFLICT (tryout_id) DO UPDATE SET is_aktif = EXCLUDED.is_aktif;
     `);
     console.log('  Seed Paket 2');
 
@@ -76,8 +76,8 @@ async function initDB() {
       VALUES
          (3, 'Try Out SKD Paket 3',
          'Simulasi SKD terbaru: TWK + TIU + TKP dengan variasi soal terkini.',
-         110, 100, 14900, 30000, '#27AE60', true, false)
-      ON CONFLICT (tryout_id) DO NOTHING;
+         110, 100, 14900, 30000, '#27AE60', true, true)
+      ON CONFLICT (tryout_id) DO UPDATE SET is_aktif = EXCLUDED.is_aktif;
     `);
     console.log('  Seed Paket 3');
 
