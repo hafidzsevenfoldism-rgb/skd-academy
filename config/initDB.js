@@ -202,10 +202,14 @@ async function initDB() {
     console.log('  Tabel transactions');
 
     /* Migrasi: rename doku_ref → midtrans_ref jika kolom lama masih ada */
-    try {
+    const colCheck = await client.query(`
+      SELECT column_name FROM information_schema.columns
+      WHERE table_name = 'transactions' AND column_name = 'doku_ref'
+    `);
+    if (colCheck.rows.length > 0) {
       await client.query(`ALTER TABLE transactions RENAME COLUMN doku_ref TO midtrans_ref`);
       console.log('  Migrasi: doku_ref → midtrans_ref');
-    } catch (_) { /* kolom sudah bernama midtrans_ref atau tidak ada */ }
+    }
 
     /* INDEX */
     await client.query(`
