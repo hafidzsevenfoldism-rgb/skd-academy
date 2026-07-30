@@ -492,7 +492,7 @@ const soalData = [
       { huruf: "E", teks: "-9" }
     ],
     kunci: "C",
-    pembahasan: "<img src='gambarpembahasan/tryout3/31.jpg'></img>"
+    pembahasan: "<img src='gambarpembahasan/tryout3/31.jpeg'></img>"
   },
 
   // ─── Soal 32 ───
@@ -507,7 +507,7 @@ const soalData = [
       { huruf: "E", teks: "40" }
     ],
     kunci: "D",
-    pembahasan: "<img src='gambarpembahasan/tryout3/32.jpg'></img>"
+    pembahasan: "<img src='gambarpembahasan/tryout3/32.jpeg'></img>"
   },
 
   // ─── Soal 33 ───
@@ -522,7 +522,7 @@ const soalData = [
       { huruf: "E", teks: "<math><mfrac> <mn>17</mn><mn>14</mn> </mfrac></math>" }
     ],
     kunci: "D",
-    pembahasan: "<img src='gambarpembahasan/tryout3/33.jpg'></img>"
+    pembahasan: "<img src='gambarpembahasan/tryout3/33.jpeg'></img>"
   },
 
   // ─── Soal 34 ───
@@ -537,7 +537,7 @@ const soalData = [
       { huruf: "E", teks: "-20" }
     ],
     kunci: "A",
-    pembahasan: "<img src='gambarpembahasan/tryout3/34.jpg'></img>"
+    pembahasan: "<img src='gambarpembahasan/tryout3/34.jpeg'></img>"
   },
 
   // ─── Soal 35 ───
