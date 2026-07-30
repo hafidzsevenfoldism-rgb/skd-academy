@@ -1012,7 +1012,7 @@ const soalData = [
   // ─── Soal 66 ───
   {
     id: 66, kategori: "TKP",
-    teks: "Permasalahan banjir di suatu kota masih menjadi langganan setiap tahunnya jika curah hujan sangat tinggi. Untuk membantu mengatasi hal tersebut, Fahri dan tim bekerja di Dinas Sumber Daya Air perlu mengupayakan...",
+    teks: "Permasalahan banjir di suatu kota masih menjadi langganan setiap tahunnya jika curah hujan sangat tinggi. Untuk membantu mengatasi hal tersebut, Fahri dan tim bekerja di Dinas Sumber Daya Air perlu mengupayakan...  (Pelayanan Publik)",
     pilihan: [
       { huruf: "A", teks: "Melakukan penyuluhan dengan target sasaran warga di daerah yang rawan banjir untuk tidak membuang sampah sembarangan dan menanam tanaman <em>indoor</em>", poin: 4 },
       { huruf: "B", teks: "Mengevakuasi warga yang terdampak banjir dan memastikan dapur tempat pengungsian terjaga dengan bersih untuk menjaga kualitas asupan gizi warga yang sedang mengungsi", poin: 2 },
@@ -1027,7 +1027,7 @@ const soalData = [
   // ─── Soal 67 ───
   {
     id: 67, kategori: "TKP",
-    teks: "Penyelenggara pelayanan publik harus mampu menyediakan pelayanan yang berkualitas, bersih, tanggap, transparan, akuntabel, dan inklusif. Salah satu penyedia pelayanan publik adalah rumah sakit. Bagaimana cara rumah sakit meningkatkan pelayanan supaya menjadi lebih baik lagi?",
+    teks: "Penyelenggara pelayanan publik harus mampu menyediakan pelayanan yang berkualitas, bersih, tanggap, transparan, akuntabel, dan inklusif. Salah satu penyedia pelayanan publik adalah rumah sakit. Bagaimana cara rumah sakit meningkatkan pelayanan supaya menjadi lebih baik lagi?  (Pelayanan Publik)",
     pilihan: [
       { huruf: "A", teks: "Menyediakan berbagai pelayanan kesehatan yang lengkap untuk mengundang para pengunjung rumah sakit lebih banyak lagi", poin: 2 },
       { huruf: "B", teks: "Menentukan anggaran untuk dialokasikan ke bagian pelayanan yang paling ramai pengunjungnya", poin: 1 },
@@ -1042,7 +1042,7 @@ const soalData = [
   // ─── Soal 68 ───
   {
     id: 68, kategori: "TKP",
-    teks: "Anda merupakan seorang Kepala Dinas Pendidikan yang mendapatkan catatan khusus bahwa pelayanan publik di instansi Anda perlu dibenahi, tidak hanya internal SOP saja, tetapi juga harus lebih transparan ke masyarakat. Bagaimana cara memperbaikinya?",
+    teks: "Anda merupakan seorang Kepala Dinas Pendidikan yang mendapatkan catatan khusus bahwa pelayanan publik di instansi Anda perlu dibenahi, tidak hanya internal SOP saja, tetapi juga harus lebih transparan ke masyarakat. Bagaimana cara memperbaikinya?  (Pelayanan Publik)",
     pilihan: [
       { huruf: "A", teks: "Membuat poster yang berisi alur pelayanan yang dapat dibaca oleh seluruh pengunjung yang datang", poin: 3 },
       { huruf: "B", teks: "Memperbaiki SOP, rutin berdiskusi mengenai rencana perbaikan, dan menentukan PIC dalam program perbaikan tersebut", poin: 4 },
@@ -1057,7 +1057,7 @@ const soalData = [
   // ─── Soal 69 ───
   {
     id: 69, kategori: "TKP",
-    teks: "Anda adalah seorang Kepala Dinas di provinsi anda. Terdapat beberapa daerah yang masyarakatnya merasa kesulitan dalam mengurus keperluan di pelayanan publik karena waktu pengurusan yang tidak sebentar serta jarak kantor pelayanan publik yang berjauhan. Hal tersebut tidak mencerminkan pelayanan publik yang bermanfaat langsung ke masyarakat. Apa upaya yang dapat anda lakukan? ",
+    teks: "Anda adalah seorang Kepala Dinas di provinsi anda. Terdapat beberapa daerah yang masyarakatnya merasa kesulitan dalam mengurus keperluan di pelayanan publik karena waktu pengurusan yang tidak sebentar serta jarak kantor pelayanan publik yang berjauhan. Hal tersebut tidak mencerminkan pelayanan publik yang bermanfaat langsung ke masyarakat. Apa upaya yang dapat anda lakukan?  (Pelayanan Publik) ",
     pilihan: [
       { huruf: "A", teks: "Merevisi kebijakan pelaksanaan pelayanan publik yang lebih memberikan keleluasaan lembaga yang melaksanakannya", poin: 2 },
       { huruf: "B", teks: "Mengganti sistem lama dengan sistem baru atas kesepakatan dalam dialog terbuka dengan beberapa masyarakat setempat", poin: 4 },
@@ -1072,7 +1072,7 @@ const soalData = [
   // ─── Soal 70 ───
   {
     id: 70, kategori: "TKP",
-    teks: "Anda adalah seorang kapolda. Menjelang hari raya sudah menjadi tradisi mudik setiap tahunnya dari berbagai akses baik darat, laut, maupun udara. Polda memiliki tugas untuk melakukan rekayasa lalu lintas di sekitar pelabuhan penyeberangan Merak untuk mengurai kemacetan. Sebagai kapolda, apa yang dapat anda lakukan...",
+    teks: "Anda adalah seorang kapolda. Menjelang hari raya sudah menjadi tradisi mudik setiap tahunnya dari berbagai akses baik darat, laut, maupun udara. Polda memiliki tugas untuk melakukan rekayasa lalu lintas di sekitar pelabuhan penyeberangan Merak untuk mengurai kemacetan. Sebagai kapolda, apa yang dapat anda lakukan...  (Pelayanan Publik)",
     pilihan: [
       { huruf: "A", teks: "Menerapkan <em>delaying system</em> (sistem penundaan) menuju pelabuhan merak dengan memilah kendaraan pemudik dan diarahkan ke <em>rest area</em>", poin: 5 },
       { huruf: "B", teks: "Setiap sopir wajib menunjukkan kartu identitas dan wawancara sekilas mengenai tujuan mudik", poin: 2 },
@@ -1087,7 +1087,7 @@ const soalData = [
   // ─── Soal 71 ───
   {
     id: 71, kategori: "TKP",
-    teks: "Kualitas pelayanan dapat dilihat dari beberapa indikator seperti reliabilitas, bukti fisik, empati, daya tanggap, dan jaminan. Pelayanan publik wajib ada di semua daerah. Sebagai orang yang bekerja di pemerintahan desa, apa yang dapat anda lakukan dalam pengelolaan pelayanan administratif?",
+    teks: "Kualitas pelayanan dapat dilihat dari beberapa indikator seperti reliabilitas, bukti fisik, empati, daya tanggap, dan jaminan. Pelayanan publik wajib ada di semua daerah. Sebagai orang yang bekerja di pemerintahan desa, apa yang dapat anda lakukan dalam pengelolaan pelayanan administratif?  (Pelayanan Publik)",
     pilihan: [
       { huruf: "A", teks: "Berpedoman pada peraturan perundang-undangan dan mengadakan sosialisasi,serta pelatihan tiap orang yang bertanggung jawab pada kegiatan administrasi", poin: 5 },
       { huruf: "B", teks: "Memperbanyak staf yang bertanggung jawab di layanan administrasi di setiap lembaga pelayanan publik", poin: 3 },
@@ -1102,7 +1102,7 @@ const soalData = [
   // ─── Soal 72 ───
   {
     id: 72, kategori: "TKP",
-    teks: "Anda adalah seorang promotor konser. Konser salah satu musisi akan dijadwalkan berlangsung di stadion dan sudah direncanakan sejak tahun lalu. Akan tetapi, beberapa bulan kemudian diumumkan ada pertandingan olahraga di stadion tersebut yang menjadikan Indonesia sebagai tuan rumah. Apa yang dapat Anda lakukan?",
+    teks: "Anda adalah seorang promotor konser. Konser salah satu musisi akan dijadwalkan berlangsung di stadion dan sudah direncanakan sejak tahun lalu. Akan tetapi, beberapa bulan kemudian diumumkan ada pertandingan olahraga di stadion tersebut yang menjadikan Indonesia sebagai tuan rumah. Apa yang dapat Anda lakukan?  (Pelayanan Publik)",
     pilihan: [
       { huruf: "A", teks: "Tetap melaksanakan konser di stadion tertentu dengan memindahkan jam konser setelah pertandingan olahraga tersebut selesai", poin: 2 },
       { huruf: "B", teks: "Membuat kesepakatan tertulis bahwa promotor konser dapat memastikan bahwa tidak ada kerusakan rumput karena penonton", poin: 4 },
@@ -1117,7 +1117,7 @@ const soalData = [
   // ─── Soal 73 ───
   {
     id: 73, kategori: "TKP",
-    teks: "Anda adalah seorang pegawai tetap BUMN yang bertugas sebagai pegawai di dalam kereta jarak jauh dan mengimbau para penumpang untuk tidak merokok. Ternyata ditemui ada salah satu penumpang yang merokok di dalam toilet kereta, bagaimana tindakan anda?",
+    teks: "Anda adalah seorang pegawai tetap BUMN yang bertugas sebagai pegawai di dalam kereta jarak jauh dan mengimbau para penumpang untuk tidak merokok. Ternyata ditemui ada salah satu penumpang yang merokok di dalam toilet kereta, bagaimana tindakan anda?  (Profesionalisme)",
     pilihan: [
       { huruf: "A", teks: "Mendokumentasikan bekas rokok yang dibuang penumpang tersebut di dalam toilet kereta", poin: 3 },
       { huruf: "B", teks: "Mengumpulkan bukti dahulu dari laporan yang didapat untuk memastikan tidak ada kesalahan informasi", poin: 4 },
@@ -1132,7 +1132,7 @@ const soalData = [
   // ─── Soal 74 ───
   {
     id: 74, kategori: "TKP",
-    teks: "Randi adalah seorang <em>voice over</em> pemula yang baru memulai kariernya. Proyek yang pertama adalah sebagai <em>voice over</em> iklan salah satu platform musik dengan durasi 15 detik. Bagaimana supaya performa pertamanya dinilai baik?",
+    teks: "Randi adalah seorang <em>voice over</em> pemula yang baru memulai kariernya. Proyek yang pertama adalah sebagai <em>voice over</em> iklan salah satu platform musik dengan durasi 15 detik. Bagaimana supaya performa pertamanya dinilai baik?  (Profesionalisme)",
     pilihan: [
       { huruf: "A", teks: "Meminta <em>feedback</em> dari orang-orang terdekat dari hasil latihan-latihannya dan mendokumentasikannya untuk di review hingga mendapatkan hasil yang diinginkan", poin: 4 },
       { huruf: "B", teks: "Survei dengan telurus secara mandiri iklan-iklan sejenis untuk dijadikan bahan latihan", poin: 1 },
@@ -1147,7 +1147,7 @@ const soalData = [
   // ─── Soal 75 ───
   {
     id: 75, kategori: "TKP",
-    teks: "Hj. Halimah ditunjuk menjadi seorang manajer keuangan. Perusahaan tersebut sebelumnya belum pernah ada manajer keuangan perempuan. Kondisi tersebut tidak serta merta mulus untuk bekerja sama menyelesaikan pekerjaannya dalam bidang keuangan karena ada beberapa pegawai yang meragukan kemampuannya. Bagaimana Hj. Halimah harus bersikap?",
+    teks: "Hj. Halimah ditunjuk menjadi seorang manajer keuangan. Perusahaan tersebut sebelumnya belum pernah ada manajer keuangan perempuan. Kondisi tersebut tidak serta merta mulus untuk bekerja sama menyelesaikan pekerjaannya dalam bidang keuangan karena ada beberapa pegawai yang meragukan kemampuannya. Bagaimana Hj. Halimah harus bersikap?  (Profesionalisme)",
     pilihan: [
       { huruf: "A", teks: "Sering berdiskusi dengan pimpinan perusahaan untuk meningkatkan <em>personal branding</em> dan meyakinkan pegawai lainnya", poin: 1 },
       { huruf: "B", teks: "Bersikap hangat dengan tim, profesional dan tegas ketika bekerja, dan melibatkan tim untuk mengambil keputusan bersama", poin: 5 },
@@ -1162,7 +1162,7 @@ const soalData = [
   // ─── Soal 76 ───
   {
     id: 76, kategori: "TKP",
-    teks: "Ayu senang bekerja sebagai penulis artikel di website luar negeri yang menggunakan bahasa inggris. Setiap kali akan memproduksi tulisan, ia diberikan format tertentu dan ia perlu saling berkirim email dengan editor. Jika ada revisi dari editor, apa yang harus Ayu lakukan?",
+    teks: "Ayu senang bekerja sebagai penulis artikel di website luar negeri yang menggunakan bahasa inggris. Setiap kali akan memproduksi tulisan, ia diberikan format tertentu dan ia perlu saling berkirim email dengan editor. Jika ada revisi dari editor, apa yang harus Ayu lakukan? (Profesionalisme)",
     pilihan: [
       { huruf: "A", teks: "Membaca dengan seksama apa saja yang perlu direvisi dan membandingkan dengan tulisan sebelumnya", poin: 4 },
       { huruf: "B", teks: "Membuat kerangka tulisan untuk memproduksi karya tulisan selanjutnya", poin: 1 },
@@ -1177,7 +1177,7 @@ const soalData = [
   // ─── Soal 77 ───
   {
     id: 77, kategori: "TKP",
-    teks: "Menjelang hari raya biasanya banyak orang yang membersihkan dan memperindah rumahnya. Margi sudah biasa menjadi pekerja lepas untuk menyetir mobil dan/atau membersihkan rumah beberapa orang kenalannya. Lalu ia dikontrak oleh rekan lamanya untuk membersihkan rumahnya, serta menjadi sopir untuk mudik di hari raya. Apa yang harus dilakukan Margi supaya dapat menyelesaikannya dengan baik?",
+    teks: "Menjelang hari raya biasanya banyak orang yang membersihkan dan memperindah rumahnya. Margi sudah biasa menjadi pekerja lepas untuk menyetir mobil dan/atau membersihkan rumah beberapa orang kenalannya. Lalu ia dikontrak oleh rekan lamanya untuk membersihkan rumahnya, serta menjadi sopir untuk mudik di hari raya. Apa yang harus dilakukan Margi supaya dapat menyelesaikannya dengan baik? (Profesionalisme)",
     pilihan: [
       { huruf: "A", teks: "Menanyakan dengan detail keuntungan apa saja yang akan didapatkan selama proses pengerjaan dan perjalanan mudik tersebut", poin: 1 },
       { huruf: "B", teks: "Memberikan jawabannya di kemudian hari untuk ia pikirkan dahulu mengenai beban kerjanya", poin: 2 },
@@ -1192,7 +1192,7 @@ const soalData = [
   // ─── Soal 78 ───
   {
     id: 78, kategori: "TKP",
-    teks: "Ari bukan siswa yang rajin dan pandai semasa kelas satu dan kelas dua. Lalu kelas tiga ia tersadar untuk lebih rajin belajar untuk mendukung masa depannya. Ia sudah menargetkan untuk masuk ke kampus terbaik negeri, tetapi kondisinya mengharuskan ia menjalani <em>gap year</em> selama setahun. Tindakan yang harus Ari ambil adalah",
+    teks: "Ari bukan siswa yang rajin dan pandai semasa kelas satu dan kelas dua. Lalu kelas tiga ia tersadar untuk lebih rajin belajar untuk mendukung masa depannya. Ia sudah menargetkan untuk masuk ke kampus terbaik negeri, tetapi kondisinya mengharuskan ia menjalani <em>gap year</em> selama setahun. Tindakan yang harus Ari ambil adalah (Profesionalisme)",
     pilihan: [
       { huruf: "A", teks: "Meminta bantuan rekan yang sudah berhasil masuk ke kampus terbaik negeri untuk mengajarinya belajar", poin: 4 },
       { huruf: "B", teks: "Membuat strategi dan jadwal belajar yang terstruktur sambil menargetkan terpenuhinya syarat yang diminta kampus tersebut", poin: 5 },
@@ -1207,7 +1207,7 @@ const soalData = [
   // ─── Soal 79 ───
   {
     id: 79, kategori: "TKP",
-    teks: "Suatu perseroan terbatas memberikan beasiswa untuk para pegawainya yang menjadi calon kandidat melanjutkan studi magister di luar negeri dengan         mensyaratkan mereka membuat proposal dan mempresentasikannya di depan para juri jika lolos proses wawancara. Supaya calon kandidat yang sudah masuk final dapat membuat proposal yang lebih berkualitas, preseroan terbatas tersebut dapat...",
+    teks: "Suatu perseroan terbatas memberikan beasiswa untuk para pegawainya yang menjadi calon kandidat melanjutkan studi magister di luar negeri dengan         mensyaratkan mereka membuat proposal dan mempresentasikannya di depan para juri jika lolos proses wawancara. Supaya calon kandidat yang sudah masuk final dapat membuat proposal yang lebih berkualitas, preseroan terbatas tersebut dapat... (Profesionalisme)",
     pilihan: [
       { huruf: "A", teks: "Mendelegasikan tugas kepada seorang pegawai untuk membuat rangkuman materi yang dapat membantu mereka menyusun proposal dengan sistematis dan benar", poin: 3 },
       { huruf: "B", teks: "Memberikan dana kepada mereka untuk mengikuti pelatihan khusus penulisan proposal", poin: 4 },
@@ -1222,7 +1222,7 @@ const soalData = [
   // ─── Soal 80 ───
   {
     id: 80, kategori: "TKP",
-    teks: "Anda bergabung dengan komunitas pecinta lingkungan dan mengunjungi suatu daerah yang banyak sampahnya. Sampah sendiri masih menjadi suatu masalah yang terjadi di Indonesia dan seluruh dunia yang harus diatasi, apalagi dari tahun ke tahun jumlahnya semakin meningkat. Sebagai anggota komunitas pecinta lingkungan, apa yang dapat Anda lakukan?",
+    teks: "Anda bergabung dengan komunitas pecinta lingkungan dan mengunjungi suatu daerah yang banyak sampahnya. Sampah sendiri masih menjadi suatu masalah yang terjadi di Indonesia dan seluruh dunia yang harus diatasi, apalagi dari tahun ke tahun jumlahnya semakin meningkat. Sebagai anggota komunitas pecinta lingkungan, apa yang dapat Anda lakukan? (Profesionalisme)",
     pilihan: [
       { huruf: "A", teks: "Bekerja sama dengan perusahaan yang bersedia menerima sampah yang masih bisa diolah untuk dibuat suatu produk", poin: 4 },
       { huruf: "B", teks: "Usul ke komunitas untuk membersihkannya bersama, bekerja sama dengan pabrik yang mau menyortirnya, dan mengubah sampah menjadi suatu produk yang dapat dipakai dan awet", poin: 5 },
@@ -1237,7 +1237,7 @@ const soalData = [
   // ─── Soal 81 ───
   {
     id: 81, kategori: "TKP",
-    teks: "Ada beberapa pelabuhan yang pengelolaannya belum optimal di pengadaan barang, bongkar muat, antrean kontainer, dan lainnya. Selain itu, beberapa pelabuhan masih melakukan pembayaran di beberapa pos. Bagaimana supaya sistem pembayaran tersebut menjai lebih efektif dan efisien?",
+    teks: "Ada beberapa pelabuhan yang pengelolaannya belum optimal di pengadaan barang, bongkar muat, antrean kontainer, dan lainnya. Selain itu, beberapa pelabuhan masih melakukan pembayaran di beberapa pos. Bagaimana supaya sistem pembayaran tersebut menjai lebih efektif dan efisien? (TIK)",
     pilihan: [
       { huruf: "A", teks: "Bekerja sama dengan berbagai <em>stakeholder</em> untuk menerapkan sistem pembayaran tunggal sebagai transaksi digital di pelabuhan yang dilakukan hanya satu kali", poin: 5 },
       { huruf: "B", teks: "Mewajibkan otoritas pelabuhan untuk merevisi beberapa kebijakan untuk mengatur pengadaan barang di Pelabuhan", poin: 3 },
@@ -1252,7 +1252,7 @@ const soalData = [
   // ─── Soal 82 ───
   {
     id: 82, kategori: "TKP",
-    teks: "Masyarakat masih dibuat bingung dengan banyaknya aplikasi untuk mengakses setiap layanan yang pemerintah sediakan. Hal tersebut menunjukkan bahwa pelayanan masih berorientasi pada per instansi pemerintah bukan pada kebutuhan pengguna. Solusi yang dapat diterapkan untuk permasalahan ini adalah...",
+    teks: "Masyarakat masih dibuat bingung dengan banyaknya aplikasi untuk mengakses setiap layanan yang pemerintah sediakan. Hal tersebut menunjukkan bahwa pelayanan masih berorientasi pada per instansi pemerintah bukan pada kebutuhan pengguna. Solusi yang dapat diterapkan untuk permasalahan ini adalah... (TIK)",
     pilihan: [
       { huruf: "A", teks: "Mendesain tampilan aplikasi yang <em>user friendly</em> sehingga mudah dipahami oleh pengguna dari berbagai usia", poin: 1 },
       { huruf: "B", teks: "Kolaborasi tim lintas sektor untuk menciptakan layanan digital terpadu yang mencakup seluruh aplikasi menjadi satu kesatuan dalam portal akses yang sama untuk semua layanan", poin: 5 },
@@ -1267,7 +1267,7 @@ const soalData = [
   // ─── Soal 83 ───
   {
     id: 83, kategori: "TKP",
-    teks: "Perusahaan yang terus berkembang akan menyimpan data pelanggan yang jumlahnya terus bertambah yang tentunya membutuhkan teknologi tertentu untuk mengelolanya. Apa yang memungkinkan perusahaan untuk mengelola dan menyimpan data pelanggan dengan aman?",
+    teks: "Perusahaan yang terus berkembang akan menyimpan data pelanggan yang jumlahnya terus bertambah yang tentunya membutuhkan teknologi tertentu untuk mengelolanya. Apa yang memungkinkan perusahaan untuk mengelola dan menyimpan data pelanggan dengan aman? (TIK)",
     pilihan: [
       { huruf: "A", teks: "Menggunakan perangkat komputer terbaru dengan spesifikasi yang lebih tinggi", poin: 4 },
       { huruf: "B", teks: "Mengimplementasikan sistem manajemen basis data terenkripsi", poin: 5 },
@@ -1282,7 +1282,7 @@ const soalData = [
   // ─── Soal 84 ───
   {
     id: 84, kategori: "TKP",
-    teks: "Indonesia memiliki jumlah penduduk terbanyak ke empat di dunia yang mana akan banyak penduduk yang memiliki ide dan inovasi dalam menciptakan suatu teknologi untuk berbagai sektor. Jika Anda adalah seorang walikota, apa yang akan Anda lakukan untuk inovasi teknologi?",
+    teks: "Indonesia memiliki jumlah penduduk terbanyak ke empat di dunia yang mana akan banyak penduduk yang memiliki ide dan inovasi dalam menciptakan suatu teknologi untuk berbagai sektor. Jika Anda adalah seorang walikota, apa yang akan Anda lakukan untuk inovasi teknologi? (TIK)",
     pilihan: [
       { huruf: "A", teks: "Meningkatkan rasa percaya diri dan meningkatkan kualitas diri sebagai sumber daya manusia", poin: 3 },
       { huruf: "B", teks: "Mengadakan kompetisi cipta teknologi yang hasil dari ciptaan sang juara dapat diproduksi dan diimplementasikan", poin: 5 },
@@ -1297,7 +1297,7 @@ const soalData = [
   // ─── Soal 85 ───
   {
     id: 85, kategori: "TKP",
-    teks: "Arini awalnya berbisnis pakaian di toko dekat rumahnya. Setelah lebih dari dua tahun berjalan, ia mengembangkan bisnisnya ke berbagai produk harian yang banyak pelanggan butuhkan. Bagaimana ia dapat mengembangkan lagi bisnisnya dengan memanfaatkan teknologi?",
+    teks: "Arini awalnya berbisnis pakaian di toko dekat rumahnya. Setelah lebih dari dua tahun berjalan, ia mengembangkan bisnisnya ke berbagai produk harian yang banyak pelanggan butuhkan. Bagaimana ia dapat mengembangkan lagi bisnisnya dengan memanfaatkan teknologi? (TIK)",
     pilihan: [
       { huruf: "A", teks: "Menata produknya di etalase sesuai dengan kategorinya di dalam toko yang memudahkan pengunjung untuk memilah produk yang diminati untuk dibeli", poin: 1 },
       { huruf: "B", teks: "Membeli handphone baru dengan spesifikasi kamera yang tinggi dan penyimpanan yang besar untuk mendukung pemotretan produknya", poin: 4 },
@@ -1312,7 +1312,7 @@ const soalData = [
   // ─── Soal 86 ───
   {
     id: 86, kategori: "TKP",
-    teks: "Perkembangan teknologi dan informasi juga menjadikan mudahnya terjadi insiden siber yang tidak diinginkan sehingga perlu upaya untuk menjaga keamanan sistem data. Sebagian besar lembaga sudah melibatkan digitalisasi dalam dokumentasi data. Apa yang dapat dilakukan oleh pimpinan lembaga untuk mengatasi hal tersebut?",
+    teks: "Perkembangan teknologi dan informasi juga menjadikan mudahnya terjadi insiden siber yang tidak diinginkan sehingga perlu upaya untuk menjaga keamanan sistem data. Sebagian besar lembaga sudah melibatkan digitalisasi dalam dokumentasi data. Apa yang dapat dilakukan oleh pimpinan lembaga untuk mengatasi hal tersebut? (TIK)",
     pilihan: [
       { huruf: "A", teks: "Mengandalkan sistem keamanan yang dilakukan oleh pemerintah dan menjalankan operasional lembaga seperti biasa", poin: 4 },
       { huruf: "B", teks: "Selalu gunakan browser dengan menggunakan fitur safe browsing", poin: 1 },
@@ -1327,7 +1327,7 @@ const soalData = [
   // ─── Soal 87 ───
   {
     id: 87, kategori: "TKP",
-    teks: "Di kantor pemerintahan Anda sistem manual dalam proses pengadaan barang telah digantikan dengan teknologi Internet of Things (IoT) untuk memantau stok, distribusi, dan penggunaan barang secara real-time. Sebagai pimpinan, Anda melihat beberapa anggota tim kesulitan memahami cara kerja IoT dan aplikasi pendukungnya. Apa yang akan Anda lakukan?",
+    teks: "Di kantor pemerintahan Anda sistem manual dalam proses pengadaan barang telah digantikan dengan teknologi Internet of Things (IoT) untuk memantau stok, distribusi, dan penggunaan barang secara real-time. Sebagai pimpinan, Anda melihat beberapa anggota tim kesulitan memahami cara kerja IoT dan aplikasi pendukungnya. Apa yang akan Anda lakukan? (TIK)",
     pilihan: [
       { huruf: "A", teks: "Membagikan panduan teknis kepada anggota tim dan meminta mereka mempelajarinya secara mandiri", poin: 3 },
       { huruf: "B", teks: "Menunjuk anggota tim yang sudah menguasai IoT untuk membantu anggota lain yang mengalami kesulitan", poin: 4 },
@@ -1342,7 +1342,7 @@ const soalData = [
   // ─── Soal 88 ───
   {
     id: 88, kategori: "TKP",
-    teks: "Kantor Anda baru saja menerapkan sistem manajemen berbasis Artificial Intelligence untuk meningkatkan efisiensi kerja. Namun, Anda merasa kurang memahami teknologi ini karena minimnya pengalaman menggunakan AI. Apa yang akan Anda lakukan untuk menyesuaikan diri dengan inovasi ini?",
+    teks: "Kantor Anda baru saja menerapkan sistem manajemen berbasis Artificial Intelligence untuk meningkatkan efisiensi kerja. Namun, Anda merasa kurang memahami teknologi ini karena minimnya pengalaman menggunakan AI. Apa yang akan Anda lakukan untuk menyesuaikan diri dengan inovasi ini? (TIK)",
     pilihan: [
       { huruf: "A", teks: "Saya akan meminta bantuan rekan kerja yang lebih paham teknologi untuk membantu saya memahami dan menggunakan sistem tersebut", poin: 4 },
       { huruf: "B", teks: "Saya akan mengikuti pelatihan atau mencari panduan online tentang penggunaan sistem berbasis AI untuk meningkatkan kemampuan saya", poin: 5 },
@@ -1357,7 +1357,7 @@ const soalData = [
   // ─── Soal 89 ───
   {
     id: 89, kategori: "TKP",
-    teks: "Situasi pandemi akibat paparan virus yang cepat menyebar secara global membuat seluruh negara harus segera tanggap mengatasinya. Jika Anda adalah seorang diplomat, Anda perlu...",
+    teks: "Situasi pandemi akibat paparan virus yang cepat menyebar secara global membuat seluruh negara harus segera tanggap mengatasinya. Jika Anda adalah seorang diplomat, Anda perlu... (Jejaring Kerja)",
     pilihan: [
       { huruf: "A", teks: "Menggunakan alat pelindung diri dengan lengkap saat menemui pasien dan mencuci tangan dengan benar", poin: 1 },
       { huruf: "B", teks: "Menyediakan hand sanitizer di berbagai pelayanan publik untuk mencegah penyebaran virus yang cepat", poin: 3 },
@@ -1372,7 +1372,7 @@ const soalData = [
   // ─── Soal 90 ───
   {
     id: 90, kategori: "TKP",
-    teks: "Negara dengan jumlah masyarakat usia produktif yang terus menurun memiliki potensi terganggunya ekonomi negara tersebut sehingga membutuhkan tenaga kerja dari berbagai negara yang salah satunya adalah Indonesia. Bagaimana tindakan yang dapat dilakukan pemerintah supaya saling menguntungkan dengan negara yang akan diajak kerja sama?",
+    teks: "Negara dengan jumlah masyarakat usia produktif yang terus menurun memiliki potensi terganggunya ekonomi negara tersebut sehingga membutuhkan tenaga kerja dari berbagai negara yang salah satunya adalah Indonesia. Bagaimana tindakan yang dapat dilakukan pemerintah supaya saling menguntungkan dengan negara yang akan diajak kerja sama? (Jejaring Kerja)",
     pilihan: [
       { huruf: "A", teks: "Memberikan jaminan pertukaran aset dengan presentase tertentu dan bernegosiasi untuk penanaman modal dalam negeri bagi masyarakat menengah ke bawah", poin: 4 },
       { huruf: "B", teks: "Menyediakan dan meningkatkan kualitas pelayanan kesehatan dan yayasan pelatihan untuk calon pekerja yang dibiayai oleh pemerintah maupun mandiri", poin: 3 },
@@ -1387,7 +1387,7 @@ const soalData = [
   // ─── Soal 91 ───
   {
     id: 91, kategori: "TKP",
-    teks: "Menjaga koneksi dengan pegawai internal maupun relasi di luar tempat Anda bekerja tentu membutuhkan beberapa upaya supaya tetap terjaga dengan baik. Bagaimana cara menjaga koneksi dalam jejaring kerja supaya tetap relevan dan bermanfaat?",
+    teks: "Menjaga koneksi dengan pegawai internal maupun relasi di luar tempat Anda bekerja tentu membutuhkan beberapa upaya supaya tetap terjaga dengan baik. Bagaimana cara menjaga koneksi dalam jejaring kerja supaya tetap relevan dan bermanfaat? (Jejaring Kerja)",
     pilihan: [
       { huruf: "A", teks: "Rutin berbagi informasi yang relevan yang tidak bersifat rahasia dan saling memberikan dukungan", poin: 5 },
       { huruf: "B", teks: "Sering bertukar kabar dengan pelanggan yang baru ataupun pelanggan lama", poin: 1 },
@@ -1402,7 +1402,7 @@ const soalData = [
   // ─── Soal 92 ───
   {
     id: 92, kategori: "TKP",
-    teks: "Alex ingin memperluas jaringan profesional yang tentu harapannya akan membantu menunjang kariernya. Namun, ia memilih untuk tidak hanya fokus pada satu industri saja. Apa yang harus dilakukan jika ia ingin memperluas jejaring kerja ke industri yang berbeda?",
+    teks: "Alex ingin memperluas jaringan profesional yang tentu harapannya akan membantu menunjang kariernya. Namun, ia memilih untuk tidak hanya fokus pada satu industri saja. Apa yang harus dilakukan jika ia ingin memperluas jejaring kerja ke industri yang berbeda? (Jejaring Kerja)",
     pilihan: [
       { huruf: "A", teks: "Sering bertemu dan mengobrol dengan rekan dari industri yang menjadi target profesionalnya", poin: 4 },
       { huruf: "B", teks: "Aktif berkomunikasi dengan orang-orang yang berada di industri yang diinginkan sambil terus meningkatkan hard skill", poin: 5 },
@@ -1417,7 +1417,7 @@ const soalData = [
   // ─── Soal 93 ───
   {
     id: 93, kategori: "TKP",
-    teks: "Dalam rencana mengembangkan bisnis maupun meningkatkan karier yang diinginkan perlu untuk tetap konsisten dan autentik dalam berinteraksi di dalam jejaring kerja. Bagaimana cara untuk membangun kepercayaan dan reputasi yang baik?",
+    teks: "Dalam rencana mengembangkan bisnis maupun meningkatkan karier yang diinginkan perlu untuk tetap konsisten dan autentik dalam berinteraksi di dalam jejaring kerja. Bagaimana cara untuk membangun kepercayaan dan reputasi yang baik? (Jejaring Kerja)",
     pilihan: [
       { huruf: "A", teks: "Berusaha untuk tetap bersikap ramah dalam kondisi apapun, komitmen untuk menyelesaikan tugas dengan baik, dan terbuka menghadapi perubahan situasi", poin: 4 },
       { huruf: "B", teks: "Mampu melihat peluang dan terus melatih diri untuk meningkatkan kemampuan yang dibutuhkan dalam peningkatan karier yang menjadi tujuan", poin: 3 },
@@ -1432,7 +1432,7 @@ const soalData = [
   // ─── Soal 94 ───
   {
     id: 94, kategori: "TKP",
-    teks: "Untuk meningkatkan kualitas sumber daya manusia di suatu lembaga perlu memperluas kerja sama dengan stakeholder lain. Jika Anda adalah seorang Panglima TNI dan ingin meningkatkan kualitas SDM di lingkungan TNI jalur pendidikan, apa hal yang dapat dipilih untuk mewujudkannya?",
+    teks: "Untuk meningkatkan kualitas sumber daya manusia di suatu lembaga perlu memperluas kerja sama dengan stakeholder lain. Jika Anda adalah seorang Panglima TNI dan ingin meningkatkan kualitas SDM di lingkungan TNI jalur pendidikan, apa hal yang dapat dipilih untuk mewujudkannya? (Jejaring Kerja)",
     pilihan: [
       { huruf: "A", teks: "Memberikan penghargaan berupa kenaikan pangkat atau hadiah tertentu untuk setiap anggota yang mampu melampaui batas performanya", poin: 1 },
       { huruf: "B", teks: "Rutin mengecek kesehatan seluruh anggota dan menanggung semua biaya kesehatannya", poin: 3 },
@@ -1447,7 +1447,7 @@ const soalData = [
   // ─── Soal 95 ───
   {
     id: 95, kategori: "TKP" ,
-    teks: "Dalam proses perjalanan karier tertentu Anda akan sering menemui keberagaman di lingkungan kerja. Menurut Anda, bagaimana keberagaman di lingkungan kerja dapat memajukan suatu instansi?",
+    teks: "Dalam proses perjalanan karier tertentu Anda akan sering menemui keberagaman di lingkungan kerja. Menurut Anda, bagaimana keberagaman di lingkungan kerja dapat memajukan suatu instansi? (Sosial Budaya)",
     pilihan: [
       { huruf: "A", teks: "Keberagaman di lingkungan kerja dapat memberikan pandangan baru dari berbagai sudut pandang dan meningkatkan peluang potensial", poin: 5 },
       { huruf: "B", teks: "Keberagaman di lingkungan kerja membuat instansi menjadi lebih berwarna dari segi bahasa, agama, dan budaya", poin: 1 },
@@ -1462,7 +1462,7 @@ const soalData = [
   // ─── Soal 96 ───
   {
     id: 96, kategori: "TKP",
-    teks: "Anda menyadari bahwa menjaga relasi penting untuk diterapkan di mana pun, termasuk di lingkungan kerja. Tindakan apa yang dilakukan untuk terciptanya kepercayaan di lingkungan kerja",
+    teks: "Anda menyadari bahwa menjaga relasi penting untuk diterapkan di mana pun, termasuk di lingkungan kerja. Tindakan apa yang dilakukan untuk terciptanya kepercayaan di lingkungan kerja (Sosial Budaya)",
     pilihan: [
       { huruf: "A", teks: "Memahami kebutuhan pelanggan, menjaga kualitas produk, dan konsisten", poin: 1 },
       { huruf: "B", teks: "Sering refleksi diri, mendengarkan orang lain, dan memberikan pujian", poin: 3 },
@@ -1477,7 +1477,7 @@ const soalData = [
   // ─── Soal 97 ───
   {
     id: 97, kategori: "TKP",
-    teks: "Fika merupakan seorang pegawai yang sudah bekerja selama belasan tahun dan memiliki rekan kerja dari berbagai usia, latar belakang, keahlian, dan jabatan. Fika tetap dapat menanamkan rasa hormat kepada orang lain meskipun memiliki latar belakang suku yang berbeda di lingkungan kerja dengan cara...",
+    teks: "Fika merupakan seorang pegawai yang sudah bekerja selama belasan tahun dan memiliki rekan kerja dari berbagai usia, latar belakang, keahlian, dan jabatan. Fika tetap dapat menanamkan rasa hormat kepada orang lain meskipun memiliki latar belakang suku yang berbeda di lingkungan kerja dengan cara... (Sosial Budaya)",
     pilihan: [
       { huruf: "A", teks: "selalu membaca dan memahami seluruh instruksi kerja sebelum diselesaikan sesuai dengan tenggat waktu yang diberikan", poin: 2 },
       { huruf: "B", teks: "Mendelegasikan pekerjaan kepada anggota tim sesuai dengan proporsi keahliannya", poin: 4 },
@@ -1492,7 +1492,7 @@ const soalData = [
   // ─── Soal 98 ───
   {
     id: 98, kategori: "TKP",
-    teks: "Isu kesetaraan gender masih menjadi salah satu hal yang harus diupayakan untuk diwujudkan yang mana ketimpangan lebih dirasakan oleh pihak perempuan. Jika Anda adalah seorang pejabat yang ketimpangan gendernya masih termasuk tinggi, solusi yang dapat Anda terapkan adalah...",
+    teks: "Isu kesetaraan gender masih menjadi salah satu hal yang harus diupayakan untuk diwujudkan yang mana ketimpangan lebih dirasakan oleh pihak perempuan. Jika Anda adalah seorang pejabat yang ketimpangan gendernya masih termasuk tinggi, solusi yang dapat Anda terapkan adalah... (Sosial Budaya)",
     pilihan: [
       { huruf: "A", teks: "Blusukan ke beberapa wilayah untuk bertemu dan berdiskusi langsung dengan tokoh masyarakat", poin: 1 },
       { huruf: "B", teks: "Memberikan ruang kritik dan saran melalui ruang digital dan akses tersebut diberikan kepada organisasi perempuan", poin: 4 },
@@ -1507,7 +1507,7 @@ const soalData = [
   // ─── Soal 99 ───
   {
     id: 99, kategori: "TKP",
-    teks: "Seiring dengan meningkatnya minat penonton film horor juga meningkatnya jumlah film tersebut yang mengaitkan kejadian horor dengan agama sehingga tidak sedikit penonton menjadi takut beribadah karena dibayang-bayangi dengan kejadian horor yang mungkin akan menimpanya seperti pada film. Bagaimana Anda bersikap jika Anda adalah seorang influencer?",
+    teks: "Seiring dengan meningkatnya minat penonton film horor juga meningkatnya jumlah film tersebut yang mengaitkan kejadian horor dengan agama sehingga tidak sedikit penonton menjadi takut beribadah karena dibayang-bayangi dengan kejadian horor yang mungkin akan menimpanya seperti pada film. Bagaimana Anda bersikap jika Anda adalah seorang influencer? (Anti Radikalisme)",
     pilihan: [
       { huruf: "A", teks: "Mengambil peran dalam film tersebut dengan peran protagonis yang membawa pengaruh kepada penonton bahwa ibadah dapat dilakukan tanpa adanya unsur horor", poin: 3 },
       { huruf: "B", teks: "Memberikan kritik secara terbuka kepada sutradara film horor pilihan sebagai pembelajaran bahwa penonton tidak menyukai film horor dengan unsur agama", poin: 4 },
@@ -1522,7 +1522,7 @@ const soalData = [
   // ─── Soal 100 ───
   {
     id: 100, kategori: "TKP",
-    teks: "Salah seorang content creator di media sosial membuat konten mengenai diperbolehkannya bertukar pasangan. Hal tersebut menimbulkan reaksi negatif di masyarakat walaupun content creator tersebut mengaku bahwa hanya sekedar konten dan ingin meningkatkan viewers. Tindakan yang harus dilakukan polisi adalah..",
+    teks: "Salah seorang content creator di media sosial membuat konten mengenai diperbolehkannya bertukar pasangan. Hal tersebut menimbulkan reaksi negatif di masyarakat walaupun content creator tersebut mengaku bahwa hanya sekedar konten dan ingin meningkatkan viewers. Tindakan yang harus dilakukan polisi adalah.. (Anti Radikalisme)",
     pilihan: [
       { huruf: "A", teks: "Mengembalikan kepada masyarakat untuk menentukan sanksi yang dapat diberikan kepada content creator tersebut", poin: 1 },
       { huruf: "B", teks: "Mewawancarai anggota keluarganya secara mendalam untuk mendapatkan informasi dan fakta yang sebenarnya ", poin: 2 },
@@ -1537,7 +1537,7 @@ const soalData = [
   // ─── Soal 101 ───
   {
     id: 101, kategori: "TKP",
-    teks: "Paham radikalisme sering kali menargetkan pemuda pemudi karena dianggap lebih ideal untuk mengembangkan ideologi radikal. Apa yang harus Anda lakukan terhadap anggota keluarga Anda yang masih berusia anak-anak atau remaja supaya mencegah mereka dari paparan radikalisme?",
+    teks: "Paham radikalisme sering kali menargetkan pemuda pemudi karena dianggap lebih ideal untuk mengembangkan ideologi radikal. Apa yang harus Anda lakukan terhadap anggota keluarga Anda yang masih berusia anak-anak atau remaja supaya mencegah mereka dari paparan radikalisme? (Anti Radikalisme)",
     pilihan: [
       { huruf: "A", teks: "Memastikan mereka mendapatkan pendidikan yang baik dan benar di sekolahannya masing-masing", poin: 3 },
       { huruf: "B", teks: "Mendorong mereka untuk ikut kegiatan ekstrakulikuler di sekolah untuk mendukung mereka belajar banyak hal dan bersosialisasi", poin: 2 },
@@ -1552,7 +1552,7 @@ const soalData = [
   // ─── Soal 102 ───
   {
     id: 102, kategori: "TKP",
-    teks: "Seseorang atau kelompok yang melakukan radikalisme didorong karena adanya faktor ketidakpuasan terhadap kondisi sosial misalnya perbedaan doktrin, dan perbedaan mayoritas dan minoritas. Pemerintah sebagai pihak yang paling bertanggung jawab untuk lebih mengedepankan upaya pencegahan radikalisme sebaiknya...",
+    teks: "Seseorang atau kelompok yang melakukan radikalisme didorong karena adanya faktor ketidakpuasan terhadap kondisi sosial misalnya perbedaan doktrin, dan perbedaan mayoritas dan minoritas. Pemerintah sebagai pihak yang paling bertanggung jawab untuk lebih mengedepankan upaya pencegahan radikalisme sebaiknya...(Anti Radikalisme)",
     pilihan: [
       { huruf: "A", teks: "Menerapkan pengaruh keyakinan untuk toleransi terhadap sesama walaupun berbeda latar belakang dan diterapkan di sekolah-sekolah", poin: 2 },
       { huruf: "B", teks: "Membentengi diri dari pengaruh atau provokasi yang mengarah kepada kekerasan atau pemaksaan dengan tujuan tertentu terutama di lingkungan rumah dan lembaga pendidikan", poin: 1 },
@@ -1567,7 +1567,7 @@ const soalData = [
   // ─── Soal 103 ───
   {
     id: 103, kategori: "TKP",
-    teks: "Ada berbagai cara yang dilakukan kelompok dengan ideologi atau paham radikalisme untuk merekrut orang-orang untuk masuk ke dalam kelompok mereka dan biasanya dilakukan dengan pendekatan keagamaan. Bagaimana contoh upaya deradikalisasi yang inklusif untuk dilakukan?",
+    teks: "Ada berbagai cara yang dilakukan kelompok dengan ideologi atau paham radikalisme untuk merekrut orang-orang untuk masuk ke dalam kelompok mereka dan biasanya dilakukan dengan pendekatan keagamaan. Bagaimana contoh upaya deradikalisasi yang inklusif untuk dilakukan? (Anti Radikalisme)",
     pilihan: [
       { huruf: "A", teks: "Merekrut kader di beberapa daerah yang bertugas untuk mengawasi dan mengadukan perkembangan atau dugaan pada  kelompok atau organisasi tertentu yang diduga radikal", poin: 4 },
       { huruf: "B", teks: "Membuat forum rukun umat, membentuk tim terpadu penanganan konflik sosial, dan mendorong masyarakat untuk terlibat dalam memantau kelompok tertentu yang berpotensi adanya radikalisme", poin: 5 },
@@ -1582,7 +1582,7 @@ const soalData = [
   // ─── Soal 104 ───
   {
     id: 104, kategori: "TKP",
-    teks: "Kesenjangan ekonomi juga dapat menyuburkan radikalisme. Daerah-daerah rawan konflik disebabkan penguasaan sumber daya ekonomi oleh para pemodal besar misalnya di daerah pertambangan, lahan sengketa, atau perkebunan. Tindakan mengatasi konflik di daerah agraria dapat dilakukan dengan cara...",
+    teks: "Kesenjangan ekonomi juga dapat menyuburkan radikalisme. Daerah-daerah rawan konflik disebabkan penguasaan sumber daya ekonomi oleh para pemodal besar misalnya di daerah pertambangan, lahan sengketa, atau perkebunan. Tindakan mengatasi konflik di daerah agraria dapat dilakukan dengan cara... (Anti Radikalisme)",
     pilihan: [
       { huruf: "A", teks: "Merekomendasikan kebijakan sitemik dan berkelanjutan yang dapat diterapkan, terutama oleh masyarakat setempat", poin: 3 },
       { huruf: "B", teks: "Mengumpulkan data informasi, bernegosiasi, dan menampung aspirasi dari tokoh masyarakat di daerah rawan konflik", poin: 4 },
@@ -1597,7 +1597,7 @@ const soalData = [
   // ─── Soal 105 ───
   {
     id: 105, kategori: "TKP",
-    teks: "Anda adalah seorang ASN yang mendapati salah satu rekan kerja menyebarkan informasi yang mengarah pada intoleransi  dan radikalisme di grup kantor. Beberapa rekan terlihat mulai terpengaruh. Apa langkah paling tepat yang Anda lakukan?",
+    teks: "Anda adalah seorang ASN yang mendapati salah satu rekan kerja menyebarkan informasi yang mengarah pada intoleransi  dan radikalisme di grup kantor. Beberapa rekan terlihat mulai terpengaruh. Apa langkah paling tepat yang Anda lakukan? (Anti Radikalisme)",
     pilihan: [
       { huruf: "A", teks: "Mengabaikan karena tidak ingin menimbulkan konflik di tempat kerja", poin: 1 },
       { huruf: "B", teks: "Melaporkan langsung kepada atasan untuk menangani permasalahan ini secara formal", poin: 5 },
@@ -1612,7 +1612,7 @@ const soalData = [
   // ─── Soal 106 ───
   {
     id: 106, kategori: "TKP",
-    teks: "Sebagai ketua pemuda di sebuah desa, Anda bertanggung jawab dalam menjaga kerukunan dan kekompakan antar anggota. Suatu hari, terjadi konflik kecil  antara dua anggota karena perbedaan agama yang menyebabkan ketegangan di antara mereka. Beberapa anggota pemuda lain mulai terpengaruh dan menunjukkan sikap berpihak. Apa tindakan Anda untuk mengatasi situasi ini?",
+    teks: "Sebagai ketua pemuda di sebuah desa, Anda bertanggung jawab dalam menjaga kerukunan dan kekompakan antar anggota. Suatu hari, terjadi konflik kecil  antara dua anggota karena perbedaan agama yang menyebabkan ketegangan di antara mereka. Beberapa anggota pemuda lain mulai terpengaruh dan menunjukkan sikap berpihak. Apa tindakan Anda untuk mengatasi situasi ini?(Anti Radikalisme)",
     pilihan: [
       { huruf: "A", teks: "Mendukung anggota lain yang berpihak demi menjaga solidaritas antar kelompok pemuda", poin: 1 },
       { huruf: "B", teks: "Mengajak kedua anggota yang berselisih untuk berdialog dan menyelesaikan masalah di bawah bimbingan Anda sebagai ketua", poin: 4 },
@@ -1627,7 +1627,7 @@ const soalData = [
   // ─── Soal 107 ───
   {
     id: 107, kategori: "TKP",
-    teks: "Anda adalah seorang pelajar Indonesia penerima beasiswa yang sedang menempuh pendidikan di Luar Negeri. Di lingkungan baru Anda sering mendengar pendapat bahwa nilai sopan santun dan tata krama orang Indonesia terlalu kaku dan mengekang ekspresi diri. Bagaimana sikap Anda?",
+    teks: "Anda adalah seorang pelajar Indonesia penerima beasiswa yang sedang menempuh pendidikan di Luar Negeri. Di lingkungan baru Anda sering mendengar pendapat bahwa nilai sopan santun dan tata krama orang Indonesia terlalu kaku dan mengekang ekspresi diri. Bagaimana sikap Anda?(Sosial Budaya)",
     pilihan: [
       { huruf: "A", teks: "Saya akan menghargai pandangan mereka, tetapi tetap menerapkan nilai sopan santun dalam keseharian saya", poin: 4 },
       { huruf: "B", teks: "Saya akan mengabaikan komentar tersebut karena setiap negara memiliki pandangannya masing-masing tergantung norma sosial", poin: 3 },
@@ -1642,7 +1642,7 @@ const soalData = [
   // ─── Soal 108 ───
   {
     id: 108, kategori: "TKP",
-    teks: "Anda tinggal di lingkungan masyarakat yang sangat beragam, baik dari segi agama, adat, maupun budaya. Untuk menciptakan kesatuan dan persatuan, apa yang akan Anda lakukan?",
+    teks: "Anda tinggal di lingkungan masyarakat yang sangat beragam, baik dari segi agama, adat, maupun budaya. Untuk menciptakan kesatuan dan persatuan, apa yang akan Anda lakukan?(Sosial Budaya)",
     pilihan: [
       { huruf: "A", teks: "Saya akan mengadakan kegiatan bersama, seperti gotong royong atau acara seni budaya, untuk mempererat hubungan antarwarga", poin: 5 },
       { huruf: "B", teks: "Saya akan mendukung warga untuk menjalankan tradisi dan budayanya masing-masing tanpa terlibat secara langsung", poin: 2 },
@@ -1657,7 +1657,7 @@ const soalData = [
   // ─── Soal 109 ───
   {
     id: 109, kategori: "TKP",
-    teks: "Anda adalah seorang karyawan yang memahami seluk-beluk aplikasi yang sedang dikembangkan oleh perusahaan. Namun, tidak ada yang mengetahui bahwa Anda memiliki pemahaman terbaik tentang aplikasi tersebut. Apa yang akan Anda lakukan?",
+    teks: "Anda adalah seorang karyawan yang memahami seluk-beluk aplikasi yang sedang dikembangkan oleh perusahaan. Namun, tidak ada yang mengetahui bahwa Anda memiliki pemahaman terbaik tentang aplikasi tersebut. Apa yang akan Anda lakukan? (TIK)",
     pilihan: [
       { huruf: "A", teks: "Diam saja karena khawatir hal ini akan menambah beban kerja yang tidak bisa Anda tangani", poin: 1 },
       { huruf: "B", teks: "Memberi tahu atasan bahwa Anda memahami aplikasi tersebut dan meminta agar tanggung jawab tambahan tidak mengganggu tugas utama Anda", poin: 3 },
@@ -1672,7 +1672,7 @@ const soalData = [
   // ─── Soal 110 ───
   {
     id: 110, kategori: "TKP",
-    teks: "Anda adalah seorang manajer proyek di sebuah kementerian yang bertanggung jawab atas pembangunan fasilitas baru di wilayah IKN. Di tengah pelaksanaan proyek, ada salah satu pengawas lapangan mendadak sakit dan tidak bisa melanjutkan tugasnya. Apa langkah terbaik yang Anda lakukan?",
+    teks: "Anda adalah seorang manajer proyek di sebuah kementerian yang bertanggung jawab atas pembangunan fasilitas baru di wilayah IKN. Di tengah pelaksanaan proyek, ada salah satu pengawas lapangan mendadak sakit dan tidak bisa melanjutkan tugasnya. Apa langkah terbaik yang Anda lakukan? (Jejaring Kerja)",
     pilihan: [
       { huruf: "A", teks: "Membagi tanggung jawab pengawasan kepada anggota tim yang tersisa dan memastikan mereka tetap profesional meskipun ada beban tambahan", poin: 3 },
       { huruf: "B", teks: "Menyewa tenaga ahli eksternal untuk menggantikan sementara pengawas lapangan yang sakit", poin: 2 },
