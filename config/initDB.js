@@ -42,19 +42,6 @@ async function initDB() {
     `);
     console.log('  Tabel paket_tryout');
 
-    /* Seed: Paket 1 */
-    await client.query(`
-      INSERT INTO paket_tryout
-        (tryout_id, nama_paket, deskripsi, jumlah_soal, waktu_menit,
-         harga, harga_asli, stripe_color, is_baru, is_aktif)
-      VALUES
-        (1, 'Try Out SKD Paket 1',
-         'Simulasi SKD lengkap: TWK + TIU + TKP sesuai standar BKN terbaru.',
-         110, 100, 0, 30000, '#4FC3E0', true, true)
-      ON CONFLICT (tryout_id) DO NOTHING;
-    `);
-    console.log('  Seed Paket 1');
-
     /* Seed: Paket 2 */
     await client.query(`
       INSERT INTO paket_tryout

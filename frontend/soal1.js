@@ -498,7 +498,7 @@ document.addEventListener("DOMContentLoaded", async function() {
   jawaban = Array(soalData.length).fill(null);
 
   // Set nama paket
-  var namaParket = sessionStorage.getItem('skd_tryout_title') || 'Try Out SKD Paket 1';
+  var namaParket = sessionStorage.getItem('skd_tryout_title') || 'Try Out SKD Paket 2';
   document.getElementById('namaParket').textContent = namaParket;
 
   // Set total soal di header & stats
