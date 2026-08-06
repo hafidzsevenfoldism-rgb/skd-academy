@@ -68,6 +68,19 @@ async function initDB() {
     `);
     console.log('  Seed Paket 3');
 
+    /* Seed: Paket 4 */
+    await client.query(`
+      INSERT INTO paket_tryout
+        (tryout_id, nama_paket, deskripsi, jumlah_soal, waktu_menit,
+         harga, harga_asli, stripe_color, is_baru, is_aktif)
+      VALUES
+         (4, 'Try Out SKD Paket 4',
+         'Simulasi SKD terbaru: TWK + TIU + TKP dengan variasi soal terkini.',
+         110, 100, 14900, 30000, '#3498DB', true, true)
+      ON CONFLICT (tryout_id) DO UPDATE SET is_aktif = EXCLUDED.is_aktif;
+    `);
+    console.log('  Seed Paket 4');
+
     /* TABEL 3: TRYOUT DIMILIKI USER */
     await client.query(`
       CREATE TABLE IF NOT EXISTS tryout_dibeli (

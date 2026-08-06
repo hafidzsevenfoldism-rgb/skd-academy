@@ -236,7 +236,7 @@ function renderCards(list) {
                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72
                             a2 2 0 0 0 2-1.61L23 6H6"/>
                  </svg>
-                 ${t.harga === 0 ? 'Klaim Gratis' : t.id === 2 || t.id === 3 ? 'Investasi Sekarang' : 'Beli Sekarang'}
+                 ${t.harga === 0 ? 'Klaim Gratis' : t.id === 2 || t.id === 3 || t.id === 4 ? 'Investasi Sekarang' : 'Beli Sekarang'}
                </button>`
         }
       </div>`;
