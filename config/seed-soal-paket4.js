@@ -46,7 +46,7 @@ const soalData = [
       { huruf: "E", teks: "Menghargai hasil keputusan yang diambil dalam forum" }
     ],
     kunci: "D",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Kata kunci untuk menjawab soal ini terdapat pada kalimat 'menunjukkan sikap empati dan kepedulian terhadap sesama'. Sikap tersebut merupakan bentuk pengamalan sila kedua Pancasila. Opsi yang sama-sama menunjukkan pengamalan sila ke 2 Pancasila adalah opsi D."
   },
 
   // ─── Soal 2 ───
@@ -54,14 +54,14 @@ const soalData = [
     id: 2, kategori: "TWK",
     teks: "Pasal 32 Undang-Undang Dasar 1945 berbunyi 'negara memajukan kebudayaan nasional Indonesia di tengah peradaban dunia dengan menjamin kebebasan masyarakat dalam memelihara dan mengembangkan nilai-nilai budaya'. Wujud implementasi yang dapat dilakukan berdasarkan pasal 32 tersebut dapat dilakukan dengan...",
     pilihan: [
-      { huruf: "A", teks: "Memberikan dukungan kepada seniman dan budayawan lokal untuk mengembangkan seni dan budaya internasional" },
+      { huruf: "A", teks: "Memberikan dukungan kepada seniman dan budayawan lokal untuk mengembangkan seni dan budaya ke kancah internasional" },
       { huruf: "B", teks: "Mengintegrasikan pendidikan keagamaan dan kebudayaan dalam kurikulum pendidikan nasional" },
       { huruf: "C", teks: "Memanfaatkan teknologi informasi dalam menunjang aktivitas sehari-hari" },
       { huruf: "D", teks: "Menjaga persatuan dan kesatuan bangsa dengan tidak menyebarkan hoaks di media sosial" },
       { huruf: "E", teks: "Menghargai kepercayaan dan keyakinan yang dianut oleh orang lain" }
     ],
     kunci: "A",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Kata kunci untuk menjawab soal ini terdapat pada kalimat 'memajukan kebudayaan nasional Indonesia'. Opsi jawaban yang menunjukkan upaya untuk memajukan kebudayaan nasional Indonesia ada pada opsi A."
   },
 
   // ─── Soal 3 ───
@@ -76,7 +76,7 @@ const soalData = [
       { huruf: "E", teks: "Pembukaan UUD 1945 menegaskan bahwa kemerdekaan merupakan hak bagi seluruh negara di dunia" }
     ],
     kunci: "A",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Pembukaan UUD 1945 alinea kedua berbunyi 'dan perjuangan pergerakan kemerdekaan Indonesia telah sampailah kepada saat yang berbahagia dengan selamat sentosa mengantarkan rakyat Indonesia ke depan pintu gerbang kemerdekaan Indonesia yang merdeka, bersatu, berdaulat, adil dan makmur'. Pada alinea ini dijelaskan bahwa kemerdekaan Indonesia diraih dengan perjuangan rakyat Indonesia"
   },
 
   // ─── Soal 4 ───
@@ -91,7 +91,7 @@ const soalData = [
       { huruf: "E", teks: "Menyatukan kepercayaan sehingga tidak ada lagi perbedaan" }
     ],
     kunci: "D",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Pada kasus bangunan rumah ibadah masjid dan gereja yang berada dalam satu tembok di Kalteng ini mencerminkan praktik toleransi antarumat beragama yang sangat penting. Alasannya adalah toleransi antarumat beragama akan memperkuat hubungan antarwarga negara Indonesia yang memiliki beragam kepercayaan."
   },
 
   // ─── Soal 5 ───
@@ -106,7 +106,7 @@ const soalData = [
       { huruf: "E", teks: "Tidak merugikan orang lain dalam setiap keputusan dan tindakan yang dilakukan" }
     ],
     kunci: "B",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Kata kunci untuk menjawab soal ini ada pada kalimat 'Bhinneka Tunggal Ika dan tertuang dalam sila ke-3 Pancasila'. Opsi jawaban yang menunjukkan implementasi dari sila ketiga Pancasila ada pada opsi B."
   },
 
   // ─── Soal 6 ───
@@ -121,7 +121,7 @@ const soalData = [
       { huruf: "E", teks: "Pancasila sudah dirumuskan sebelum kemerdekaan" }
     ],
     kunci: "B",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Kata kunci untuk menjawab soal ini ada pada soal ini ada pada kalimat 'sudah melekat dalam diri bangsa Indonesia sebelum merdeka'. Pernyataan ini mencerminkan bahwa nilai-nilai Pancasila tidak hanya muncul setelah Indonesia merdeka, melainkan sudah melekat dalam karakter dan kehidupan masyarakat Indonesia sejak zaman dulu."
   },
 
   // ─── Soal 7 ───
@@ -136,7 +136,7 @@ const soalData = [
       { huruf: "E", teks: "Ikut berpartisipasi aktif dalam perayaan nasional" }
     ],
     kunci: "D",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Kata kunci untuk menjawab soal ini terdapat pada kalimat 'rasa tanggung jawab terhadap pembangunan dan kesejahteraan bangsa'. Opsi jawaban yang menunjukkan rasa tanggung jawab terhadap pembangunan dan kesejahteraan bnagsa ada pada opsi D."
   },
 
   // ─── Soal 8 ───
@@ -151,7 +151,7 @@ const soalData = [
       { huruf: "E", teks: "Mengikuti dan mendukung kegiatan sosial, budaya, dan olahraga bersama yang melibatkan berbagai kelompok masyarakat" }
     ],
     kunci: "E",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Kata kunci untuk menjawab soal ini ada pada kalimat 'menciptakan rasa solidaritas di antara berbagai kelompok masyarakat dalam suatu negara sehingga dapat mengatasi perbedaan sosial, agama, dan etnis. 'Opsi jawaban yang menunjukkan adanya rasa solidaritas antar masyarakat ada pada opsi E."
   },
 
   // ─── Soal 9 ───
@@ -166,7 +166,7 @@ const soalData = [
       { huruf: "E", teks: "Terlibat dalam kegiatan komunitas yang memperlihatkan semangat kebersamaan" }
     ],
     kunci: "B",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Kata kunci untuk menjawab soal ini terdapat pada kalimat 'terhubung secara emosional dengan negara mereka dan bangga menjadi bagian dari negara tersebut'. Opsi yang menunjukkan bangga dengan tanah air ada pada opsi B"
   },
 
   // ─── Soal 10 ───
@@ -181,7 +181,7 @@ const soalData = [
       { huruf: "E", teks: "Menyatakan diri dengan bangga sebagai warga negara Indonesia" }
     ],
     kunci: "A",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Kata kunci untuk menjawab soal ini ada pada kelimat 'kepedulian terhadap lingkungan alam dan upaya untuk mempertahankan keindahan alam'. Opsi jawaban yang menunjukkan rasa kepedulian terhadap lingkungan alam ada pada opsi A."
   },
 
   // ─── Soal 11 ───
@@ -196,7 +196,7 @@ const soalData = [
       { huruf: "E", teks: "Selalu waspada terhadap ancaman potensial" }
     ],
     kunci: "C",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Kata kunci untuk menjawab soal ini terdapat pada kalimat 'upaya pemberdayaan masyarakat dan aktif berkontribusi pada perkembangan sosial dan ekonomi negara'. Opsi jawaban yang menunjukkan upaya pemberdayaan masyarakat tersebut ada pada opsi C."
   },
 
   // ─── Soal 12 ───
@@ -211,7 +211,7 @@ const soalData = [
       { huruf: "E", teks: "Menjaga hubungan baik sesama rekan kerja baik dengan atasan maupun bawahan" }
     ],
     kunci: "B",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Kata kunci untuk menjawab soal ini terdapat pada kalimat 'dapat memberikan pelayanan terbaik kepada masyarakat'. Opsi yang berkaitan dengan pelayanan publik seorang ada pada opsi B."
   },
 
   // ─── Soal 13 ───
@@ -226,7 +226,7 @@ const soalData = [
       { huruf: "E", teks: "Belajar dengan rajin dan mengusahakan yang terbaik demi cita-cita" }
     ],
     kunci: "C",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Kata kunci untuk menjawab soal ini ada pada kalimat 'menunjukkan netralitas dan tidak memihak kepada siapapun'. Sikap tersebut merupakan wujud dari nilai keadilan. Opsi jawaban yang menunjukkan sikap yang adil ada pada opsi C."
   },
 
   // ─── Soal 14 ───
@@ -241,7 +241,7 @@ const soalData = [
       { huruf: "E", teks: "Menghormati guru dan menghargai teman sekelas" }
     ],
     kunci: "A",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Kata kunci untuk menjawab soal ini ada pada kalimat 'lebih mudah dipercaya oleh orang lain'. Artinya sikap yang diminta adalah upaya untuk mewujudkan nilai kejujuran agar lebih mudah dipercaya orang lain. Opsi A mencerminkan langkah konkret untuk membentuk budaya kejujuran di lingkungan sekolah."
   },
 
   // ─── Soal 15 ───
@@ -256,7 +256,7 @@ const soalData = [
       { huruf: "E", teks: "Tidak mengambil dan menggunakan barang milik kakak atau adiknya sebelum mendapatkan izin" }
     ],
     kunci: "E",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Kata kunci untuk menjawab soal ini terdapat pada kalimat 'mengendalikan dirinya dan bertindak sesuai dengan nilai-nilai etika'. Opsi jawaban yang menunjukkan sikap pengendalian diri yang baik dan bertindak sesuai etika ada pada opsi E."
   },
 
   // ─── Soal 16 ───
@@ -271,7 +271,7 @@ const soalData = [
       { huruf: "E", teks: "Integritas merupakan suatu tindakan yang terjadi secara refleks yang dibentuk karena adanya pengalaman dan dukungan moral dari orang lain" }
     ],
     kunci: "B",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Integritas melibatkan konsistensi antara apa yang diucapkan oleh seseorang dan tindakan yang mereka lakukan. Dalam konteks berita, integritas wartawan atau pembuat berita mencakup kejujuran dan konsistensi dalam menyajikan informasi sehingga mencegah penyebaran informasi simpang siur."
   },
 
   // ─── Soal 17 ───
@@ -286,7 +286,7 @@ const soalData = [
       { huruf: "E", teks: "Kerja keras demi perjuangan dan kesetaraan hak antara laki-laki dan perempuan" }
     ],
     kunci: "E",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Kata kunci untuk menjawab soal ini terdapat pada kalimat 'selalu mencari cara agar pemikirannya bisa tersampaikan kepada orang banyak. Meski tidak sekolah tinggi, RA Kartini selalu belajar dengan gigih'. Opsi E mencerminkan nilai integrtias RA Kartini karena beliau menunjukkan kerja keras dalam perjuangan demi mencapai kesetaraan hak laki-laki dan perempuan."
   },
 
   // ─── Soal 18 ───
@@ -301,7 +301,7 @@ const soalData = [
       { huruf: "E", teks: "Bertegur sapa dengan semua anggota yang ada di lingkungan sekolah" }
     ],
     kunci: "A",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Kata kunci untuk menjawab soal ini ada pada kalimat 'mencerminkan ketertiban, pengendalian diri dan ketaatan terhadap aturan dan norma yang berlaku'. Sikap tersebut menunjukkan Tio menanamkan nilai disiplin dalam kehidupannya. Opsi yang menunjukkan sikap disiplin ada pada opsi A."
   },
 
   // ─── Soal 19 ───
@@ -315,8 +315,8 @@ const soalData = [
       { huruf: "D", teks: "Memiliki kemampuan awal bela negara" },
       { huruf: "E", teks: "Membantu perekonomian bangsa dengan bekerja" }
     ],
-    kunci: "B",
-    pembahasan: "Tulis pembahasan di sini..."
+    kunci: "E",
+    pembahasan: "Bekerja sesuai profesi yang didasari dengan tekad, kesetiaan dan kecintaan terhadap NKRI merupakan salah satu bentuk upaya bela negara"
   },
 
   // ─── Soal 20 ───
@@ -331,7 +331,7 @@ const soalData = [
       { huruf: "E", teks: "Memiliki keterampilan dan pengetahuan yang memadai untuk mendukung pembangunan negara" }
     ],
     kunci: "C",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Kata kunci untuk menjawab soal ini ada pada kalimat 'aspek pendidikan dan literasi'. Opsi jawaban yang menunjukkan keterkaitan dengan aspek pendidikan dan literasi ada pada opsi C."
   },
 
   // ─── Soal 21 ───
@@ -346,7 +346,7 @@ const soalData = [
       { huruf: "E", teks: "Belajar sesuai dengan aturan dan kebijakan yang berlaku" }
     ],
     kunci: "C",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Kata kunci untuk menjawab soal ini ada pada kalimat 'tantangan yang diakibatkan oleh perkembangan zaman'. Opsi C merupakan jawaban yang paling tepat karena dapat membantu mahasiswa menjadi lebih kompeten dan sadar terhadap tantangan yang mereka hadapi. Hal ini memungkinkan mereka untuk merumuskan solusi yang lebih baik dan berpartisipasi dalam upaya perubahan positif di masyarakat"
   },
 
   // ─── Soal 22 ───
@@ -354,14 +354,14 @@ const soalData = [
     id: 22, kategori: "TWK",
     teks: "Gerakan literasi menjadi salah satu upaya pemerintah dalam menumbuhkan budi pekerti dan sebagai acuan untuk memiliki akhlak atau moral yang baik demi menjaga persatuan dan kesatuan bangsa. Dalam upaya bela negara, peranan literasi ini dapat berupa...",
     pilihan: [
-      { huruf: "A", teks: "Mendapatkan, membaca dan memahami informasi dengan kritis untuk membentuk pemikiran yang sehat" },
+      { huruf: "A", teks: "Mendapatkan, membaca, dan memahami informasi dengan kritis untuk membentuk pemikiran yang sehat" },
       { huruf: "B", teks: "Mendapatkan informasi dari berbagai pihak dan kalangan tanpa adanya batasan akses" },
       { huruf: "C", teks: "Mendapatkan informasi tanpa perlu verifikasi" },
       { huruf: "D", teks: "Memudahkan akses segala bentuk budaya baik budaya lokal maupun budaya luar" },
       { huruf: "E", teks: "Semua benar" }
     ],
     kunci: "A",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Kata kunci untuk menjawab soal ini terdapat pada kalimat 'menumbuhkan budi pekerti dan sebagai acuan untuk memiliki akhlak atau moral yang baik'. Dalam konteks upaya bela negara, literasi yang diacu adalah literasi informasi dan pemahaman terhadap informasi yang diperoleh. Opsi A mencerminkan peran literasi dalam membantu individu mendapatkan, membaca, memahami informasi dengan kritis sehingga dapat membentuk pemikiran yang sehat."
   },
 
   // ─── Soal 23 ───
@@ -376,7 +376,7 @@ const soalData = [
       { huruf: "E", teks: "Tetap bekerja di luar negeri karena gajinya lebih besar" }
     ],
     kunci: "C",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Kata kunci untuk menjawab soal ini ada pada kalimat 'kecintaanya terhadap tanah air'. Opsi jawaban yang menunjukkan rasa cinta tanah air ada pada opsi C"
   },
 
   // ─── Soal 24 ───
@@ -391,7 +391,7 @@ const soalData = [
       { huruf: "E", teks: "Memiliki kemampuan awal bela negara" }
     ],
     kunci: "D",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Nilai dasar bela negara adalah cinta tanah air, sadar berbangsa dan bernegara, setia pada pada Pancasila sebagai ideologi negara, rela berkorban untuk bangsa dan negara serta memiliki kemampuan awal bela negara. jadi nilai yang tidak termasuk adalah opsi D."
   },
 
   // ─── Soal 25 ───
@@ -406,7 +406,7 @@ const soalData = [
       { huruf: "E", teks: "Pentingnya menggunakan tabir surya dalam menjaga kesehatan kulit" }
     ],
     kunci: "E",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Pokok pikiran adalah inti dari suatu bacaan yang akan dibahaas lebih dalam melalui penjelasan penjelasan pendukung. Pokok pikiran dari teks tersebut adalah pentingnya menggunakan tabir surya dalam menjaga kesehatan kulit"
   },
 
   // ─── Soal 26 ───
@@ -421,7 +421,7 @@ const soalData = [
       { huruf: "E", teks: "Ekstrak air buah pare menurunkan kadar glukosa darah pada orang normal" }
     ],
     kunci: "C",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Gagasan utama yang terkandung dalam paragraf tersebut berada di awal kalimat (deduktif). Pada awal menyatakan tentang hasil uji praklinik dan klinik dari pare dan pada kalimat selanjutnya menjelaskan hasil dari uji tersebut. Opsi yang benar adalah C"
   },
 
   // ─── Soal 27 ───
@@ -436,7 +436,7 @@ const soalData = [
       { huruf: "E", teks: "Semua salah" }
     ],
     kunci: "C",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Gagasan utama paragraf tersebut berada di akhir paragraf (Induktif). Dinyatakan bahwa berbagai penyakit muncul akibat banjir lumpur. Kemudian pada kalimat lainnya dijelaskan jenis penyakitnya"
   },
 
   // ─── Soal 28 ───
@@ -451,7 +451,7 @@ const soalData = [
       { huruf: "E", teks: "Menjuangkan, seharusnya memperjuangkan" }
     ],
     kunci: "E",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Menggunakan kata 'memperjuangkan' akan membuat kalimat lebih tepat secara gramatikal dan baku secara bahasa. Opsi yang benar adalah E."
   },
 
   // ─── Soal 29 ───
@@ -466,7 +466,7 @@ const soalData = [
       { huruf: "E", teks: "Semua kalimat" }
     ],
     kunci: "D",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Opsi D yaitu kalimat 4 memiliki banyak pengulangan kata yang tidak perlu seperti kata sangat banyak sekali."
   },
 
   // ─── Soal 30 ───
@@ -481,7 +481,7 @@ const soalData = [
       { huruf: "E", teks: "Mempikat" }
     ],
     kunci: "A",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Kata yang dituliskan miring adalah 'mempikat'. Ini adalah bentuk yang tidak benar karena yang benar adalah opsi A yaitu memikat"
   },
 
   // ════════════════════════════════════════════
@@ -574,7 +574,7 @@ const soalData = [
       { huruf: "D", teks: "Sebelum membawa pulang HP baru itu, sebagai pembeli harus menunjukkan bukti pembayaran yang sah" },
       { huruf: "E", teks: "Sebelum menjalankan mesin cetak, para pekerja mengenakan alat keselamatan yang benar" }
     ],
-    kunci: "B",
+    kunci: "C",
     pembahasan: "Tulis pembahasan di sini..."
   },
 
@@ -791,7 +791,7 @@ const soalData = [
   // ─── Soal 51 ───
   {
     id: 51, kategori: "TIU",
-    teks: "Jika Azka dapat menyelesaikan tugas proyeknya tepat waktu, maka A mendaki gunung menggunakan sepatu baru.<br>Jika Azka tidak pergi ke pulau Sumatera, Maka Azka tidak membeli tiket pesawat.<br>Azka tidak mendaki gunung menggunakan sepatu baru atau Azka membeli tiket pesawat.<br>Manakah simpulan berikut yang benar?",
+    teks: "Jika Azka dapat menyelesaikan tugas proyeknya tepat waktu, maka Azka mendaki gunung menggunakan sepatu baru.<br>Jika Azka tidak pergi ke pulau Sumatera, Maka Azka tidak membeli tiket pesawat.<br>Azka tidak mendaki gunung menggunakan sepatu baru atau Azka membeli tiket pesawat.<br>Manakah simpulan berikut yang benar?",
     pilihan: [
       { huruf: "A", teks: "Jika Azka dapat menyelesaikan tugas proyeknya tepat waktu, maka Azka pergi ke pulau Sumatera" },
       { huruf: "B", teks: "Jika Azka dapat menyelesaikan tugas proyeknya tepat waktu, maka Azka tidak pergi ke pulau Sumatera" },
@@ -1448,8 +1448,8 @@ const soalData = [
       { huruf: "D", teks: "Memanggil tim IT segera untuk memeriksa bug tersebut di komputer/laptop kerjanya", poin: 4 },
       { huruf: "E", teks: "Segera melaporkannya kepada atasan dan mengusulkan menggunakan teknologi yang lain yang lebih aman", poin: 5 }
     ],
-    kunci: "E",
-    pembahasan: "A = 2, B = 3, C = 1, D = 4, E = 5<br>Tulis pembahasan di sini..."
+    kunci: "D",
+    pembahasan: "A = 2, B = 3, C = 1, D = 5, E = 4<br>Tulis pembahasan di sini..."
   },
 
   // ─── Soal 95 ───
@@ -1464,7 +1464,7 @@ const soalData = [
       { huruf: "E", teks: "Mencari mentor berpengalaman dalam menggunakan sistem teknologi tersebut dan bernegosiasi dengannya hingga mendapatkan kesepakatan harga jasa yang paling sesuai", poin: 4 }
     ],
     kunci: "C",
-    pembahasan: "A = 2, B = 1, C = 5, D = 3, E = 4<br>Tulis pembahasan di sini..."
+    pembahasan: "A = 2, B = 1, C = 5, D = 4, E = 3<br>Tulis pembahasan di sini..."
   },
 
   // ─── Soal 96 ───
