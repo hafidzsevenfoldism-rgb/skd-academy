@@ -51,7 +51,12 @@ async function initDB() {
          (2, 'Try Out SKD Paket 2',
          'Simulasi SKD lanjutan: TWK + TIU + TKP dengan variasi soal terbaru.',
          110, 100, 0, 0, '#E67E22', true, true)
-      ON CONFLICT (tryout_id) DO UPDATE SET is_aktif = EXCLUDED.is_aktif;
+ON CONFLICT (tryout_id) DO UPDATE SET
+        harga = EXCLUDED.harga,
+        harga_asli = EXCLUDED.harga_asli,
+        deskripsi = EXCLUDED.deskripsi,
+        stripe_color = EXCLUDED.stripe_color,
+        is_aktif = EXCLUDED.is_aktif;
     `);
     console.log('  Seed Paket 2');
 
@@ -64,7 +69,12 @@ async function initDB() {
          (3, 'Try Out SKD Paket 3',
          'Simulasi SKD terbaru: TWK + TIU + TKP dengan variasi soal terkini.',
          110, 100, 0, 0, '#27AE60', true, true)
-      ON CONFLICT (tryout_id) DO UPDATE SET is_aktif = EXCLUDED.is_aktif;
+      ON CONFLICT (tryout_id) DO UPDATE SET
+        harga = EXCLUDED.harga,
+        harga_asli = EXCLUDED.harga_asli,
+        deskripsi = EXCLUDED.deskripsi,
+        stripe_color = EXCLUDED.stripe_color,
+        is_aktif = EXCLUDED.is_aktif;
     `);
     console.log('  Seed Paket 3');
 
@@ -77,7 +87,12 @@ async function initDB() {
          (4, 'Try Out SKD Paket 4',
          'Simulasi SKD terbaru: TWK + TIU + TKP dengan variasi soal terkini.',
          110, 100, 0, 0, '#3498DB', true, true)
-      ON CONFLICT (tryout_id) DO UPDATE SET is_aktif = EXCLUDED.is_aktif;
+      ON CONFLICT (tryout_id) DO UPDATE SET
+        harga = EXCLUDED.harga,
+        harga_asli = EXCLUDED.harga_asli,
+        deskripsi = EXCLUDED.deskripsi,
+        stripe_color = EXCLUDED.stripe_color,
+        is_aktif = EXCLUDED.is_aktif;
     `);
     console.log('  Seed Paket 4');
 
