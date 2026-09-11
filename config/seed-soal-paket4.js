@@ -560,7 +560,7 @@ const soalData = [
       { huruf: "E", teks: "Senyum di pagi hari membantu meningkatkan mood yang baik sepanjang hari" }
     ],
     kunci: "B",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "Objek pada kalimat 'Endah mengumpulkan medali dari keaktifannya mengikuti lomba sejak ia kecil' adalah <em>medali</em> dan <em>lomba</em>"
   },
 
   // ─── Soal 36 ───
@@ -611,7 +611,7 @@ const soalData = [
   // ─── Soal 39 ───
   {
     id: 39, kategori: "TIU",
-    teks: "Hasil dari 3,6 + 2,1 : 0,3 - 0,6 = ....",
+    teks: "Hasil dari 3,6 + 2,1 &divide; 0,3 - 0,6 = ....",
     pilihan: [
       { huruf: "A", teks: "0" },
       { huruf: "B", teks: "10" },
@@ -620,13 +620,13 @@ const soalData = [
       { huruf: "E", teks: "Tidak terdefinisi" }
     ],
     kunci: "B",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "3,6 + 2,1 &divide; 0,3 - 0,6<br>=3,6 + (2,1 &divide; 0,3) -0,6<br>=3,6 + 7 - 0,6 = 10"
   },
 
   // ─── Soal 40 ───
   {
     id: 40, kategori: "TIU",
-    teks: "Hasil dari 3<math><mfrac> <mn>1</mn><mn>4</mn> </mfrac></math> &times; <math><mfrac> <mn>9</mn><mn>10</mn> </mfrac></math> : 0,8 = ...",
+    teks: "Hasil dari 3<math><mfrac> <mn>1</mn><mn>4</mn> </mfrac></math> &times; <math><mfrac> <mn>9</mn><mn>10</mn> </mfrac></math> &divide; 0,8 = ...",
     pilihan: [
       { huruf: "A", teks: "5<math><mfrac> <mn>12</mn><mn>32</mn> </mfrac></math>" },
       { huruf: "B", teks: "4<math><mfrac> <mn>37</mn><mn>72</mn> </mfrac></math>" },
@@ -635,7 +635,7 @@ const soalData = [
       { huruf: "E", teks: "1<math><mfrac> <mn>13</mn><mn>50</mn> </mfrac></math>" }
     ],
     kunci: "C",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "3<math><mfrac> <mn>1</mn><mn>4</mn> </mfrac></math> &times; <math><mfrac> <mn>9</mn><mn>10</mn> </mfrac></math> &divide; 0,8<br>= <math><mfrac> <mn>13</mn><mn>4</mn> </mfrac></math> &times; <math><mfrac> <mn>9</mn><mn>10</mn> </mfrac></math> &divide; <math><mfrac> <mn>8</mn><mn>10</mn> </mfrac></math><br>=<math><mfrac> <mn>13</mn><mn>4</mn> </mfrac></math> &times; <math><mfrac> <mn>9</mn><mn>10</mn> </mfrac></math> &times; <math><mfrac> <mn>20</mn><mn>8</mn> </mfrac></math><br>=<math><mfrac> <mn>117</mn><mn>32</mn> </mfrac></math> = 3<math><mfrac> <mn>21</mn><mn>32</mn> </mfrac></math>"
   },
 
   // ─── Soal 41 ───
@@ -650,7 +650,7 @@ const soalData = [
       { huruf: "E", teks: "<math><mfrac> <mn>17</mn><mn>50</mn> </mfrac></math>" }
     ],
     kunci: "B",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "0,42 + <math><mfrac> <mn>1</mn><mn>3</mn> </mfrac></math> &times; <math><mfrac> <mn>6</mn><mn>5</mn> </mfrac></math> - <math><mfrac> <mn>16</mn><mn>25</mn> </mfrac></math><br>= <math><mfrac> <mn>42</mn><mn>100</mn> </mfrac></math> + <math><mfrac> <mn>2</mn><mn>5</mn> </mfrac></math> - <math><mfrac> <mn>16</mn><mn>25</mn> </mfrac></math><br>= <math><mfrac> <mn>42 + 40 - 64</mn><mn>100</mn> </mfrac></math> = <math><mfrac> <mn>18</mn><mn>100</mn> </mfrac></math> = <math><mfrac> <mn>9</mn><mn>50</mn> </mfrac></math>"
   },
 
   // ─── Soal 42 ───
@@ -665,7 +665,7 @@ const soalData = [
       { huruf: "E", teks: "<math><mfrac> <mn>A</mn><mn>B</mn> </mfrac></math> > 5" }
     ],
     kunci: "B",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "150 (menit) ➔ 120 (km)<br>100 (menit) ➔ A<br> soal di atas adalah perbandingan senilai karena semakin singkat waktu, semakin sedikit pula jarak yang ditempuh. oleh karena itu, persamaannya adalah dikali silang.<br>A = <math><mfrac> <mn>120 &times; 100</mn><mn>150</mn> </mfrac></math><br>A = 80<br><br> Karena A =  80 dan B = 80, maka opsi yang memenuhi adalah B"
   },
 
   // ─── Soal 43 ───
@@ -680,7 +680,7 @@ const soalData = [
       { huruf: "E", teks: "A + B = 8.000" }
     ],
     kunci: "A",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "120 (mL) ➔ 0,05 (mg)<br>A ➔ 2 (mg)<br>soal di atas merupakan soal perbandingan senilai karena semakin banyak jumlah zat X yang akan didapat, semakin banyak juga campuran yang harus diambil. Oleh karena itu persamaannya adalah dikali silang<br>A = <math><mfrac> <mn>120 &times; 2</mn><mn>0,05</mn> </mfrac></math><br>A= 4.800<br>Karena A = 4.800 dan B = 4.600, maka opsi yang memenuhi adalah opsi A"
   },
 
   // ─── Soal 44 ───
@@ -710,7 +710,7 @@ const soalData = [
       { huruf: "E", teks: "24" }
     ],
     kunci: "B",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "15 (banyak orang) ➔ 24 hari (waktu) <br>x ➔ 20 hari (waktu)<br>soal di atas merupakan perbandingan berbalik nilai karena semakin sedikit waktu yang diperlukan, maka semakin banyak orang yang dibutuhkan untuk menyelesaikannya. Oleh karena itu, x = <math><mfrac> <mn>15 &times; 24</mn><mn>20</mn> </mfrac></math><br>x = 18<br> jadi, banyak pekerja yang diperlukan adalah 18 orang"
   },
 
   // ─── Soal 46 ───
@@ -725,7 +725,7 @@ const soalData = [
       { huruf: "E", teks: "10 Buah" }
     ],
     kunci: "D",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "4 (banyak lampu) ➔ 200m<sup>2</sup><br>x (banyak lampu) ➔ 450m<sup>2</sup><br>Soal di atas adalah soal perbandingan senilai karena semakin luas ruangan yang diterangi, semakin banyak lampu yang diperlukan, oleh karena itu, persamaan yang diperlukan adalah dikali silang<br>x = <math><mfrac> <mn>4 &times; 450</mn><mn>200</mn> </mfrac></math><br>x = 9<br> jadi banyak lampu yang diperlukan adalah 9 buah"
   },
 
   // ─── Soal 47 ───
@@ -740,7 +740,7 @@ const soalData = [
       { huruf: "E", teks: "Rp 184.000" }
     ],
     kunci: "E",
-    pembahasan: "Tulis pembahasan di sini..."
+    pembahasan: "soal ini bisa dikerjakan dengan perbandingan senilai<br>15 % ➔ 24.000<br>115% ➔ x(harga jual)<br>jadi persamaannya adalah dikali silang<br>x = <math><mfrac> <mn>115 &times; 24.000</mn><mn>15</mn> </mfrac></math><br>x = 184.000<br>Jadi, harga jual barang tersebut adalah Rp.184.000"
   },
 
   // ─── Soal 48 ───
