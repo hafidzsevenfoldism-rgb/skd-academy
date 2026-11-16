@@ -209,11 +209,13 @@ function renderCards(list) {
 
       <div class="card-footer">
         <div class="price-wrap">
-          <div class="price-old">Rp ${t.hargaAsli.toLocaleString('id-ID')}</div>
-          <div class="price-row">
-            <span class="diskon-badge">${Math.round((t.hargaAsli - t.harga) / t.hargaAsli * 100)}% OFF</span>
-            <div class="price-now">${t.harga === 0 ? 'Gratis' : 'Rp ' + t.harga.toLocaleString('id-ID')}</div>
-          </div>
+          ${t.comingSoon
+            ? `<div class="price-now">Segera Hadir</div>`
+            : `<div class="price-old">Rp ${t.hargaAsli.toLocaleString('id-ID')}</div>
+               <div class="price-row">
+                 <span class="diskon-badge">${t.hargaAsli > 0 ? Math.round((t.hargaAsli - t.harga) / t.hargaAsli * 100) : 0}% OFF</span>
+                 <div class="price-now">${t.harga === 0 ? 'Gratis' : 'Rp ' + t.harga.toLocaleString('id-ID')}</div>
+               </div>`}
         </div>
         ${t.comingSoon
           ? `<button class="btn-beli btn-coming-soon" disabled>

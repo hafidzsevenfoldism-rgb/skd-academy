@@ -104,7 +104,7 @@ ON CONFLICT (tryout_id) DO UPDATE SET
       VALUES
          (5, 'Try Out SKD Paket 5',
          'Simulasi SKD terbaru: TWK + TIU + TKP dengan variasi soal terkini.',
-         110, 100, 0, 0, '#9B59B6', true, true)
+         110, 100, 0, 0, '#9B59B6', true, false)
       ON CONFLICT (tryout_id) DO UPDATE SET
         harga = EXCLUDED.harga,
         harga_asli = EXCLUDED.harga_asli,
