@@ -50,7 +50,7 @@ async function initDB() {
       VALUES
          (2, 'Try Out SKD Paket 2',
          'Simulasi SKD lanjutan: TWK + TIU + TKP dengan variasi soal terbaru.',
-         110, 100, 0, 0, '#E67E22', true, true)
+         110, 100, 15000, 30000, '#E67E22', true, true)
 ON CONFLICT (tryout_id) DO UPDATE SET
         harga = EXCLUDED.harga,
         harga_asli = EXCLUDED.harga_asli,
@@ -68,7 +68,7 @@ ON CONFLICT (tryout_id) DO UPDATE SET
       VALUES
          (3, 'Try Out SKD Paket 3',
          'Simulasi SKD terbaru: TWK + TIU + TKP dengan variasi soal terkini.',
-         110, 100, 0, 0, '#27AE60', true, true)
+         110, 100, 15000, 30000, '#27AE60', true, true)
       ON CONFLICT (tryout_id) DO UPDATE SET
         harga = EXCLUDED.harga,
         harga_asli = EXCLUDED.harga_asli,
@@ -86,7 +86,7 @@ ON CONFLICT (tryout_id) DO UPDATE SET
       VALUES
          (4, 'Try Out SKD Paket 4',
          'Simulasi SKD terbaru: TWK + TIU + TKP dengan variasi soal terkini.',
-         110, 100, 0, 0, '#3498DB', true, true)
+         110, 100, 15000, 30000, '#3498DB', true, true)
       ON CONFLICT (tryout_id) DO UPDATE SET
         harga = EXCLUDED.harga,
         harga_asli = EXCLUDED.harga_asli,
@@ -95,6 +95,24 @@ ON CONFLICT (tryout_id) DO UPDATE SET
         is_aktif = EXCLUDED.is_aktif;
     `);
     console.log('  Seed Paket 4');
+
+    /* Seed: Paket 5 */
+    await client.query(`
+      INSERT INTO paket_tryout
+        (tryout_id, nama_paket, deskripsi, jumlah_soal, waktu_menit,
+         harga, harga_asli, stripe_color, is_baru, is_aktif)
+      VALUES
+         (5, 'Try Out SKD Paket 5',
+         'Simulasi SKD terbaru: TWK + TIU + TKP dengan variasi soal terkini.',
+         110, 100, 0, 0, '#9B59B6', true, true)
+      ON CONFLICT (tryout_id) DO UPDATE SET
+        harga = EXCLUDED.harga,
+        harga_asli = EXCLUDED.harga_asli,
+        deskripsi = EXCLUDED.deskripsi,
+        stripe_color = EXCLUDED.stripe_color,
+        is_aktif = EXCLUDED.is_aktif;
+    `);
+    console.log('  Seed Paket 5');
 
     /* TABEL 3: TRYOUT DIMILIKI USER */
     await client.query(`

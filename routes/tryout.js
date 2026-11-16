@@ -11,7 +11,7 @@ const router = express.Router();
    Header: Authorization: Bearer <token>
 ══════════════════════════════════════════════ */
 router.post('/beli', auth, async (req, res) => {
-  const { tryout_id, nama_paket, harga } = req.body;
+  const { tryout_id, nama_paket } = req.body;
   const user_id = req.user.id;
 
   if (!tryout_id || !nama_paket) {
@@ -19,6 +19,23 @@ router.post('/beli', auth, async (req, res) => {
   }
 
   try {
+    /* ─── Ambil data paket dari DB ─── */
+    const paket = await pool.query(
+      'SELECT tryout_id, nama_paket, harga FROM paket_tryout WHERE tryout_id = $1 AND is_aktif = TRUE',
+      [tryout_id]
+    );
+
+    if (paket.rows.length === 0) {
+      return res.status(404).json({ error: 'Paket tryout tidak ditemukan atau tidak aktif.' });
+    }
+
+    const hargaPaket = Number(paket.rows[0].harga) || 0;
+
+    /* ─── Blokir bypass: paket berbayar harus lewat Midtrans ─── */
+    if (hargaPaket > 0) {
+      return res.status(403).json({ error: 'Paket berbayar. Silakan bayar melalui Midtrans.' });
+    }
+
     /* ─── Cek apakah sudah dibeli ─── */
     const sudahBeli = await pool.query(
       'SELECT id FROM tryout_dibeli WHERE user_id = $1 AND tryout_id = $2',
@@ -32,16 +49,16 @@ router.post('/beli', auth, async (req, res) => {
       });
     }
 
-    /* ─── Simpan pembelian ─── */
+    /* ─── Simpan pembelian gratis ─── */
     const result = await pool.query(
       `INSERT INTO tryout_dibeli (user_id, tryout_id, nama_paket, harga)
        VALUES ($1, $2, $3, $4)
        RETURNING *`,
-      [user_id, tryout_id, nama_paket, harga || 0]
+      [user_id, tryout_id, paket.rows[0].nama_paket, hargaPaket]
     );
 
     return res.status(201).json({
-      message: 'Try out berhasil dibeli!',
+      message: 'Try out berhasil diklaim!',
       data: result.rows[0]
     });
 

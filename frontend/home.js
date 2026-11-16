@@ -236,7 +236,7 @@ function renderCards(list) {
                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72
                             a2 2 0 0 0 2-1.61L23 6H6"/>
                  </svg>
-                 ${t.harga === 0 ? 'Klaim Gratis' : t.id === 2 || t.id === 3 || t.id === 4 ? 'Investasi Sekarang' : 'Beli Sekarang'}
+                 ${t.harga === 0 ? 'Klaim Gratis' : 'Investasi Sekarang'}
                </button>`
         }
       </div>`;
@@ -529,18 +529,18 @@ async function lihatNilai(tryoutId) {
       '<strong style="color:#2ECC9A;font-size:1.1rem;">🎉 LOLOS PASSING GRADE SKD!</strong><br>' +
       'Skor TWK: <strong>' + hasil.skor_twk + '</strong>/150 (Min. 65 ✅)<br>' +
       'Skor TIU (Konversi): <strong>' + hasil.skor_tiu + '</strong>/175 (Min. 80 ✅)<br>' +
-      'Skor TKP: <strong>' + hasil.skor_tkp + '</strong> (Min. 166 ✅)';
+      'Skor TKP: <strong>' + hasil.skor_tkp + '</strong> (Min. 156 ✅)';
   } else {
     var alasan = [];
     if (!lolosTwk) alasan.push('TWK belum mencapai 65');
     if (!lolosTiu) alasan.push('TIU Konversi belum mencapai 80');
-    if (!lolosTkp) alasan.push('TKP belum mencapai 166');
+    if (!lolosTkp) alasan.push('TKP belum mencapai 156');
 
     subText =
       '<strong style="color:#FF6B6B;font-size:1.1rem;">❌ BELUM LOLOS PASSING GRADE SKD</strong><br>' +
       'Skor TWK: <strong>' + hasil.skor_twk + '</strong>/150 (Min. 65 ' + (lolosTwk ? '✅' : '❌') + ')<br>' +
       'Skor TIU (Konversi): <strong>' + hasil.skor_tiu + '</strong>/175 (Min. 80 ' + (lolosTiu ? '✅' : '❌') + ')<br>' +
-      'Skor TKP: <strong>' + hasil.skor_tkp + '</strong> (Min. 166 ' + (lolosTkp ? '✅' : '❌') + ')<br>' +
+      'Skor TKP: <strong>' + hasil.skor_tkp + '</strong> (Min. 156 ' + (lolosTkp ? '✅' : '❌') + ')<br>' +
       '<small style="color:var(--muted)">Catatan: ' + alasan.join(', ') + '</small>';
   }
   document.getElementById('hasilSub').innerHTML = subText;
