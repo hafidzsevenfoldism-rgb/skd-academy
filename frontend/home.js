@@ -369,6 +369,25 @@ function filterCards() {
    BELI / KLAIM TRYOUT
    Simpan ke database agar tidak hilang setelah logout
 ══════════════════════════════ */
+var voucherTargetId = null;
+
+function showVoucherModal(to) {
+  voucherTargetId = to.id;
+  document.getElementById('voucherTitle').textContent = to.title;
+  document.getElementById('voucherPrice').textContent = 'Harga: Rp ' + to.harga.toLocaleString('id-ID');
+  document.getElementById('voucherCode').value = '';
+  var msg = document.getElementById('voucherMsg');
+  msg.textContent = '';
+  msg.className = 'voucher-msg';
+  document.getElementById('voucherModal').classList.add('show');
+  setTimeout(function () { document.getElementById('voucherCode').focus(); }, 50);
+}
+
+function hideVoucherModal() {
+  document.getElementById('voucherModal').classList.remove('show');
+  voucherTargetId = null;
+}
+
 async function beliTryout(id) {
   const to = tryouts.find(function (t) { return t.id === id; });
   if (!to) return;
@@ -383,18 +402,10 @@ async function beliTryout(id) {
     return;
   }
 
-  // Jika berbayar → redirect ke payment gateway
+  // Jika berbayar → buka modal voucher (opsi voucher / lanjut bayar)
   if (to.harga > 0) {
-    try {
-      const data = await apiCreatePayment(to.id);
-      if (typeof fbq === 'function') fbq('track', 'InitiateCheckout', {value: to.harga, currency: 'IDR', content_name: to.title});
-      window.location.href = data.payment_url;
-      return;
-    } catch (err) {
-      console.error('Gagal buat pembayaran:', err.message);
-      showToast(err.message || 'Gagal memproses pembayaran.');
-      return;
-    }
+    showVoucherModal(to);
+    return;
   }
 
   try {
@@ -414,7 +425,6 @@ async function beliTryout(id) {
     }
 
     // Simpan ke localStorage sebagai cache
-    // Inilah yang akan dipakai saat refresh / login ulang
     localStorage.setItem('skd_purchased', JSON.stringify([...purchased]));
     localStorage.setItem('skd_myTryouts', JSON.stringify(myTryouts));
 
@@ -425,7 +435,83 @@ async function beliTryout(id) {
 
   } catch (err) {
     console.error('Gagal simpan tryout:', err.message);
-    showToast('Gagal menyimpan. Pastikan kamu sudah login.');
+    showToast(err.message || 'Gagal menyimpan. Pastikan kamu sudah login.');
+  }
+}
+
+async function applyVoucher() {
+  var to = tryouts.find(function (t) { return t.id === voucherTargetId; });
+  if (!to) return;
+
+  var code = (document.getElementById('voucherCode').value || '').trim();
+  var msg  = document.getElementById('voucherMsg');
+  var btn  = document.getElementById('btnApplyVoucher');
+
+  if (!code) {
+    msg.textContent = 'Masukkan kode voucher.';
+    msg.className = 'voucher-msg err';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Memproses...';
+  msg.textContent = '';
+  msg.className = 'voucher-msg';
+
+  try {
+    var res = await apiBeli(to.id, to.title, 0, code);
+
+    purchased.add(to.id);
+
+    var sudahAda = myTryouts.some(function (t) { return t.id === to.id; });
+    if (!sudahAda) {
+      myTryouts.unshift({
+        id:       to.id,
+        title:    to.title,
+        progress: 0,
+        skor:     null,
+        waktu:    to.waktu
+      });
+    }
+
+    localStorage.setItem('skd_purchased', JSON.stringify([...purchased]));
+    localStorage.setItem('skd_myTryouts', JSON.stringify(myTryouts));
+
+    filterCards();
+    renderMyTo();
+    hideVoucherModal();
+
+    showToast('✓ ' + (res.message || '"' + to.title + '" berhasil diklaim!'));
+
+  } catch (err) {
+    console.error('Gagal pakai voucher:', err.message);
+    msg.textContent = err.message || 'Kode voucher tidak valid.';
+    msg.className = 'voucher-msg err';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Gunakan Voucher';
+  }
+}
+
+async function lanjutBayar() {
+  var to = tryouts.find(function (t) { return t.id === voucherTargetId; });
+  if (!to) return;
+
+  var btn = document.getElementById('btnLanjutBayar');
+  btn.disabled = true;
+  btn.textContent = 'Memproses...';
+
+  try {
+    const data = await apiCreatePayment(to.id);
+    if (typeof fbq === 'function') fbq('track', 'InitiateCheckout', {value: to.harga, currency: 'IDR', content_name: to.title});
+    window.location.href = data.payment_url;
+  } catch (err) {
+    console.error('Gagal buat pembayaran:', err.message);
+    var msg = document.getElementById('voucherMsg');
+    msg.textContent = err.message || 'Gagal memproses pembayaran.';
+    msg.className = 'voucher-msg err';
+    btn.disabled = false;
+    btn.textContent = 'Lanjut Bayar';
   }
 }
 
@@ -635,6 +721,16 @@ document.getElementById('btnTutupHasil').addEventListener('click', function () {
 
 document.getElementById('hasilModal').addEventListener('click', function (e) {
   if (e.target === this) this.classList.remove('show');
+});
+
+document.getElementById('btnApplyVoucher').addEventListener('click', applyVoucher);
+document.getElementById('btnLanjutBayar').addEventListener('click', lanjutBayar);
+document.getElementById('btnCancelVoucher').addEventListener('click', hideVoucherModal);
+document.getElementById('voucherModal').addEventListener('click', function (e) {
+  if (e.target === this) hideVoucherModal();
+});
+document.getElementById('voucherCode').addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') applyVoucher();
 });
 
 

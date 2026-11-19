@@ -313,6 +313,25 @@
     </div>
 
     <!-- ══════════════════════════════
+        MODAL VOUCHER
+    ══════════════════════════════ -->
+    <div class="modal-overlay" id="voucherModal">
+      <div class="modal-box voucher-box">
+        <div class="modal-title" id="voucherTitle">Pilih Try Out</div>
+        <div class="modal-sub" id="voucherPrice">Masukkan kode voucher atau lanjutkan pembayaran.</div>
+
+        <input type="text" id="voucherCode" class="voucher-input" placeholder="Masukkan kode voucher" autocomplete="off" />
+        <div id="voucherMsg" class="voucher-msg"></div>
+
+        <div class="modal-btns voucher-btns">
+          <button class="btn-cancel" id="btnCancelVoucher">Batal</button>
+          <button class="btn-voucher" id="btnApplyVoucher">Gunakan Voucher</button>
+        </div>
+        <button class="btn-pay" id="btnLanjutBayar">Lanjut Bayar</button>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════
         LOADING OVERLAY
     ══════════════════════════════ -->
     <div class="loading-overlay" id="loadingOverlay">

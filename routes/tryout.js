@@ -7,11 +7,11 @@ const router = express.Router();
 /* ══════════════════════════════════════════════
    POST /api/tryout/beli
    Simpan tryout yang sudah dibeli user
-   Body: { tryout_id, nama_paket, harga }
+   Body: { tryout_id, nama_paket, harga, voucher_code }
    Header: Authorization: Bearer <token>
 ══════════════════════════════════════════════ */
 router.post('/beli', auth, async (req, res) => {
-  const { tryout_id, nama_paket } = req.body;
+  const { tryout_id, nama_paket, voucher_code } = req.body;
   const user_id = req.user.id;
 
   if (!tryout_id || !nama_paket) {
@@ -30,11 +30,18 @@ router.post('/beli', auth, async (req, res) => {
     }
 
     const hargaPaket = Number(paket.rows[0].harga) || 0;
+    const kodeVoucher = String(voucher_code || '').trim().toLowerCase();
+    const isVoucherValid = kodeVoucher === 'suksesskd';
 
-    /* ─── Blokir bypass: paket berbayar harus lewat Midtrans ─── */
-    if (hargaPaket > 0) {
+    /* ─── Blokir bypass: paket berbayar harus lewat Midtrans (kecuali voucher valid) ─── */
+    if (hargaPaket > 0 && !isVoucherValid) {
+      if (kodeVoucher) {
+        return res.status(400).json({ error: 'Kode voucher tidak valid.' });
+      }
       return res.status(403).json({ error: 'Paket berbayar. Silakan bayar melalui Midtrans.' });
     }
+
+    const effectiveHarga = 0;
 
     /* ─── Cek apakah sudah dibeli ─── */
     const sudahBeli = await pool.query(
@@ -49,16 +56,18 @@ router.post('/beli', auth, async (req, res) => {
       });
     }
 
-    /* ─── Simpan pembelian gratis ─── */
+    /* ─── Simpan pembelian (gratis / voucher) ─── */
     const result = await pool.query(
       `INSERT INTO tryout_dibeli (user_id, tryout_id, nama_paket, harga)
        VALUES ($1, $2, $3, $4)
        RETURNING *`,
-      [user_id, tryout_id, paket.rows[0].nama_paket, hargaPaket]
+      [user_id, tryout_id, paket.rows[0].nama_paket, effectiveHarga]
     );
 
     return res.status(201).json({
-      message: 'Try out berhasil diklaim!',
+      message: isVoucherValid && hargaPaket > 0
+        ? 'Try out berhasil diklaim dengan voucher!'
+        : 'Try out berhasil diklaim!',
       data: result.rows[0]
     });
 

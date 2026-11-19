@@ -114,8 +114,8 @@ function getUser() {
 /* ══════════════════════════════
    TRYOUT
 ══════════════════════════════ */
-async function apiBeli(tryout_id, nama_paket, harga) {
-  return await apiRequest('/api/tryout/beli', 'POST', { tryout_id, nama_paket, harga });
+async function apiBeli(tryout_id, nama_paket, harga, voucher_code) {
+  return await apiRequest('/api/tryout/beli', 'POST', { tryout_id, nama_paket, harga, voucher_code });
 }
 
 async function apiCreatePayment(tryout_id) {
