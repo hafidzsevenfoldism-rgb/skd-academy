@@ -420,7 +420,7 @@ function hitungSkorDetail() {
   // Pengecekan Passing Grade
   const lolosTwk = (skorTwkAktual >= 65);
   const lolosTiu = (skorTiuKonversi >= 80);
-  const lolosTkp = (skorTkp >= 166);
+  const lolosTkp = (skorTkp >= 156);
   const lolosSkd = (lolosTwk && lolosTiu && lolosTkp);
 
   return {
@@ -467,18 +467,18 @@ function tampilkanHasil() {
       '<strong style="color:var(--success);font-size:1.1rem;">🎉 LOLOS PASSING GRADE SKD!</strong><br>' +
       'Skor TWK: <strong>' + hasil.twk.skor + '</strong>/150 (Min. 65 ✅)<br>' +
       'Skor TIU (Konversi): <strong>' + hasil.tiu.skorKonversi + '</strong>/175 (Min. 80 ✅)<br>' +
-      'Skor TKP: <strong>' + hasil.tkp.skor + '</strong> (Min. 166 ✅)';
+      'Skor TKP: <strong>' + hasil.tkp.skor + '</strong> (Min. 156 ✅)';
   } else {
     var alasan = [];
     if (!hasil.twk.lolos) alasan.push('TWK belum mencapai 65');
     if (!hasil.tiu.lolos) alasan.push('TIU Konversi belum mencapai 80');
-    if (!hasil.tkp.lolos) alasan.push('TKP belum mencapai 166');
+    if (!hasil.tkp.lolos) alasan.push('TKP belum mencapai 156');
 
     subText =
       '<strong style="color:var(--danger);font-size:1.1rem;">❌ BELUM LOLOS PASSING GRADE SKD</strong><br>' +
       'Skor TWK: <strong>' + hasil.twk.skor + '</strong>/150 (Min. 65 ' + (hasil.twk.lolos ? '✅' : '❌') + ')<br>' +
       'Skor TIU (Konversi): <strong>' + hasil.tiu.skorKonversi + '</strong>/175 (Min. 80 ' + (hasil.tiu.lolos ? '✅' : '❌') + ')<br>' +
-      'Skor TKP: <strong>' + hasil.tkp.skor + '</strong> (Min. 166 ' + (hasil.tkp.lolos ? '✅' : '❌') + ')<br>' +
+      'Skor TKP: <strong>' + hasil.tkp.skor + '</strong> (Min. 156 ' + (hasil.tkp.lolos ? '✅' : '❌') + ')<br>' +
       '<small style="color:var(--muted)">Catatan: ' + alasan.join(', ') + '</small>';
   }
   document.getElementById('hasilSub').innerHTML = subText;
